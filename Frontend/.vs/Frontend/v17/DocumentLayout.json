@@ -36,7 +36,7 @@
               "RelativeDocumentMoniker": "Frontend\\App.xaml",
               "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Frontend\\App.xaml",
               "RelativeToolTip": "Frontend\\App.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-06-27T15:27:06.333Z",
               "EditorCaption": ""
@@ -51,8 +51,7 @@
               "RelativeToolTip": "Frontend\\App.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T15:26:47.129Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T15:26:47.129Z"
             },
             {
               "$type": "Document",
@@ -64,8 +63,7 @@
               "RelativeToolTip": "Frontend\\MauiProgram.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAAAAkAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T15:25:36.179Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-27T15:25:36.179Z"
             }
           ]
         }
