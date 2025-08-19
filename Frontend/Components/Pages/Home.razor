@@ -1,21 +1,16 @@
 ﻿@page "/"
 @using Frontend.Components.Shared
-
-@* The three-column grid is now defined in MainLayout.razor *@
-@* This page's content will be rendered in the @Body of the layout *@
+@using Frontend.Models
 
 <div class="h-full grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-6 overflow-hidden">
 
     @* The <main> column is now the scrollable container for posts *@
     <main class="py-6 overflow-y-auto custom-scrollbar">
         <div class="space-y-4">
-            @* Example of a text-only post card *@
-            <PostCard />
-
-            @* Example of a post card with an image *@
-            <PostCard ImageUrl="https://placehold.co/600x300/E0E7FF/4F46E5?text=UI+Kit+Preview" />
-
-            <PostCard />
+            @foreach (var post in Posts)
+            {
+                <PostCard Post="post" />
+            }
         </div>
     </main>
 
@@ -55,3 +50,45 @@
     </aside>
 
 </div>
+
+@code{
+    private List<Post> Posts = new();
+
+    protected override void OnInitialized()
+    {
+        Posts = new List<Post>
+        {
+            new Post
+            {
+                CommunityName = "webdev",
+                AuthorName = "coder123",
+                Title = "What are your favorite 'Aha!' moments in learning a new framework?",
+                Content = "Mine was finally understanding the component lifecycle in React. It felt like unlocking a superpower. Before that, I was just throwing useState and useEffect at the wall to see what stuck. What are some of yours? It's amazing how one concept can change your entire perspective on development.",
+                CreatedAt = DateTime.Now.AddHours(-5),
+                UpVotes = 1200,
+                CommentsCount = 137
+            },
+            new Post
+            {
+                CommunityName = "design",
+                AuthorName = "pixel_pusher",
+                Title = "A beautiful UI kit I designed for free.",
+                Content = "Just wanted to share this new UI kit I've been working on. Hope you all find it useful for your projects!",
+                CreatedAt = DateTime.Now.AddHours(-9),
+                UpVotes = 4800,
+                CommentsCount = 302,
+                ImageUrl = "UI+Kit+Preview"
+            },
+            new Post
+            {
+                CommunityName = "gaming",
+                AuthorName = "level_up_guru",
+                Title = "Just reached the final boss in the new Elden Ring DLC!",
+                Content = "After 80 hours of intense gameplay, I've finally made it to the last boss. This DLC is absolutely massive and incredibly challenging. The world design is stunning and the new enemy types are terrifying. Wish me luck, I'm going in!",
+                CreatedAt = DateTime.Now.AddMinutes(-25),
+                UpVotes = 875,
+                CommentsCount = 212
+            }
+        };
+    }
+}

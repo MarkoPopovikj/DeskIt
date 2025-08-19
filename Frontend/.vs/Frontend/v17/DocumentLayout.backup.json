@@ -11,8 +11,8 @@
       "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\models\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:models\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,14 +31,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MainLayout.razor",
-              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Layout\\MainLayout.razor",
-              "RelativeDocumentMoniker": "Components\\Layout\\MainLayout.razor",
-              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Layout\\MainLayout.razor",
-              "RelativeToolTip": "Components\\Layout\\MainLayout.razor",
-              "ViewState": "AgIAABsAAAAAAAAAAAAYwCMAAABSAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-19T11:04:52.86Z",
+              "Title": "Post.cs",
+              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Models\\Post.cs",
+              "RelativeDocumentMoniker": "Models\\Post.cs",
+              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Models\\Post.cs",
+              "RelativeToolTip": "Models\\Post.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAuwBEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-19T11:34:50.371Z",
               "EditorCaption": ""
             },
             {
@@ -49,7 +49,7 @@
               "RelativeDocumentMoniker": "Components\\Pages\\Home.razor",
               "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Pages\\Home.razor",
               "RelativeToolTip": "Components\\Pages\\Home.razor",
-              "ViewState": "AgIAABwAAAAAAAAAAAAAwDIAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAAAFAAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-08-19T11:02:27.921Z",
               "EditorCaption": ""
@@ -60,9 +60,9 @@
               "Title": "PostCard.razor",
               "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Shared\\PostCard.razor",
               "RelativeDocumentMoniker": "Components\\Shared\\PostCard.razor",
-              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Shared\\PostCard.razor",
-              "RelativeToolTip": "Components\\Shared\\PostCard.razor",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwCQAAAAKAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Shared\\PostCard.razor*",
+              "RelativeToolTip": "Components\\Shared\\PostCard.razor*",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADEAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-08-19T10:07:08.908Z",
               "EditorCaption": ""
