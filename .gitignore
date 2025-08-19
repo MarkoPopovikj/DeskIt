@@ -13,6 +13,32 @@ env/
 .venv/
 instance/
 
+# .NET Build artifacts
+**/bin/
+**/obj/
+*.suo
+*.user
+*.csproj.user
+*.vscode/
+*.vs/
+*.sln.iml
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
 # VS Code / IDE
 .vscode/
 .idea/
@@ -64,11 +90,6 @@ build/
 .env.test.local
 .env.production.local
 
-# Lock files (uncomment if needed)
-# package-lock.json
-# yarn.lock
-# pipfile.lock
-
 # Database files (if any)
 *.sqlite3
 *.db
@@ -76,3 +97,11 @@ build/
 # Temporary files
 *.tmp
 *.temp
+
+# OS-specific
+ehthumbs.db
+
+# Editor-specific
+*.swp
+*.swo
+*~

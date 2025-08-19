@@ -1,8 +1,0 @@
-C:\Users\Marko\Desktop\DeskIt\Frontend\wwwroot\index.html
-C:\Users\Marko\Desktop\DeskIt\Frontend\wwwroot\css\bootstrap\bootstrap.min.css.map
-C:\Users\Marko\Desktop\DeskIt\Frontend\wwwroot\css\app.css
-C:\Users\Marko\Desktop\DeskIt\Frontend\wwwroot\css\bootstrap\bootstrap.min.css
-wwwroot\css\app.css
-wwwroot\css\bootstrap\bootstrap.min.css
-wwwroot\css\bootstrap\bootstrap.min.css.map
-wwwroot\index.html
