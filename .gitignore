@@ -8,12 +8,10 @@ __pycache__/
 *.pot
 *.pyc
 *.pyd
-*.env
+.env
 env/
-backend/.venv
+.venv/
 instance/
-
-backend/.idea
 
 # VS Code / IDE
 .vscode/
@@ -53,18 +51,28 @@ test-results/
 .pyre/
 .pytype/
 
-# Lock files (optional if not committing lockfiles)
-# package-lock.json
-
 # Output / dist
 *.egg-info/
 dist/
 build/
 
-# Local env files
+# Local environment files
 .env
-backend/.env
 .env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
+# Lock files (uncomment if needed)
+# package-lock.json
+# yarn.lock
+# pipfile.lock
 
-guidelines.txt
+# Database files (if any)
+*.sqlite3
+*.db
+
+# Temporary files
+*.tmp
+*.temp
