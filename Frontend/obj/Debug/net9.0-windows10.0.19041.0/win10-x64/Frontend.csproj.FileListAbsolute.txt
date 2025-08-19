@@ -531,3 +531,7 @@ C:\Users\Marko\Desktop\DeskIt\Frontend\obj\Debug\net9.0-windows10.0.19041.0\win1
 C:\Users\Marko\Desktop\DeskIt\Frontend\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\compressed\i3ua6qcpgb-hd41wpa9ty.gz
 C:\Users\Marko\Desktop\DeskIt\Frontend\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\compressed\publish\gvj26iw7pi-hd41wpa9ty.br
 C:\Users\Marko\Desktop\DeskIt\Frontend\obj\Debug\net9.0-windows10.0.19041.0\win10-x64\compressed\publish\i3ua6qcpgb-hd41wpa9ty.br
+C:\Users\Marko\Desktop\DeskIt\Frontend\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Diagnostics.dll
+C:\Users\Marko\Desktop\DeskIt\Frontend\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\Marko\Desktop\DeskIt\Frontend\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Http.dll
+C:\Users\Marko\Desktop\DeskIt\Frontend\bin\Debug\net9.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Options.ConfigurationExtensions.dll

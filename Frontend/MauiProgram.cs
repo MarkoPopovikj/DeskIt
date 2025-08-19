@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Frontend.Handler;
+using Microsoft.Extensions.Logging;
+using System.Net.Http;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Frontend
 {
@@ -21,6 +24,13 @@ namespace Frontend
     		builder.Logging.AddDebug();
 #endif
 
+            builder.Services.AddTransient<AuthHeaderHandler>();
+            builder.Services.AddHttpClient("WebAPI", client =>
+            {
+                // Set the base URL for your API
+                client.BaseAddress = new Uri("http://localhost:8000");
+            })
+                .AddHttpMessageHandler<AuthHeaderHandler>();
             return builder.Build();
         }
     }

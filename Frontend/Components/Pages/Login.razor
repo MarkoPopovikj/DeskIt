@@ -1,0 +1,175 @@
+﻿@page "/login"
+@layout AuthLayout
+@using Frontend.Constants
+@using System.ComponentModel.DataAnnotations
+@using System.Text
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@inject IHttpClientFactory HttpClientFactory
+@inject NavigationManager NavigationManager
+
+<div class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="w-full max-w-md">
+        <div class="bg-white shadow-md rounded-lg p-8">
+            <div class="flex flex-col items-center mb-6">
+                <a href="/" class="flex items-center space-x-2">
+                    <svg class="h-10 w-10 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                    <span class="text-3xl font-bold text-gray-800">DeskIt</span>
+                </a>
+                <h2 class="mt-4 text-2xl font-bold text-center text-gray-900">
+                    Login to your account
+                </h2>
+            </div>
+
+            <EditForm Model="@loginModel" OnValidSubmit="HandleLogin" class="space-y-6">
+                <DataAnnotationsValidator />
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <div class="mt-1">
+                        <InputText id="email" type="email" @bind-Value="loginModel.Email" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                        <ValidationMessage For="@(() => loginModel.Email)" class="text-red-600 text-sm mt-1" />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <div class="mt-1">
+                        <InputText id="password" type="password" @bind-Value="loginModel.Password" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                        <ValidationMessage For="@(() => loginModel.Password)" class="text-red-600 text-sm mt-1" />
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="text-red-600 text-sm text-center bg-red-50 p-3 rounded-md">@errorMessage</div>
+                }
+
+                <div>
+                    <button type="submit" disabled="@isLoggingIn" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-blue-400 transition-colors">
+                        @(isLoggingIn ? "Logging in..." : "Login")
+                    </button>
+                </div>
+            </EditForm>
+
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white text-gray-500">
+                            Don't have an account?
+                        </span>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <a href="signup" class="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-full shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
+                        Sign Up
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private LoginModel loginModel = new();
+    private string? errorMessage;
+    private bool isLoggingIn = false;
+
+    private async Task HandleLogin()
+    {
+        isLoggingIn = true;
+        errorMessage = null;
+        StateHasChanged();
+
+        try
+        {
+            var httpClient = HttpClientFactory.CreateClient("WebAPI");
+
+            // Manually serialize the model to a JSON string.
+            var jsonPayload = JsonSerializer.Serialize(loginModel);
+
+            // Create StringContent, explicitly setting the encoding and media type.
+            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+            // Use the more fundamental PostAsync method with the manually created content.
+            var response = await httpClient.PostAsync("auth/login/", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var loginResult = await response.Content.ReadFromJsonAsync<LoginResponse>();
+                if (loginResult != null && !string.IsNullOrEmpty(loginResult.Access))
+                {
+                    await SecureStorage.SetAsync(TokenConstants.AccessToken, loginResult.Access);
+                    await SecureStorage.SetAsync(TokenConstants.RefreshToken, loginResult.Refresh);
+
+                    NavigationManager.NavigateTo("/", forceLoad: true);
+                }
+                else
+                {
+                    errorMessage = "Login failed: Invalid response from server.";
+                }
+            }
+            else
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                try
+                {
+                    var errorDetails = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(errorContent);
+                    if (errorDetails != null && errorDetails.TryGetValue("detail", out var detail))
+                    {
+                        errorMessage = detail.GetString();
+                    }
+                    else
+                    {
+                        errorMessage = "Invalid email or password.";
+                    }
+                }
+                catch
+                {
+                    errorMessage = "An unexpected error occurred.";
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Login error: {ex.Message}");
+            errorMessage = "An error occurred. Please check your connection and try again.";
+        }
+        finally
+        {
+            isLoggingIn = false;
+            StateHasChanged();
+        }
+    }
+
+    public class LoginModel
+    {
+        [Required(ErrorMessage = "Email is required.")]
+        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
+        [JsonPropertyName("email")]
+        public string Email { get; set; } = "";
+
+        [Required(ErrorMessage = "Password is required.")]
+        [JsonPropertyName("password")]
+        public string Password { get; set; } = "";
+    }
+
+    public class LoginResponse
+    {
+        [JsonPropertyName("access")]
+        public string? Access { get; set; }
+
+        [JsonPropertyName("refresh")]
+        public string? Refresh { get; set; }
+
+        [JsonPropertyName("user_id")]
+        public int UserId { get; set; }
+    }
+}

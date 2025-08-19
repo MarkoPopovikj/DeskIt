@@ -1,0 +1,14 @@
+﻿@using Frontend.Constants
+@inject NavigationManager NavigationManager
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        var token = await SecureStorage.GetAsync(TokenConstants.AccessToken);
+
+        if (string.IsNullOrEmpty(token))
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+    }
+}
