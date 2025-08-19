@@ -1,23 +1,23 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\bundle\\Frontend.styles.css",
+      "Id": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\bundle\\Frontend.styles.css",
       "PackagePath": "staticwebassets\\Frontend.styles.css"
     },
     {
-      "Id": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\app.css",
+      "Id": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
-      "Id": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\index.html",
+      "Id": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {

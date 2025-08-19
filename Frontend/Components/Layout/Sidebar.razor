@@ -1,5 +1,4 @@
 ﻿<aside class="@SidebarCssClass">
-    <!-- Mobile header for sidebar -->
     <div class="flex justify-between items-center lg:hidden mb-4">
         <span class="text-lg font-bold">Menu</span>
         <button @onclick="OnClose" class="p-2 rounded-md text-gray-600 hover:bg-gray-100">
@@ -12,7 +11,7 @@
     <nav class="space-y-2 mb-6">
         <NavLink href="/" Match="NavLinkMatch.All"
                  class="flex items-center space-x-3 px-4 py-2 rounded-lg text-gray-700 font-semibold hover:bg-gray-100"
-                 ActiveClass="text-white bg-blue-600 hover:bg-blue-700">
+                 ActiveClass="bg-blue-600 text-white hover:bg-blue-700">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -22,7 +21,7 @@
 
         <NavLink href="popular"
                  class="flex items-center space-x-3 px-4 py-2 rounded-lg text-gray-700 font-semibold hover:bg-gray-100"
-                 ActiveClass="text-white bg-blue-600 hover:bg-blue-700">
+                 ActiveClass="bg-blue-600 text-white hover:bg-blue-700">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.657 7.343A8 8 0 0118 18c-1 .5-4 1-6 1-2 0-4-1-4-1 2-1 3-3 3-5 .5-2 1-4 1-4z" />
@@ -32,7 +31,7 @@
 
         <NavLink href="explore"
                  class="flex items-center space-x-3 px-4 py-2 rounded-lg text-gray-700 font-semibold hover:bg-gray-100"
-                 ActiveClass="text-white bg-blue-600 hover:bg-blue-700">
+                 ActiveClass="bg-blue-600 text-white hover:bg-blue-700">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 16.382V5.618a1 1 0 00-1.447-.894L15 7m-6 3l6-3m0 0l-6-3m6 3V4m-6 3v1m0-1V4" />
@@ -46,14 +45,14 @@
     <div class="flex-1 mt-6 space-y-2 overflow-y-auto custom-scrollbar">
         <h3 class="px-4 text-sm font-semibold text-gray-500 uppercase tracking-wider">My Communities</h3>
         <NavLink href="community/design" class="flex items-center space-x-3 px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100"
-                 ActiveClass="bg-gray-200">
+                 ActiveClass="bg-gray-200 hover:bg-gray-300">
             <img class="h-6 w-6 rounded-full"
                  src="https://placehold.co/32x32/7E22CE/FFFFFF?text=D"
                  alt="r/design icon">
             <span class="font-medium text-sm">r/design</span>
         </NavLink>
         <NavLink href="community/webdev" class="flex items-center space-x-3 px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100"
-                 ActiveClass="bg-gray-200">
+                 ActiveClass="bg-gray-200 hover:bg-gray-300">
             <img class="h-6 w-6 rounded-full"
                  src="https://placehold.co/32x32/059669/FFFFFF?text=W"
                  alt="r/webdev icon">
@@ -61,7 +60,6 @@
         </NavLink>
     </div>
 </aside>
-
 @code {
     [Parameter] public string SidebarCssClass { get; set; } = "";
     [Parameter] public EventCallback OnClose { get; set; }

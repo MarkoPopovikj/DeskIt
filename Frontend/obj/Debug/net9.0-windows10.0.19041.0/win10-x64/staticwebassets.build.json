@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "N1Y+3iuxDmdjIjEAyfTT2FYfcA8At49bMg28ewl/q3c=",
+  "Hash": "TiWJWBe1MIhIlP7uTYt9uHMts1A4mHRBzZtAdOAQ35Q=",
   "Source": "Frontend",
   "BasePath": "/",
   "Mode": "Root",
@@ -10,17 +10,17 @@
     {
       "Name": "Frontend\\wwwroot",
       "Source": "Frontend",
-      "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\",
       "BasePath": "/",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\6n8q7nco3q-cljoyc0vup.gz",
+      "Identity": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\6n8q7nco3q-cljoyc0vup.gz",
       "SourceId": "Frontend",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\",
+      "ContentRoot": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\",
       "BasePath": "/",
       "RelativePath": "index#[.{fingerprint=cljoyc0vup}]?.html.gz",
       "AssetKind": "All",
@@ -28,20 +28,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\index.html",
+      "RelatedAsset": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\index.html",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "cjtoyrc4z3",
       "Integrity": "iBm1ysNvlZxaFhrQsRdyYuEPjl8mThUC8cL9aTZzVXA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\index.html"
+      "OriginalItemSpec": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\bzpnfac8br-8inm30yfxf.gz",
+      "Identity": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\bzpnfac8br-8inm30yfxf.gz",
       "SourceId": "Frontend",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\",
+      "ContentRoot": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\",
       "BasePath": "/",
       "RelativePath": "css/bootstrap/bootstrap.min.css#[.{fingerprint=8inm30yfxf}]?.map.gz",
       "AssetKind": "All",
@@ -49,20 +49,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "RelatedAsset": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "fbl5ivwo6k",
       "Integrity": "Kym5HpgDYV8Caci50HDUPG6WCQ6nTP+8hy429w+zHVU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
+      "OriginalItemSpec": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
+      "Identity": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
       "SourceId": "Frontend",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\",
+      "ContentRoot": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\",
       "BasePath": "/",
       "RelativePath": "Frontend#[.{fingerprint=hd41wpa9ty}]?.styles.css.gz",
       "AssetKind": "All",
@@ -70,20 +70,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\Frontend.styles.css",
+      "RelatedAsset": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\Frontend.styles.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "ztnykgr0rc",
       "Integrity": "2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\Frontend.styles.css"
+      "OriginalItemSpec": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\Frontend.styles.css"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
+      "Identity": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
       "SourceId": "Frontend",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\",
+      "ContentRoot": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\",
       "BasePath": "/",
       "RelativePath": "Frontend#[.{fingerprint=hd41wpa9ty}]!.bundle.scp.css.gz",
       "AssetKind": "All",
@@ -91,20 +91,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\Frontend.bundle.scp.css",
+      "RelatedAsset": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\Frontend.bundle.scp.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "ztnykgr0rc",
       "Integrity": "2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\Frontend.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\Frontend.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\nc4k800ojr-e5tk7yf482.gz",
+      "Identity": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\nc4k800ojr-e5tk7yf482.gz",
       "SourceId": "Frontend",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\",
+      "ContentRoot": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\",
       "BasePath": "/",
       "RelativePath": "css/app#[.{fingerprint=e5tk7yf482}]?.css.gz",
       "AssetKind": "All",
@@ -112,20 +112,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\app.css",
+      "RelatedAsset": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\app.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "9sb0w9jnhl",
       "Integrity": "qQ+vo7zHfjEIsR7Ks2Vsx0CJAT5ngXzV3IUcVLWwEfw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\app.css"
+      "OriginalItemSpec": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\app.css"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\tgvh5yu1t6-6gzpyzhau4.gz",
+      "Identity": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\tgvh5yu1t6-6gzpyzhau4.gz",
       "SourceId": "Frontend",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\",
+      "ContentRoot": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\",
       "BasePath": "/",
       "RelativePath": "css/bootstrap/bootstrap.min#[.{fingerprint=6gzpyzhau4}]?.css.gz",
       "AssetKind": "All",
@@ -133,20 +133,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "RelatedAsset": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "joqzyw7ssu",
       "Integrity": "LTxu1aeZz5yJTTAB+DiLnn5XOMdK1oiypNP/4JaeK9c=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css"
+      "OriginalItemSpec": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\Frontend.styles.css",
+      "Identity": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\Frontend.styles.css",
       "SourceId": "Frontend",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\",
       "BasePath": "/",
       "RelativePath": "Frontend#[.{fingerprint}]?.styles.css",
       "AssetKind": "All",
@@ -161,13 +161,13 @@
       "Integrity": "my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\Frontend.styles.css"
+      "OriginalItemSpec": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\Frontend.styles.css"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\Frontend.bundle.scp.css",
+      "Identity": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\Frontend.bundle.scp.css",
       "SourceId": "Frontend",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\",
       "BasePath": "/",
       "RelativePath": "Frontend#[.{fingerprint}]!.bundle.scp.css",
       "AssetKind": "All",
@@ -182,13 +182,13 @@
       "Integrity": "my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\Frontend.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\Frontend.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\app.css",
+      "Identity": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\app.css",
       "SourceId": "Frontend",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\",
       "BasePath": "/",
       "RelativePath": "css/app#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -206,10 +206,10 @@
       "OriginalItemSpec": "wwwroot\\css\\app.css"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "Frontend",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\",
       "BasePath": "/",
       "RelativePath": "css/bootstrap/bootstrap.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -227,10 +227,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "Frontend",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\",
       "BasePath": "/",
       "RelativePath": "css/bootstrap/bootstrap.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -248,10 +248,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\index.html",
+      "Identity": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\index.html",
       "SourceId": "Frontend",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\",
       "BasePath": "/",
       "RelativePath": "index#[.{fingerprint}]?.html",
       "AssetKind": "All",
@@ -272,7 +272,7 @@
   "Endpoints": [
     {
       "Route": "css/app.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\nc4k800ojr-e5tk7yf482.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\nc4k800ojr-e5tk7yf482.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -295,7 +295,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -327,7 +327,7 @@
     },
     {
       "Route": "css/app.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\app.css",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -348,7 +348,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -364,7 +364,7 @@
     },
     {
       "Route": "css/app.css.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\nc4k800ojr-e5tk7yf482.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\nc4k800ojr-e5tk7yf482.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -385,7 +385,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -409,7 +409,7 @@
     },
     {
       "Route": "css/app.e5tk7yf482.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\nc4k800ojr-e5tk7yf482.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\nc4k800ojr-e5tk7yf482.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -432,7 +432,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -472,7 +472,7 @@
     },
     {
       "Route": "css/app.e5tk7yf482.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\app.css",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -493,7 +493,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -517,7 +517,7 @@
     },
     {
       "Route": "css/app.e5tk7yf482.css.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\nc4k800ojr-e5tk7yf482.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\nc4k800ojr-e5tk7yf482.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -538,7 +538,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -570,7 +570,7 @@
     },
     {
       "Route": "css/bootstrap/bootstrap.min.6gzpyzhau4.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\tgvh5yu1t6-6gzpyzhau4.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\tgvh5yu1t6-6gzpyzhau4.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -593,7 +593,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -633,7 +633,7 @@
     },
     {
       "Route": "css/bootstrap/bootstrap.min.6gzpyzhau4.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -654,7 +654,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -678,7 +678,7 @@
     },
     {
       "Route": "css/bootstrap/bootstrap.min.6gzpyzhau4.css.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\tgvh5yu1t6-6gzpyzhau4.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\tgvh5yu1t6-6gzpyzhau4.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -699,7 +699,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -731,7 +731,7 @@
     },
     {
       "Route": "css/bootstrap/bootstrap.min.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\tgvh5yu1t6-6gzpyzhau4.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\tgvh5yu1t6-6gzpyzhau4.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -754,7 +754,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -786,7 +786,7 @@
     },
     {
       "Route": "css/bootstrap/bootstrap.min.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -807,7 +807,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -823,7 +823,7 @@
     },
     {
       "Route": "css/bootstrap/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\bzpnfac8br-8inm30yfxf.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\bzpnfac8br-8inm30yfxf.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -846,7 +846,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -886,7 +886,7 @@
     },
     {
       "Route": "css/bootstrap/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -907,7 +907,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -931,7 +931,7 @@
     },
     {
       "Route": "css/bootstrap/bootstrap.min.css.8inm30yfxf.map.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\bzpnfac8br-8inm30yfxf.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\bzpnfac8br-8inm30yfxf.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -952,7 +952,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -984,7 +984,7 @@
     },
     {
       "Route": "css/bootstrap/bootstrap.min.css.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\tgvh5yu1t6-6gzpyzhau4.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\tgvh5yu1t6-6gzpyzhau4.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1005,7 +1005,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1029,7 +1029,7 @@
     },
     {
       "Route": "css/bootstrap/bootstrap.min.css.map",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\bzpnfac8br-8inm30yfxf.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\bzpnfac8br-8inm30yfxf.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -1052,7 +1052,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1084,7 +1084,7 @@
     },
     {
       "Route": "css/bootstrap/bootstrap.min.css.map",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1105,7 +1105,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1121,7 +1121,7 @@
     },
     {
       "Route": "css/bootstrap/bootstrap.min.css.map.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\bzpnfac8br-8inm30yfxf.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\bzpnfac8br-8inm30yfxf.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1142,7 +1142,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 14 Aug 2025 21:18:52 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1166,7 +1166,7 @@
     },
     {
       "Route": "Frontend.bundle.scp.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -1189,7 +1189,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 08:57:17 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1221,7 +1221,7 @@
     },
     {
       "Route": "Frontend.bundle.scp.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\Frontend.bundle.scp.css",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\Frontend.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1242,7 +1242,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 08:57:17 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1258,7 +1258,7 @@
     },
     {
       "Route": "Frontend.bundle.scp.css.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1279,7 +1279,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 08:57:17 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1303,7 +1303,7 @@
     },
     {
       "Route": "Frontend.hd41wpa9ty.bundle.scp.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -1326,7 +1326,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 08:57:17 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1366,7 +1366,7 @@
     },
     {
       "Route": "Frontend.hd41wpa9ty.bundle.scp.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\Frontend.bundle.scp.css",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\projectbundle\\Frontend.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1387,7 +1387,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 08:57:17 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1411,7 +1411,7 @@
     },
     {
       "Route": "Frontend.hd41wpa9ty.bundle.scp.css.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1432,7 +1432,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 08:57:17 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1464,7 +1464,7 @@
     },
     {
       "Route": "Frontend.hd41wpa9ty.styles.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -1487,7 +1487,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 08:57:17 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1527,7 +1527,7 @@
     },
     {
       "Route": "Frontend.hd41wpa9ty.styles.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\Frontend.styles.css",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\Frontend.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1548,7 +1548,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 08:57:17 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1572,7 +1572,7 @@
     },
     {
       "Route": "Frontend.hd41wpa9ty.styles.css.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1593,7 +1593,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 08:57:17 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1625,7 +1625,7 @@
     },
     {
       "Route": "Frontend.styles.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -1648,7 +1648,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 08:57:17 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1680,7 +1680,7 @@
     },
     {
       "Route": "Frontend.styles.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\Frontend.styles.css",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\scopedcss\\bundle\\Frontend.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1701,7 +1701,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 08:57:17 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1717,7 +1717,7 @@
     },
     {
       "Route": "Frontend.styles.css.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1738,7 +1738,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 08:57:17 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1762,7 +1762,7 @@
     },
     {
       "Route": "index.cljoyc0vup.html",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\6n8q7nco3q-cljoyc0vup.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\6n8q7nco3q-cljoyc0vup.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -1785,7 +1785,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 17 Aug 2025 21:23:13 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1825,7 +1825,7 @@
     },
     {
       "Route": "index.cljoyc0vup.html",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\index.html",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\index.html",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1846,7 +1846,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 17 Aug 2025 21:23:13 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1870,7 +1870,7 @@
     },
     {
       "Route": "index.cljoyc0vup.html.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\6n8q7nco3q-cljoyc0vup.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\6n8q7nco3q-cljoyc0vup.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1891,7 +1891,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 17 Aug 2025 21:23:13 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1923,7 +1923,7 @@
     },
     {
       "Route": "index.html",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\6n8q7nco3q-cljoyc0vup.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\6n8q7nco3q-cljoyc0vup.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -1946,7 +1946,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 17 Aug 2025 21:23:13 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1978,7 +1978,7 @@
     },
     {
       "Route": "index.html",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\index.html",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\wwwroot\\index.html",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1999,7 +1999,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 17 Aug 2025 21:23:13 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2015,7 +2015,7 @@
     },
     {
       "Route": "index.html.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\6n8q7nco3q-cljoyc0vup.gz",
+      "AssetFile": "C:\\Users\\petar\\Desktop\\FINKI\\DeskIt\\Frontend\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\compressed\\6n8q7nco3q-cljoyc0vup.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2036,7 +2036,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 17 Aug 2025 21:23:13 GMT"
+          "Value": "Tue, 19 Aug 2025 11:33:11 GMT"
         },
         {
           "Name": "Cache-Control",
