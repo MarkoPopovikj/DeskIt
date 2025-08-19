@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "698oLU/Tcv2jIPW3p7n7btLEIR9cikuawGneWLBFIso=",
+  "Hash": "v/zWbUSW/x2qOZ2g0jZ6+VZc0QpWUtGOGL/AtQ2Jq5E=",
   "Source": "Frontend",
   "BasePath": "/",
   "Mode": "Root",
@@ -59,12 +59,12 @@
       "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\gvj26iw7pi-6b601bfjqy.gz",
+      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
       "SourceId": "Frontend",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\",
       "BasePath": "/",
-      "RelativePath": "Frontend#[.{fingerprint=6b601bfjqy}]?.styles.css.gz",
+      "RelativePath": "Frontend#[.{fingerprint=hd41wpa9ty}]?.styles.css.gz",
       "AssetKind": "All",
       "AssetMode": "CurrentProject",
       "AssetRole": "Alternative",
@@ -73,19 +73,19 @@
       "RelatedAsset": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\bundle\\Frontend.styles.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "1wpb7zcv74",
-      "Integrity": "L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8=",
+      "Fingerprint": "ztnykgr0rc",
+      "Integrity": "2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\bundle\\Frontend.styles.css"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\i3ua6qcpgb-6b601bfjqy.gz",
+      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
       "SourceId": "Frontend",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\",
       "BasePath": "/",
-      "RelativePath": "Frontend#[.{fingerprint=6b601bfjqy}]!.bundle.scp.css.gz",
+      "RelativePath": "Frontend#[.{fingerprint=hd41wpa9ty}]!.bundle.scp.css.gz",
       "AssetKind": "All",
       "AssetMode": "Reference",
       "AssetRole": "Alternative",
@@ -94,8 +94,8 @@
       "RelatedAsset": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\projectbundle\\Frontend.bundle.scp.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "1wpb7zcv74",
-      "Integrity": "L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8=",
+      "Fingerprint": "ztnykgr0rc",
+      "Integrity": "2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\projectbundle\\Frontend.bundle.scp.css"
@@ -164,12 +164,12 @@
       "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\gvj26iw7pi-6b601bfjqy.br",
+      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\gvj26iw7pi-hd41wpa9ty.br",
       "SourceId": "Frontend",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\",
       "BasePath": "/",
-      "RelativePath": "Frontend#[.{fingerprint=6b601bfjqy}]?.styles.css.br",
+      "RelativePath": "Frontend#[.{fingerprint=hd41wpa9ty}]?.styles.css.br",
       "AssetKind": "All",
       "AssetMode": "CurrentProject",
       "AssetRole": "Alternative",
@@ -178,19 +178,19 @@
       "RelatedAsset": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\bundle\\Frontend.styles.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "br",
-      "Fingerprint": "gm972nbjss",
-      "Integrity": "iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs=",
+      "Fingerprint": "s70ulbtlft",
+      "Integrity": "mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\bundle\\Frontend.styles.css"
     },
     {
-      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\i3ua6qcpgb-6b601bfjqy.br",
+      "Identity": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\i3ua6qcpgb-hd41wpa9ty.br",
       "SourceId": "Frontend",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\",
       "BasePath": "/",
-      "RelativePath": "Frontend#[.{fingerprint=6b601bfjqy}]!.bundle.scp.css.br",
+      "RelativePath": "Frontend#[.{fingerprint=hd41wpa9ty}]!.bundle.scp.css.br",
       "AssetKind": "All",
       "AssetMode": "Reference",
       "AssetRole": "Alternative",
@@ -199,8 +199,8 @@
       "RelatedAsset": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\projectbundle\\Frontend.bundle.scp.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "br",
-      "Fingerprint": "gm972nbjss",
-      "Integrity": "iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs=",
+      "Fingerprint": "s70ulbtlft",
+      "Integrity": "mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\projectbundle\\Frontend.bundle.scp.css"
@@ -283,8 +283,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "6b601bfjqy",
-      "Integrity": "8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=",
+      "Fingerprint": "hd41wpa9ty",
+      "Integrity": "my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\bundle\\Frontend.styles.css"
@@ -304,8 +304,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "6b601bfjqy",
-      "Integrity": "8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=",
+      "Fingerprint": "hd41wpa9ty",
+      "Integrity": "my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\projectbundle\\Frontend.bundle.scp.css"
@@ -1939,13 +1939,13 @@
       ]
     },
     {
-      "Route": "Frontend.6b601bfjqy.bundle.scp.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\i3ua6qcpgb-6b601bfjqy.gz",
+      "Route": "Frontend.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000615006150"
+          "Quality": "0.012048192771"
         }
       ],
       "ResponseHeaders": [
@@ -1955,15 +1955,252 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1625"
+          "Value": "82"
         },
         {
           "Name": "ETag",
-          "Value": "\"L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8=\""
+          "Value": "\"2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ="
+        }
+      ]
+    },
+    {
+      "Route": "Frontend.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\i3ua6qcpgb-hd41wpa9ty.br",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "br",
+          "Quality": "0.014705882353"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "67"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "br"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ="
+        }
+      ]
+    },
+    {
+      "Route": "Frontend.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\projectbundle\\Frontend.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "105"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ="
+        }
+      ]
+    },
+    {
+      "Route": "Frontend.bundle.scp.css.br",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\i3ua6qcpgb-hd41wpa9ty.br",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "67"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "br"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8="
+        }
+      ]
+    },
+    {
+      "Route": "Frontend.bundle.scp.css.gz",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "82"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA="
+        }
+      ]
+    },
+    {
+      "Route": "Frontend.hd41wpa9ty.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.012048192771"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "82"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1983,13 +2220,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=\""
+          "Value": "W/\"my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "6b601bfjqy"
+          "Value": "hd41wpa9ty"
         },
         {
           "Name": "label",
@@ -1997,18 +2234,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY="
+          "Value": "sha256-my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ="
         }
       ]
     },
     {
-      "Route": "Frontend.6b601bfjqy.bundle.scp.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\i3ua6qcpgb-6b601bfjqy.br",
+      "Route": "Frontend.hd41wpa9ty.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\i3ua6qcpgb-hd41wpa9ty.br",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "br",
-          "Quality": "0.000742390497"
+          "Quality": "0.014705882353"
         }
       ],
       "ResponseHeaders": [
@@ -2018,15 +2255,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1346"
+          "Value": "67"
         },
         {
           "Name": "ETag",
-          "Value": "\"iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs=\""
+          "Value": "\"mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2046,13 +2283,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=\""
+          "Value": "W/\"my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "6b601bfjqy"
+          "Value": "hd41wpa9ty"
         },
         {
           "Name": "label",
@@ -2060,12 +2297,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY="
+          "Value": "sha256-my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ="
         }
       ]
     },
     {
-      "Route": "Frontend.6b601bfjqy.bundle.scp.css",
+      "Route": "Frontend.hd41wpa9ty.bundle.scp.css",
       "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\projectbundle\\Frontend.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2075,7 +2312,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5481"
+          "Value": "105"
         },
         {
           "Name": "Content-Type",
@@ -2083,11 +2320,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=\""
+          "Value": "\"my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2097,7 +2334,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "6b601bfjqy"
+          "Value": "hd41wpa9ty"
         },
         {
           "Name": "label",
@@ -2105,13 +2342,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY="
+          "Value": "sha256-my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ="
         }
       ]
     },
     {
-      "Route": "Frontend.6b601bfjqy.bundle.scp.css.br",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\i3ua6qcpgb-6b601bfjqy.br",
+      "Route": "Frontend.hd41wpa9ty.bundle.scp.css.br",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\i3ua6qcpgb-hd41wpa9ty.br",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2120,7 +2357,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1346"
+          "Value": "67"
         },
         {
           "Name": "Content-Type",
@@ -2128,11 +2365,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs=\""
+          "Value": "\"mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2150,7 +2387,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "6b601bfjqy"
+          "Value": "hd41wpa9ty"
         },
         {
           "Name": "label",
@@ -2158,13 +2395,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs="
+          "Value": "sha256-mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8="
         }
       ]
     },
     {
-      "Route": "Frontend.6b601bfjqy.bundle.scp.css.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\i3ua6qcpgb-6b601bfjqy.gz",
+      "Route": "Frontend.hd41wpa9ty.bundle.scp.css.gz",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\i3ua6qcpgb-hd41wpa9ty.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2173,7 +2410,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1625"
+          "Value": "82"
         },
         {
           "Name": "Content-Type",
@@ -2181,11 +2418,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8=\""
+          "Value": "\"2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2203,7 +2440,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "6b601bfjqy"
+          "Value": "hd41wpa9ty"
         },
         {
           "Name": "label",
@@ -2211,18 +2448,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8="
+          "Value": "sha256-2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA="
         }
       ]
     },
     {
-      "Route": "Frontend.6b601bfjqy.styles.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\gvj26iw7pi-6b601bfjqy.gz",
+      "Route": "Frontend.hd41wpa9ty.styles.css",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000615006150"
+          "Quality": "0.012048192771"
         }
       ],
       "ResponseHeaders": [
@@ -2232,15 +2469,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1625"
+          "Value": "82"
         },
         {
           "Name": "ETag",
-          "Value": "\"L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8=\""
+          "Value": "\"2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2260,13 +2497,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=\""
+          "Value": "W/\"my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "6b601bfjqy"
+          "Value": "hd41wpa9ty"
         },
         {
           "Name": "label",
@@ -2274,18 +2511,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY="
+          "Value": "sha256-my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ="
         }
       ]
     },
     {
-      "Route": "Frontend.6b601bfjqy.styles.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\gvj26iw7pi-6b601bfjqy.br",
+      "Route": "Frontend.hd41wpa9ty.styles.css",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\gvj26iw7pi-hd41wpa9ty.br",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "br",
-          "Quality": "0.000742390497"
+          "Quality": "0.014705882353"
         }
       ],
       "ResponseHeaders": [
@@ -2295,15 +2532,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1346"
+          "Value": "67"
         },
         {
           "Name": "ETag",
-          "Value": "\"iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs=\""
+          "Value": "\"mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2323,13 +2560,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=\""
+          "Value": "W/\"my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "6b601bfjqy"
+          "Value": "hd41wpa9ty"
         },
         {
           "Name": "label",
@@ -2337,12 +2574,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY="
+          "Value": "sha256-my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ="
         }
       ]
     },
     {
-      "Route": "Frontend.6b601bfjqy.styles.css",
+      "Route": "Frontend.hd41wpa9ty.styles.css",
       "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\bundle\\Frontend.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2352,7 +2589,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5481"
+          "Value": "105"
         },
         {
           "Name": "Content-Type",
@@ -2360,11 +2597,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=\""
+          "Value": "\"my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2374,7 +2611,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "6b601bfjqy"
+          "Value": "hd41wpa9ty"
         },
         {
           "Name": "label",
@@ -2382,13 +2619,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY="
+          "Value": "sha256-my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ="
         }
       ]
     },
     {
-      "Route": "Frontend.6b601bfjqy.styles.css.br",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\gvj26iw7pi-6b601bfjqy.br",
+      "Route": "Frontend.hd41wpa9ty.styles.css.br",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\gvj26iw7pi-hd41wpa9ty.br",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2397,7 +2634,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1346"
+          "Value": "67"
         },
         {
           "Name": "Content-Type",
@@ -2405,11 +2642,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs=\""
+          "Value": "\"mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2427,7 +2664,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "6b601bfjqy"
+          "Value": "hd41wpa9ty"
         },
         {
           "Name": "label",
@@ -2435,13 +2672,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs="
+          "Value": "sha256-mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8="
         }
       ]
     },
     {
-      "Route": "Frontend.6b601bfjqy.styles.css.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\gvj26iw7pi-6b601bfjqy.gz",
+      "Route": "Frontend.hd41wpa9ty.styles.css.gz",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2450,7 +2687,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1625"
+          "Value": "82"
         },
         {
           "Name": "Content-Type",
@@ -2458,11 +2695,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8=\""
+          "Value": "\"2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2480,7 +2717,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "6b601bfjqy"
+          "Value": "hd41wpa9ty"
         },
         {
           "Name": "label",
@@ -2488,255 +2725,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8="
-        }
-      ]
-    },
-    {
-      "Route": "Frontend.bundle.scp.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\i3ua6qcpgb-6b601bfjqy.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000615006150"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1625"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY="
-        }
-      ]
-    },
-    {
-      "Route": "Frontend.bundle.scp.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\i3ua6qcpgb-6b601bfjqy.br",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "br",
-          "Quality": "0.000742390497"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1346"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "br"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY="
-        }
-      ]
-    },
-    {
-      "Route": "Frontend.bundle.scp.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\scopedcss\\projectbundle\\Frontend.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5481"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY="
-        }
-      ]
-    },
-    {
-      "Route": "Frontend.bundle.scp.css.br",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\i3ua6qcpgb-6b601bfjqy.br",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1346"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "br"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs="
-        }
-      ]
-    },
-    {
-      "Route": "Frontend.bundle.scp.css.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\i3ua6qcpgb-6b601bfjqy.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1625"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8="
+          "Value": "sha256-2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA="
         }
       ]
     },
     {
       "Route": "Frontend.styles.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\gvj26iw7pi-6b601bfjqy.gz",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000615006150"
+          "Quality": "0.012048192771"
         }
       ],
       "ResponseHeaders": [
@@ -2746,15 +2746,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1625"
+          "Value": "82"
         },
         {
           "Name": "ETag",
-          "Value": "\"L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8=\""
+          "Value": "\"2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2774,24 +2774,24 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=\""
+          "Value": "W/\"my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY="
+          "Value": "sha256-my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ="
         }
       ]
     },
     {
       "Route": "Frontend.styles.css",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\gvj26iw7pi-6b601bfjqy.br",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\gvj26iw7pi-hd41wpa9ty.br",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "br",
-          "Quality": "0.000742390497"
+          "Quality": "0.014705882353"
         }
       ],
       "ResponseHeaders": [
@@ -2801,15 +2801,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1346"
+          "Value": "67"
         },
         {
           "Name": "ETag",
-          "Value": "\"iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs=\""
+          "Value": "\"mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2829,13 +2829,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=\""
+          "Value": "W/\"my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY="
+          "Value": "sha256-my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ="
         }
       ]
     },
@@ -2850,7 +2850,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5481"
+          "Value": "105"
         },
         {
           "Name": "Content-Type",
@@ -2858,11 +2858,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY=\""
+          "Value": "\"my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2872,13 +2872,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-8nxRnar4hENv5x/24XCFByacUVhLHTgjgLp4/whGSGY="
+          "Value": "sha256-my8VJmf39Ez0Mm8wmAiYAd5oCcr+BWsfdI4FO4aN+IQ="
         }
       ]
     },
     {
       "Route": "Frontend.styles.css.br",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\gvj26iw7pi-6b601bfjqy.br",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\publish\\gvj26iw7pi-hd41wpa9ty.br",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2887,7 +2887,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1346"
+          "Value": "67"
         },
         {
           "Name": "Content-Type",
@@ -2895,11 +2895,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs=\""
+          "Value": "\"mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2917,13 +2917,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-iGVCkFE4YyrZn5jmMTa7hHSZiNE0ubW1vu/S4mc6zjs="
+          "Value": "sha256-mK0XzOSkgrcxekAfwqRdUwjIxe7EioBpha+19oPM3x8="
         }
       ]
     },
     {
       "Route": "Frontend.styles.css.gz",
-      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\gvj26iw7pi-6b601bfjqy.gz",
+      "AssetFile": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\obj\\Debug\\net9.0-android\\compressed\\gvj26iw7pi-hd41wpa9ty.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2932,7 +2932,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1625"
+          "Value": "82"
         },
         {
           "Name": "Content-Type",
@@ -2940,11 +2940,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8=\""
+          "Value": "\"2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 18 Aug 2025 07:52:51 GMT"
+          "Value": "Tue, 19 Aug 2025 10:47:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2962,7 +2962,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-L1WaPzmVI6z5NcgfAD5sXKEMMFCnP85tRmeSVMIlrh8="
+          "Value": "sha256-2c7aefVi7LqtHSHeOXut2K3t8RqwPKieZdeigzcT2cA="
         }
       ]
     },

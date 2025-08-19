@@ -4,34 +4,53 @@
 @* The three-column grid is now defined in MainLayout.razor *@
 @* This page's content will be rendered in the @Body of the layout *@
 
-<div class="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-6">
-    
-    <div class="space-y-4">
-        <PostCard />
-        <PostCard />
-        <PostCard />
-    </div>
+<div class="h-full grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-6 overflow-hidden">
 
-    @* Right sidebar content is placed directly here *@
-    <aside class="hidden xl:block">
+    @* The <main> column is now the scrollable container for posts *@
+    <main class="py-6 overflow-y-auto custom-scrollbar">
+        <div class="space-y-4">
+            @* Example of a text-only post card *@
+            <PostCard />
+
+            @* Example of a post card with an image *@
+            <PostCard ImageUrl="https://placehold.co/600x300/E0E7FF/4F46E5?text=UI+Kit+Preview" />
+
+            <PostCard />
+        </div>
+    </main>
+
+    @* Right sidebar content with the new "Create Post" section *@
+    <aside class="hidden xl:block py-6">
         <div class="bg-white border border-gray-200 rounded-lg p-4">
-            <h3 class="text-sm font-bold text-gray-900 mb-4 pb-2 border-b">Top Communities</h3>
+            <h3 class="text-sm font-bold text-gray-900 mb-4 pb-2 border-b">
+                Trending on DeskIt
+            </h3>
             <ul class="space-y-4">
                 <li class="flex items-center space-x-3">
-                    <img class="h-8 w-8 rounded-full" src="https://placehold.co/32x32/16A34A/FFFFFF?text=F" alt="r/finance icon">
+                    <img class="h-8 w-8 rounded-full"
+                         src="https://placehold.co/32x32/EA580C/FFFFFF?text=G"
+                         alt="r/gaming icon" />
                     <div class="flex-1">
-                        <a href="community" class="font-semibold text-sm hover:underline">r/finance</a>
+                        <a href="topic.html"
+                           class="font-semibold text-sm hover:underline">What's a game that you think is a 10/10 masterpiece?</a>
+                        <p class="text-xs text-gray-500">22.7k upvotes · r/gaming</p>
                     </div>
-                    <button class="text-xs font-semibold text-blue-600 bg-blue-100 hover:bg-blue-200 px-3 py-1 rounded-full">Join</button>
                 </li>
                 <li class="flex items-center space-x-3">
-                    <img class="h-8 w-8 rounded-full" src="https://placehold.co/32x32/FBBF24/FFFFFF?text=S" alt="r/science icon">
+                    <img class="h-8 w-8 rounded-full"
+                         src="https://placehold.co/32x32/1D4ED8/FFFFFF?text=T"
+                         alt="r/technology icon" />
                     <div class="flex-1">
-                        <a href="community" class="font-semibold text-sm hover:underline">r/science</a>
+                        <a href="topic.html"
+                           class="font-semibold text-sm hover:underline">This AI can generate video from a single text prompt</a>
+                        <p class="text-xs text-gray-500">
+                            15.1k upvotes · r/technology
+                        </p>
                     </div>
-                    <button class="text-xs font-semibold text-blue-600 bg-blue-100 hover:bg-blue-200 px-3 py-1 rounded-full">Join</button>
                 </li>
             </ul>
+            <a href="popular.html"
+               class="mt-4 block w-full bg-gray-100 text-center text-blue-600 font-bold py-2 rounded-full hover:bg-gray-200 transition">See More</a>
         </div>
     </aside>
 
