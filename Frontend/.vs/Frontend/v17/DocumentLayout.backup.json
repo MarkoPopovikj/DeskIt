@@ -3,16 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6D6B3F44-B3F1-451F-A4B0-45A934DE43C7}|Frontend\\Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\frontend\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6D6B3F44-B3F1-451F-A4B0-45A934DE43C7}|Frontend\\Frontend.csproj|solutionrelative:frontend\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6D6B3F44-B3F1-451F-A4B0-45A934DE43C7}|Frontend\\Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\frontend\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6D6B3F44-B3F1-451F-A4B0-45A934DE43C7}|Frontend\\Frontend.csproj|solutionrelative:frontend\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\components\\layout\\sidebar.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:components\\layout\\sidebar.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6D6B3F44-B3F1-451F-A4B0-45A934DE43C7}|Frontend\\Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\frontend\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{6D6B3F44-B3F1-451F-A4B0-45A934DE43C7}|Frontend\\Frontend.csproj|solutionrelative:frontend\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\components\\shared\\header.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:components\\shared\\header.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\components\\shared\\postcard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:components\\shared\\postcard.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\components\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:components\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\components\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:components\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|c:\\users\\marko\\desktop\\deskit\\frontend\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B156B549-7EA6-41D9-9D42-95C19B0D3491}|Frontend.csproj|solutionrelative:mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,40 +63,144 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Frontend\\MainPage.xaml.cs",
-              "RelativeDocumentMoniker": "Frontend\\MainPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Frontend\\MainPage.xaml.cs",
-              "RelativeToolTip": "Frontend\\MainPage.xaml.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-30T17:30:05.436Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MainPage.xaml",
-              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Frontend\\MainPage.xaml",
-              "RelativeDocumentMoniker": "Frontend\\MainPage.xaml",
-              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Frontend\\MainPage.xaml",
-              "RelativeToolTip": "Frontend\\MainPage.xaml",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAABwAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-30T17:25:27.849Z",
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Layout\\MainLayout.razor",
+              "RelativeDocumentMoniker": "Components\\Layout\\MainLayout.razor",
+              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Layout\\MainLayout.razor",
+              "RelativeToolTip": "Components\\Layout\\MainLayout.razor",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAYwFcAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-14T21:21:29.201Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MauiProgram.cs",
-              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Frontend\\MauiProgram.cs",
-              "RelativeDocumentMoniker": "Frontend\\MauiProgram.cs",
-              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Frontend\\MauiProgram.cs",
-              "RelativeToolTip": "Frontend\\MauiProgram.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAgAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T15:25:36.179Z",
+              "Title": "Sidebar.razor",
+              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Layout\\Sidebar.razor",
+              "RelativeDocumentMoniker": "Components\\Layout\\Sidebar.razor",
+              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Layout\\Sidebar.razor",
+              "RelativeToolTip": "Components\\Layout\\Sidebar.razor",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAwDcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-14T21:21:01.989Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Header.razor",
+              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Shared\\Header.razor",
+              "RelativeDocumentMoniker": "Components\\Shared\\Header.razor",
+              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Shared\\Header.razor",
+              "RelativeToolTip": "Components\\Shared\\Header.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-18T07:47:29.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PostCard.razor",
+              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Shared\\PostCard.razor",
+              "RelativeDocumentMoniker": "Components\\Shared\\PostCard.razor",
+              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Shared\\PostCard.razor",
+              "RelativeToolTip": "Components\\Shared\\PostCard.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-18T08:05:46.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Home.razor",
+              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "Components\\Pages\\Home.razor",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAAAgAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-17T21:06:39.054Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_Imports.razor",
+              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\_Imports.razor",
+              "RelativeDocumentMoniker": "Components\\_Imports.razor",
+              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\_Imports.razor",
+              "RelativeToolTip": "Components\\_Imports.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-14T21:21:37.054Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\index.html",
+              "RelativeDocumentMoniker": "wwwroot\\index.html",
+              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\wwwroot\\index.html",
+              "RelativeToolTip": "wwwroot\\index.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-08-14T21:22:49.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Counter.razor",
+              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Pages\\Counter.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Counter.razor",
+              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Pages\\Counter.razor",
+              "RelativeToolTip": "Components\\Pages\\Counter.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-17T21:06:44.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Routes.razor",
+              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Routes.razor",
+              "RelativeDocumentMoniker": "Components\\Routes.razor",
+              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Routes.razor",
+              "RelativeToolTip": "Components\\Routes.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-14T21:21:40.8Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\MainPage.xaml",
+              "RelativeDocumentMoniker": "MainPage.xaml",
+              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\MainPage.xaml",
+              "RelativeToolTip": "MainPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-17T19:57:40.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Weather.razor",
+              "DocumentMoniker": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Pages\\Weather.razor",
+              "RelativeDocumentMoniker": "Components\\Pages\\Weather.razor",
+              "ToolTip": "C:\\Users\\Marko\\Desktop\\DeskIt\\Frontend\\Components\\Pages\\Weather.razor",
+              "RelativeToolTip": "Components\\Pages\\Weather.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-17T21:06:43.386Z",
               "EditorCaption": ""
             }
           ]

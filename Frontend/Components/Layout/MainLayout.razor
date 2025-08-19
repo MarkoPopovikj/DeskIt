@@ -1,0 +1,109 @@
+﻿    @inherits LayoutComponentBase
+    @using Frontend.Components.Layout
+
+<div class="bg-gray-100 text-gray-800 h-screen overflow-hidden flex flex-col">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 w-full z-20 flex-shrink-0">
+        <div class="max-w-screen-2xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-2">
+                    <button @onclick="ToggleSidebar" class="p-2 rounded-md text-gray-600 hover:bg-gray-100 lg:hidden">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <a href="/" class="flex items-center space-x-2">
+                        <svg class="h-8 w-8 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                        <span class="text-xl font-bold text-gray-800 hidden sm:block">DeskIt</span>
+                    </a>
+                </div>
+
+                <div class="relative">
+                    <button @onclick="ToggleProfileDropdown" class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-200 hover:bg-gray-300 transition focus:outline-none">
+                        <svg class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                        </svg>
+                    </button>
+                    @if (isProfileDropdownOpen)
+                    {
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl z-30 py-1">
+                            <a href="profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <span class="font-semibold block">u/current_user</span>
+                                <span class="text-xs text-gray-500">Profile</span>
+                            </a>
+                            <div class="border-t border-gray-100 my-1"></div>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Backdrop for mobile sidebar -->
+    <div @onclick="CloseSidebar" class="@BackdropCssClass"></div>
+
+    <!-- Main content area -->
+    <div class="flex-1 flex overflow-hidden max-w-screen-2xl mx-auto w-full">
+        <!-- Sidebar -->
+        <Sidebar SidebarCssClass="@SidebarCssClass" OnClose="CloseSidebar" />
+
+        <!-- Scrollable content area -->
+        <main class="flex-1 overflow-y-auto custom-scrollbar p-6">
+            @Body
+        </main>
+    </div>
+</div>
+
+<style>
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #d1d5db;
+        border-radius: 10px;
+    }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+</style>
+
+@code {
+    private bool isProfileDropdownOpen = false;
+    private bool isSidebarOpen = false;
+
+    private string SidebarCssClass => new CssBuilder("fixed top-0 left-0 z-40 h-full w-72 p-4 transform transition-transform duration-300 ease-in-out bg-white lg:bg-white ![important] lg:relative lg:translate-x-0 lg:p-0 lg:py-6 flex flex-col")
+        .AddClass("-translate-x-full", when: !isSidebarOpen)
+        .AddClass("translate-x-0 shadow-lg md:bg-white ![important]", when: isSidebarOpen)
+        .ToString();
+
+    private string BackdropCssClass => isSidebarOpen
+        ? "fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+        : "hidden";
+
+    private void ToggleSidebar() => isSidebarOpen = !isSidebarOpen;
+    private void CloseSidebar() => isSidebarOpen = false;
+    private void ToggleProfileDropdown() => isProfileDropdownOpen = !isProfileDropdownOpen;
+
+    public class CssBuilder
+    {
+        private string css = "";
+        public CssBuilder(string initial) { css = initial; }
+        public CssBuilder AddClass(string newClass, bool when = true)
+        {
+            if (when) css += $" {newClass}";
+            return this;
+        }
+        public override string ToString() => css.Trim();
+    }
+}

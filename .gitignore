@@ -18,6 +18,8 @@ backend/.idea
 # VS Code / IDE
 .vscode/
 .idea/
+.vs/
+*.vsidx
 
 # System
 .DS_Store

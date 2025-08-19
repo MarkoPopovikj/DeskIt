@@ -1,0 +1,38 @@
+﻿@page "/"
+@using Frontend.Components.Shared
+
+@* The three-column grid is now defined in MainLayout.razor *@
+@* This page's content will be rendered in the @Body of the layout *@
+
+<div class="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-6">
+    
+    <div class="space-y-4">
+        <PostCard />
+        <PostCard />
+        <PostCard />
+    </div>
+
+    @* Right sidebar content is placed directly here *@
+    <aside class="hidden xl:block">
+        <div class="bg-white border border-gray-200 rounded-lg p-4">
+            <h3 class="text-sm font-bold text-gray-900 mb-4 pb-2 border-b">Top Communities</h3>
+            <ul class="space-y-4">
+                <li class="flex items-center space-x-3">
+                    <img class="h-8 w-8 rounded-full" src="https://placehold.co/32x32/16A34A/FFFFFF?text=F" alt="r/finance icon">
+                    <div class="flex-1">
+                        <a href="community" class="font-semibold text-sm hover:underline">r/finance</a>
+                    </div>
+                    <button class="text-xs font-semibold text-blue-600 bg-blue-100 hover:bg-blue-200 px-3 py-1 rounded-full">Join</button>
+                </li>
+                <li class="flex items-center space-x-3">
+                    <img class="h-8 w-8 rounded-full" src="https://placehold.co/32x32/FBBF24/FFFFFF?text=S" alt="r/science icon">
+                    <div class="flex-1">
+                        <a href="community" class="font-semibold text-sm hover:underline">r/science</a>
+                    </div>
+                    <button class="text-xs font-semibold text-blue-600 bg-blue-100 hover:bg-blue-200 px-3 py-1 rounded-full">Join</button>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+</div>
