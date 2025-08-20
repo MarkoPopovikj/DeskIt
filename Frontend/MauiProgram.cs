@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Frontend.Services;
+using Blazored.Toast;
 
 namespace Frontend
 {
@@ -24,6 +25,7 @@ namespace Frontend
     		builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddBlazoredToast();
 
             builder.Services.AddTransient<AuthHeaderHandler>();
             builder.Services.AddHttpClient("WebAPI", client =>
@@ -34,6 +36,7 @@ namespace Frontend
             .AddHttpMessageHandler<AuthHeaderHandler>();
 
             builder.Services.AddSingleton<AuthService>();
+            builder.Services.AddScoped<UserService>();
 
             return builder.Build();
         }

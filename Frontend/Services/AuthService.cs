@@ -39,6 +39,9 @@ namespace Frontend.Services
 
         [JsonPropertyName("background_color")]
         public string? BackgroundColor { get; set; }
+
+        [JsonPropertyName("about_me")]
+        public string? AboutMe { get; set; }
     }
 
     public class AuthService
@@ -82,7 +85,8 @@ namespace Frontend.Services
                         UserId = responseContent?.Id ?? -1,
                         Username = responseContent?.Username,
                         Email = responseContent?.Email,
-                        BackgroundColor = responseContent?.BackgroundColor
+                        BackgroundColor = responseContent?.BackgroundColor,
+                        AboutMe = responseContent?.AboutMe
                     };
 
                     OnAuthStateChanged?.Invoke();
@@ -93,6 +97,12 @@ namespace Frontend.Services
             {
                 Console.WriteLine($"Load error: {ex.Message}");
             }
+        }
+
+        public void UpdateCurrentUser(UserModel user)
+        {
+            CurrentUser = user;
+            OnAuthStateChanged?.Invoke();
         }
 
         public async Task<string?> RegisterAsync(RegisterModel registerModel)

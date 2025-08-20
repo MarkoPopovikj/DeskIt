@@ -12,6 +12,7 @@
 @using System.Text.Json.Serialization
 @using Frontend.Services 
 @using Frontend.Models
+@using Blazored.Toast.Configuration
 
 
 <RedirectToLogin />
@@ -77,6 +78,13 @@
         </main>
     </div>
 </div>
+
+<BlazoredToasts Position="ToastPosition.BottomCenter"
+                Timeout="5"
+                IconType="IconType.FontAwesome"
+                SuccessClass="success-toast-override"
+                SuccessIcon="fa fa-thumbs-up"
+                ErrorIcon="fa fa-bug" />
 
 <style>
     .custom-scrollbar::-webkit-scrollbar {

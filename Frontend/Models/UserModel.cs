@@ -12,5 +12,6 @@ namespace Frontend.Models
         public string? Email { get; set; }
         public string? Username { get; set; }
         public string? BackgroundColor { get; set; }
+        public string? AboutMe { get; set; }
     }
 }
