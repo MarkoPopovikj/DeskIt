@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Frontend.Services;
 
 namespace Frontend
 {
@@ -30,7 +31,10 @@ namespace Frontend
                 // Set the base URL for your API
                 client.BaseAddress = new Uri("http://localhost:8000");
             })
-                .AddHttpMessageHandler<AuthHeaderHandler>();
+            .AddHttpMessageHandler<AuthHeaderHandler>();
+
+            builder.Services.AddSingleton<AuthService>();
+
             return builder.Build();
         }
     }

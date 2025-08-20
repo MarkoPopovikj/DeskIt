@@ -1,4 +1,8 @@
 ﻿@inherits LayoutComponentBase
+
+@inject NavigationManager NavigationManager
+@inject AuthService AuthService
+
 @using Frontend.Components.Layout
 @using Frontend.Components.Shared
 @using Frontend.Constants
@@ -6,8 +10,9 @@
 @using System.Text
 @using System.Text.Json
 @using System.Text.Json.Serialization
-@inject IHttpClientFactory HttpClientFactory
-@inject NavigationManager NavigationManager
+@using Frontend.Services 
+@using Frontend.Models
+
 
 <RedirectToLogin />
 
@@ -41,8 +46,8 @@
                     @if (isProfileDropdownOpen)
                     {
                             <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl z-30 py-1">
-                                <a href="profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                    <span class="font-semibold block">u/current_user</span>
+                            <a href="profile" @onclick="ToggleProfileDropdown" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                                <span class="font-semibold block">u/@(AuthService.CurrentUser?.Username ?? "currentUser")</span>
                                     <span class="text-xs text-gray-500">Profile</span>
                                 </a>
                                 <div class="border-t border-gray-100 my-1"></div>
@@ -96,6 +101,11 @@
     private bool isProfileDropdownOpen = false;
     private bool isSidebarOpen = false;
 
+    protected override void OnInitialized()
+    {
+        AuthService.OnAuthStateChanged += StateHasChanged;
+    }
+
     private string SidebarCssClass => new CssBuilder("fixed top-0 left-0 z-40 h-full w-72 p-4 transform transition-transform duration-300 ease-in-out bg-white lg:bg-white ![important] lg:relative lg:translate-x-0 lg:p-0 lg:py-6 flex flex-col")
         .AddClass("-translate-x-full", when: !isSidebarOpen)
         .AddClass("translate-x-0 shadow-lg md:bg-white ![important]", when: isSidebarOpen)
@@ -109,35 +119,16 @@
     private void CloseSidebar() => isSidebarOpen = false;
     private void ToggleProfileDropdown() => isProfileDropdownOpen = !isProfileDropdownOpen;
 
+    public void Dispose()
+    {
+        AuthService.OnAuthStateChanged -= StateHasChanged;
+    }
+
     private async Task HandleLogout()
     {
-        try
-        {
-            var refreshToken = await SecureStorage.GetAsync(TokenConstants.RefreshToken);
+		await AuthService.LogoutAsync();
 
-            if (!string.IsNullOrEmpty(refreshToken))
-            {
-                var httpClient = HttpClientFactory.CreateClient("WebAPI");
-                var requestBody = new { refresh = refreshToken };
-                var content = new StringContent(JsonSerializer.Serialize(requestBody), Encoding.UTF8, "application/json");
-
-                // We call the logout endpoint but don't need to wait for a response.
-                // The goal is just to blacklist the token on the server if possible.
-                await httpClient.PostAsync("auth/logout/", content);
-            }
-        }
-        catch (Exception ex)
-        {
-            // Log the error but proceed with logout on the client side regardless.
-            Console.WriteLine($"Error during logout API call: {ex.Message}");
-        }
-        finally
-        {
-            // Always clear local storage and redirect.
-            SecureStorage.Remove(TokenConstants.AccessToken);
-            SecureStorage.Remove(TokenConstants.RefreshToken);
-            NavigationManager.NavigateTo("/login", forceLoad: true);
-        }
+		NavigationManager.NavigateTo("/login");
     }
 
     public class CssBuilder

@@ -1,10 +1,15 @@
 ﻿@page "/signup"
+
+@inject NavigationManager NavigationManager
+@inject AuthService AuthService
+
 @layout AuthLayout
+
+@using Frontend.Services
 @using Frontend.Constants
 @using System.ComponentModel.DataAnnotations
 @using System.Text.Json.Serialization
-@inject IHttpClientFactory HttpClientFactory
-@inject NavigationManager NavigationManager
+
 
 <div class="bg-gray-100 flex items-center justify-center h-screen">
     <div class="w-full max-w-md">
@@ -58,14 +63,9 @@
                     </div>
                 </div>
 
-                @if (errorMessages.Any())
+                @if (!string.IsNullOrEmpty(errorMessage))
                 {
-                        <div class="bg-red-50 p-3 rounded-md">
-                        @foreach (var error in errorMessages)
-                        {
-                                    <p class="text-red-600 text-sm">@error</p>
-                        }
-                        </div>
+                    <div class="text-red-600 text-sm text-center bg-red-50 p-3 rounded-md">@errorMessage</div>
                 }
 
                 <div>
@@ -97,64 +97,64 @@
 </div>
 
 @code {
-    private RegisterModel registerModel = new();
-    private List<string> errorMessages = new();
+    private RegisterModelChecker registerModel = new();
+    private string? errorMessage;
     private bool isRegistering = false;
+
+	private bool arePasswordsTheSame(string password, string confirmPassword)
+	{
+		return password == confirmPassword;
+	}
 
     private async Task HandleRegistration()
     {
+		if (!arePasswordsTheSame(registerModel.Password, registerModel.ConfirmPassword))
+		{
+			errorMessage = "Passwords do not match.";
+			StateHasChanged();
+			return;
+		}
+
         isRegistering = true;
-        errorMessages.Clear();
+		errorMessage = null;
         StateHasChanged();
 
-        try
+        var registerData = new RegisterModel
         {
-            var httpClient = HttpClientFactory.CreateClient("WebAPI");
-            var response = await httpClient.PostAsJsonAsync("register/", registerModel);
+            Email = registerModel.Email,
+            Username = registerModel.Username,
+            Password = registerModel.Password
+        };
 
-            if (response.IsSuccessStatusCode)
-            {
-                var result = await response.Content.ReadFromJsonAsync<AuthResponse>();
-                if (result != null && !string.IsNullOrEmpty(result.Access))
-                {
-                    await SecureStorage.SetAsync(TokenConstants.AccessToken, result.Access);
-                    await SecureStorage.SetAsync(TokenConstants.RefreshToken, result.Refresh);
-                    NavigationManager.NavigateTo("/", forceLoad: true);
-                }
-                else
-                {
-                    errorMessages.Add("Registration failed: Invalid response from server.");
-                }
-            }
-            else
-            {
-                var errorContent = await response.Content.ReadFromJsonAsync<Dictionary<string, List<string>>>();
-                if (errorContent != null)
-                {
-                    foreach (var error in errorContent.Values)
-                    {
-                        errorMessages.AddRange(error);
-                    }
-                }
-                else
-                {
-                    errorMessages.Add("An unknown error occurred during registration.");
-                }
-            }
-        }
-        catch (Exception ex)
+		var error = await AuthService.RegisterAsync(registerData);
+        isRegistering = false;
+
+        if (error == null)
         {
-            Console.WriteLine($"Registration error: {ex.Message}");
-            errorMessages.Add("An error occurred. Please check your connection and try again.");
+            NavigationManager.NavigateTo("/", forceLoad: true);
         }
-        finally
+        else
         {
-            isRegistering = false;
+            errorMessage = error;
             StateHasChanged();
         }
+
     }
 
     public class RegisterModel
+    {
+        [JsonPropertyName("email")]
+        public string Email { get; set; }
+
+        [JsonPropertyName("username")]
+        public string Username { get; set; }
+
+        [JsonPropertyName("password")]
+        public string Password { get; set; }
+    }
+
+    // Need to use to check the confirm password
+    public class RegisterModelChecker
     {
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
@@ -171,14 +171,5 @@
         [Required(ErrorMessage = "Please confirm your password.")]
         [Compare(nameof(Password), ErrorMessage = "Passwords do not match.")]
         public string ConfirmPassword { get; set; } = "";
-    }
-
-    public class AuthResponse
-    {
-        [JsonPropertyName("access")]
-        public string? Access { get; set; }
-
-        [JsonPropertyName("refresh")]
-        public string? Refresh { get; set; }
     }
 }

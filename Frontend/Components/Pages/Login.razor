@@ -1,12 +1,17 @@
 ﻿@page "/login"
+
+@inject NavigationManager NavigationManager
+@inject AuthService AuthService
+
 @layout AuthLayout
+
+@using Frontend.Services
 @using Frontend.Constants
 @using System.ComponentModel.DataAnnotations
 @using System.Text
 @using System.Text.Json
 @using System.Text.Json.Serialization
-@inject IHttpClientFactory HttpClientFactory
-@inject NavigationManager NavigationManager
+
 
 <div class="bg-gray-100 flex items-center justify-center h-screen">
     <div class="w-full max-w-md">
@@ -80,7 +85,7 @@
 @code {
     private LoginModel loginModel = new();
     private string? errorMessage;
-    private bool isLoggingIn = false;
+    public bool isLoggingIn = false;
 
     private async Task HandleLogin()
     {
@@ -88,64 +93,17 @@
         errorMessage = null;
         StateHasChanged();
 
-        try
+        var error = await AuthService.LoginAsync(loginModel);
+        isLoggingIn = false;
+
+        if(error == null)
         {
-            var httpClient = HttpClientFactory.CreateClient("WebAPI");
-
-            // Manually serialize the model to a JSON string.
-            var jsonPayload = JsonSerializer.Serialize(loginModel);
-
-            // Create StringContent, explicitly setting the encoding and media type.
-            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-
-            // Use the more fundamental PostAsync method with the manually created content.
-            var response = await httpClient.PostAsync("auth/login/", content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var loginResult = await response.Content.ReadFromJsonAsync<LoginResponse>();
-                if (loginResult != null && !string.IsNullOrEmpty(loginResult.Access))
-                {
-                    await SecureStorage.SetAsync(TokenConstants.AccessToken, loginResult.Access);
-                    await SecureStorage.SetAsync(TokenConstants.RefreshToken, loginResult.Refresh);
-
-                    NavigationManager.NavigateTo("/", forceLoad: true);
-                }
-                else
-                {
-                    errorMessage = "Login failed: Invalid response from server.";
-                }
-            }
-            else
-            {
-                var errorContent = await response.Content.ReadAsStringAsync();
-                try
-                {
-                    var errorDetails = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(errorContent);
-                    if (errorDetails != null && errorDetails.TryGetValue("detail", out var detail))
-                    {
-                        errorMessage = detail.GetString();
-                    }
-                    else
-                    {
-                        errorMessage = "Invalid email or password.";
-                    }
-                }
-                catch
-                {
-                    errorMessage = "An unexpected error occurred.";
-                }
-            }
+            NavigationManager.NavigateTo("/", forceLoad: true);
         }
-        catch (Exception ex)
+        else
         {
-            Console.WriteLine($"Login error: {ex.Message}");
-            errorMessage = "An error occurred. Please check your connection and try again.";
-        }
-        finally
-        {
-            isLoggingIn = false;
-            StateHasChanged();
+			errorMessage = error;
+			StateHasChanged();
         }
     }
 
@@ -159,17 +117,5 @@
         [Required(ErrorMessage = "Password is required.")]
         [JsonPropertyName("password")]
         public string Password { get; set; } = "";
-    }
-
-    public class LoginResponse
-    {
-        [JsonPropertyName("access")]
-        public string? Access { get; set; }
-
-        [JsonPropertyName("refresh")]
-        public string? Refresh { get; set; }
-
-        [JsonPropertyName("user_id")]
-        public int UserId { get; set; }
     }
 }

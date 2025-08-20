@@ -1,5 +1,9 @@
 ﻿@page "/profile"
 
+@inject AuthService AuthService
+
+@using Frontend.Services
+
 <div class="max-w-6xl mx-auto">
     <h1 class="text-3xl font-bold text-gray-800 mb-8">Edit Profile</h1>
 
@@ -14,7 +18,7 @@
                         <div class="flex items-center space-x-6">
                             <div class="relative">
                                 <img class="h-24 w-24 rounded-full object-cover ring-4 ring-gray-100" 
-                                     src="https://placehold.co/96x96/6366F1/FFFFFF?text=@GetInitial()" 
+                                     src="@($"https://placehold.co/96x96/6366F1/{AuthService.CurrentUser.BackgroundColor}?text={AuthService.CurrentUser.Username[0].ToString().ToUpper()}")"
                                      alt="Profile Picture" />
                                 <div class="absolute -bottom-2 -right-2">
                                     <button type="button" 

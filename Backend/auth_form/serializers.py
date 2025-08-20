@@ -1,8 +1,12 @@
+import random
+
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework.exceptions import ValidationError, AuthenticationFailed
 from rest_framework.validators import UniqueValidator
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
 from users.models import User
 
 User = get_user_model()
@@ -20,7 +24,8 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'username', 'password']
+        fields = ['email', 'username', 'password', 'background_color']
+        read_only_fields = ['background_color']
         extra_kwargs = {
             'password': {'write_only': True},
         }
@@ -34,31 +39,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         return value
 
     def create(self, validated_data):
+        random_color = f'{random.randint(0, 0xFFFFFF):06x}'.upper()
+
         user = User.objects.create_user(
             email = validated_data['email'],
             username = validated_data['username'],
-            password = validated_data['password']
+            password = validated_data['password'],
+            background_color = random_color,
         )
 
         return user
-
-class LoginSerializer(serializers.Serializer):
-    email = serializers.EmailField(required = True)
-    password = serializers.CharField(required = True, write_only = True)
-
-    def validate(self, data):
-        email = data.get('email')
-        password = data.get('password')
-
-        if email and password:
-            user = authenticate(username = email, password = password)
-
-            if user is None:
-                raise AuthenticationFailed(detail = 'Invalid email or password.')
-            if not user.is_active:
-                raise AuthenticationFailed(detail = 'User inactive or deleted.')
-
-            data['user'] = user
-            return data
-        else:
-            serializers.ValidationError(detail = 'Must include email and password.')
