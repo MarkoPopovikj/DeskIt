@@ -21,3 +21,4 @@ class UserSimpleDataSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+

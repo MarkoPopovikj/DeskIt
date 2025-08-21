@@ -1,10 +1,13 @@
 ﻿@using Frontend.Constants
+@using System.Diagnostics
 @inject NavigationManager NavigationManager
 
 @code {
     protected override async Task OnInitializedAsync()
     {
         var token = await SecureStorage.GetAsync(TokenConstants.AccessToken);
+
+		Debug.WriteLine($"Token: {token}");
 
         if (string.IsNullOrEmpty(token))
         {
