@@ -8,7 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Frontend.Constants;
-using static Frontend.Components.Pages.Profile;
+using static Frontend.Components.Pages.EditProfile;
 
 namespace Frontend.Services
 {

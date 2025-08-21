@@ -1,285 +1,230 @@
 ﻿@page "/profile"
 
-@inject AuthService AuthService
-@inject UserService UserService
-@inject Blazored.Toast.Services.IToastService ToastService
 
-@using Frontend.Services
-@using System.Diagnostics
-@using Frontend.Components.Shared
-@using Frontend.Constants
-@using System.Text.Json.Serialization
-@using System.Text.RegularExpressions
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+    <main class="py-6 xl:col-span-2">
+        <div class="bg-white rounded-lg shadow-sm">
+            <div class="h-32 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-lg"></div>
 
-@if (_isLoading)
-{
-    <Loading />
-}
-else
-{
-    <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-        <main class="py-6 xl:col-span-2">
-            <h1 class="text-3xl font-bold text-gray-800 mb-6">Edit Profile</h1>
-            <div class="bg-white rounded-lg shadow-sm">
-                <form class="p-6 space-y-8">
-                    <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-2">Profile Avatar</label>
-                        <div class="flex items-center space-x-4">
-                            <img id="profile-avatar-img"
-                            class="h-20 w-20 rounded-full"
-                            src="@($"https://placehold.co/96x96/{UserSimpleData.BackgroundColor}/FFFFFF?text={@UserSimpleData.Username?.ToString().ToUpper()?[0] ?? AuthService.CurrentUser.Username.ToString().ToUpper()[0]}")"
-                            alt="User Avatar" />
-                            <div class="relative">
-                                <button @onclick="ToggleColorMenu" @onclick:stopPropagation="true" type="button" class="bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-full hover:bg-gray-300 transition text-sm">
-                                    Change Color
-                                </button>
-
-                                @if (isColorMenuOpen)
-                                {
-                                    <div @onclick:stopPropagation="true" class="absolute top-full mt-2 w-64 bg-white rounded-lg shadow-xl z-10 p-4 border border-gray-200 origin-top-left">
-                                        <p class="text-sm font-semibold text-gray-600 mb-3 text-center">Select a Color</p>
-                                        <div class="grid grid-cols-6 gap-2 mb-4">
-                                            @foreach (var color in presetColors)
-                                            {
-                                                <button type="button" @onclick="() => SelectColor(color)" class="w-8 h-8 rounded-full border hover:scale-110 transition-transform" style="background-color: @($"#{color}")"></button>
-                                            }
-                                        </div>
-                                        <hr class="mb-3" />
-                                        <label class="block text-sm font-semibold text-gray-600 mb-2">Custom Color</label>
-                                        <div class="flex items-center space-x-3">
-                                            <input type="color" @bind="UserSimpleData.BackgroundColor" @bind:event="oninput" class="w-10 h-10 p-1 bg-white border border-gray-300 rounded-md cursor-pointer" />
-                                            <input @bind="UserSimpleData.BackgroundColor" class="w-full px-3 py-1.5 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="display-name" class="block text-sm font-bold text-gray-700">Display Name</label>
-                            <input id="display-name" @bind="UserSimpleData.Username" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-bold text-gray-700">Email Address</label>
-                            <input type="email" id="email" @bind="UserSimpleData.Email" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
-                        </div>
+            <div class="p-6">
+                <div class="flex flex-col sm:flex-row sm:items-center">
+                    <div class="-mt-16">
+                        <img class="h-24 w-24 rounded-full border-4 border-white"
+                             src="@($"https://placehold.co/96x96/{UserProfile.BackgroundColor}/FFFFFF?text={UserProfile.Username[0]}")"
+                             alt="User Avatar" />
                     </div>
 
                     <div>
-                        <label for="about" class="block text-sm font-bold text-gray-700">About Me</label>
-                        <textarea id="about" @bind="UserSimpleData.AboutMe" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="A little bit about yourself..."></textarea>
-                    </div>
+                        <div class="lg:-mt-3 sm:mt-0 sm:ml-4 flex-grow">
+                            <h1 class="text-2xl font-bold text-gray-900">@UserProfile.DisplayName</h1>
+                            <p class="text-sm text-gray-500 -mt-1">u/@UserProfile.Username</p>
 
-                    <div class="flex justify-end">
-                        <button @onclick=HandleSaveSimpleData type="button" class="w-full md:w-auto bg-blue-600 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-700 transition">
-                            Save Changes
-                        </button>
-                    </div>
-
-                    <div class="border-t pt-8">
-                        <h3 class="text-lg font-bold text-gray-900">Change Password</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                            <div>
-                                <label for="new-password" class="block text-sm font-bold text-gray-700">New Password</label>
-                                <input type="password" id="new-password" @bind="Password" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
-                            </div>
-                            <div>
-                                <label for="confirm-password" class="block text-sm font-bold text-gray-700">Confirm New Password</label>
-                                <input type="password" id="confirm-password" @bind="ConfirmPassword" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                            <div class="mt-3 lg:mt-2 flex items-center space-x-6 text-sm text-gray-600 xl:hidden">
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.787l.09.044a2 2 0 002.208-.445l4.577-5.996a2 2 0 00.44-2.208l-.09-.044a2 2 0 00-2.208.445L9 12.333V4.5a1.5 1.5 0 00-3 0v5.833z" />
+                                    </svg>
+                                    <span class="font-semibold">@UserProfile.Karma.ToString("N0")</span>
+                                    <span class="ml-1">Karma</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-teal-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M5 5a3 3 0 015.252-2.121l.738.738a.5.5 0 00.708 0l.738-.738A3 3 0 0115 5v2.293l.53.53a1 1 0 010 1.414l-2 2a1 1 0 01-1.414 0l-1.293-1.293V15a1 1 0 01-1-1v-2.293l-1.293 1.293a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414l.53-.53V5zm2 5.707l1.293-1.293a1 1 0 011.414 0L12 12.707V15a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2.293z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span class="font-semibold">@UserProfile.CakeDay.ToString("MMM d, yyyy")</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex justify-end">
-                        <button @onclick=HandleUpdatePassword type="button" class="w-full md:w-auto bg-blue-600 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-700 transition">
-                            Save Changes
-                        </button>
+                    <div class="mt-4 sm:hidden">
+                        <a href="edit_profile"
+                           class="w-full flex justify-center bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-full hover:bg-gray-300 transition text-sm">
+                            Edit Profile
+                        </a>
                     </div>
-                </form>
-            </div>
 
-            <div class="mt-6 block xl:hidden">
-                <div class="bg-white border border-red-200 rounded-lg p-4">
-                    <h4 class="font-bold text-red-700">Danger Zone</h4>
-                    <p class="text-sm text-gray-600 mt-2">
-                        Deleting your account is a permanent action and cannot be undone.
-                    </p>
-                    <button class="mt-4 w-full bg-red-600 text-white font-bold py-2 rounded-full hover:bg-red-700 transition">
-                        Delete Account
-                    </button>
+                    <div class="hidden sm:block sm:ml-auto">
+                        <a href="edit_profile"
+                           class="w-auto flex justify-center bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-full hover:bg-gray-300 transition text-sm">
+                            Edit Profile
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="mt-6 border-t border-gray-200 pt-6">
+                    <h3 class="text-sm font-bold text-gray-700">About Me</h3>
+                    <p class="text-gray-600 mt-2">@UserProfile.AboutMe</p>
                 </div>
             </div>
-        </main>
 
-        <aside class="hidden xl:block py-6">
-            <div class="sticky top-6">
-                <div class="bg-white border border-red-200 rounded-lg p-4">
-                    <h4 class="font-bold text-red-700">Danger Zone</h4>
-                    <p class="text-sm text-gray-600 mt-2">
-                        Deleting your account is a permanent action and cannot be undone.
-                    </p>
-                    <button class="mt-4 w-full bg-red-600 text-white font-bold py-2 rounded-full hover:bg-red-700 transition">
-                        Delete Account
+            <div class="border-t border-gray-200">
+                <nav class="flex space-x-4 px-6" aria-label="Tabs">
+                    <button @onclick='() => SetActiveTab("posts")' class="tab-btn font-semibold py-4 px-1 border-b-2 text-sm @(_activeTab == "posts" ? "tab-active" : "text-gray-600 hover:text-blue-600 border-transparent")">
+                        Posts
                     </button>
+                    <button @onclick='() => SetActiveTab("communities")' class="tab-btn font-semibold py-4 px-1 border-b-2 text-sm @(_activeTab == "communities" ? "tab-active" : "text-gray-600 hover:text-blue-600 border-transparent")">
+                        Communities
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <div class="mt-6">
+            @if (_activeTab == "posts")
+            {
+                <div class="space-y-4">
+                    @if (UserProfile.Posts.Any())
+                    {
+                        @foreach (var post in UserProfile.Posts)
+                        {
+                            <div class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow">
+                                <div class="flex items-center mb-2">
+                                    <img class="h-6 w-6 rounded-full" src="@post.CommunityIconUrl" alt="community icon" />
+                                    <p class="ml-2 text-sm">
+                                        <span class="font-bold text-gray-800">@post.CommunityName</span>
+                                        <span class="text-gray-500"> · Posted by u/@UserProfile.Username @post.TimeAgo</span>
+                                    </p>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-900 mb-1">@post.Title</h3>
+                                <p class="text-gray-700">@post.Content</p>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                            <p class="text-gray-500">This user hasn't made any posts yet.</p>
+                        </div>
+                    }
+                </div>
+            }
+
+            @if (_activeTab == "communities")
+            {
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="font-bold text-lg mb-4">Joined Communities</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        @foreach (var community in UserProfile.Communities)
+                        {
+                            <div class="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
+                                <img class="h-10 w-10 rounded-full" src="@community.IconUrl" alt="community icon" />
+                                <div>
+                                    <p class="font-bold text-gray-800">@community.Name</p>
+                                    <p class="text-sm text-gray-500">@community.Members members</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </main>
+
+    <aside class="hidden xl:block py-6">
+        <div class="sticky top-6">
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center space-x-3 mb-4">
+                    <img class="h-12 w-12 rounded-full"
+                         src="@($"https://placehold.co/96x96/{UserProfile.BackgroundColor}/FFFFFF?text={UserProfile.Username[0]}")"
+                         alt="User Avatar" />
+                    <div>
+                        <h4 class="font-bold text-gray-800">u/@UserProfile.Username</h4>
+                        <p class="text-xs text-gray-500">@UserProfile.DisplayName</p>
+                    </div>
+                </div>
+                <div class="border-t border-gray-200 pt-4">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="font-semibold text-gray-700">Karma</span>
+                        <span class="text-gray-600">@UserProfile.Karma.ToString("N0")</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="font-semibold text-gray-700">Cake day</span>
+                        <span class="text-gray-600">@UserProfile.CakeDay.ToString("MMM d, yyyy")</span>
+                    </div>
                 </div>
             </div>
-        </aside>
-    </div>
-}
-
-
+        </div>
+    </aside>
+</div>
 
 @code {
-    public string Password = "";
-    public string ConfirmPassword = "";
+    private bool _isLoading = true;
+    private string _activeTab = "posts";
+    private ProfileData UserProfile;
 
-    private bool _isLoading = false;
-    private string _errorMessage;
-
-    public ProfileSimpleData UserSimpleData;
-
-    protected override async void OnInitialized()
+    protected override void OnInitialized()
     {
-        UserSimpleData = new ProfileSimpleData
-        {
-            Username = AuthService.CurrentUser.Username, 
-            Email = AuthService.CurrentUser.Email, 
-            AboutMe = AuthService.CurrentUser.AboutMe, 
-		    BackgroundColor = AuthService.CurrentUser?.BackgroundColor ?? "F97316"
-        };
-    }
-
-    private bool isColorMenuOpen = false;
-
-    private readonly List<string> presetColors = new()
-    {
-        "ef4444", "f97316", "eab308", "84cc16", "22c55e", "14b8a6",
-        "06b6d4", "3b82f6", "6366f1", "8b5cf6", "d946ef", "ec4899"
-    };
-
-    private void ToggleColorMenu() => isColorMenuOpen = !isColorMenuOpen;
-
-    private void SelectColor(string color)
-    {
-        UserSimpleData.BackgroundColor = color;
-        isColorMenuOpen = false;
-    }
-
-    private bool checkEverythingTheSame()
-    {
-        return UserSimpleData.Username.ToUpper() == AuthService.CurrentUser.Username.ToUpper()
-            && UserSimpleData.Email.ToUpper() == AuthService.CurrentUser.Email.ToUpper()
-            && UserSimpleData.AboutMe.ToUpper() == AuthService.CurrentUser.AboutMe.ToUpper()
-            && UserSimpleData.BackgroundColor.ToUpper() == AuthService.CurrentUser.BackgroundColor.ToUpper();
-    }
-
-    private bool checkNothingBlank()
-    {
-        return !string.IsNullOrWhiteSpace(UserSimpleData.Username)
-            && !string.IsNullOrWhiteSpace(UserSimpleData.Email)
-            && !string.IsNullOrWhiteSpace(UserSimpleData.BackgroundColor);
-    }
-
-    public async Task HandleSaveSimpleData()
-    {
-        if (checkEverythingTheSame())
-        {
-            _errorMessage = "No changes detected.";
-            ToastService.ShowError(_errorMessage);
-            return;
-        }
-
-        if (!checkNothingBlank())
-        {
-            _errorMessage = "Please fill in all fields.";
-            ToastService.ShowError(_errorMessage);
-            return;
-        }
-
-        _isLoading = true;
-        _errorMessage = null;
-
-        var error = await UserService.UpdateSimpleUserDataAsync(UserSimpleData);
-        _isLoading = false;
-
-        if(error == null)
-        {
-            _errorMessage = "Profile updated successfully!";
-            ToastService.ShowSuccess(_errorMessage);
-        }
-        else
-        {
-            _errorMessage = error;
-            ToastService.ShowError(_errorMessage);
-        }
-
-        StateHasChanged();
-    }
-
-    public async Task HandleUpdatePassword()
-    {
-        var passwordRegex = new Regex("^(?=.*[0-9])(?=.*[^a-zA-Z0-9]).+$");
-
-        if (string.IsNullOrWhiteSpace(Password))
-        {
-            _errorMessage = "Password cannot be empty.";
-            ToastService.ShowError(_errorMessage);
-            return;
-        }
-
-        if (Password != ConfirmPassword)
-        {
-            _errorMessage = "Passwords do not match.";
-            ToastService.ShowError(_errorMessage);
-            return;
-        }
-
-        if (!passwordRegex.IsMatch(Password))
-        {
-            _errorMessage = "Password must contain at least one number and one special character.";
-            ToastService.ShowError(_errorMessage);
-            return;
-        }
-
-        _isLoading = true;
-        _errorMessage = null;
-
-        var error = await UserService.UpdateUserPasswordAsync(Password);
+        // Load mockup data
+        UserProfile = new ProfileData
+            {
+                Username = "current_user",
+                DisplayName = "current_user",
+                AboutMe = "A passionate developer and designer exploring the world of web technologies. This is a placeholder bio from the profile page.",
+                BackgroundColor = "6366F1",
+                Karma = 1234,
+                CakeDay = new DateTime(2025, 8, 21),
+                Posts = new List<PostData>
+            {
+                new PostData
+                {
+                    CommunityName = "r/webdev",
+                    CommunityIconUrl = "https://placehold.co/32x32/059669/FFFFFF?text=W",
+                    TimeAgo = "2 hours ago",
+                    Title = "Just launched my new portfolio site with Tailwind CSS!",
+                    Content = "After weeks of work, I'm excited to share my new personal website..."
+                },
+                new PostData
+                {
+                    CommunityName = "r/design",
+                    CommunityIconUrl = "https://placehold.co/32x32/7E22CE/FFFFFF?text=D",
+                    TimeAgo = "1 day ago",
+                    Title = "What are your favorite tools for creating mockups in 2025?",
+                    Content = "Hey everyone, my team is looking to switch up our design workflow..."
+                }
+            },
+                Communities = new List<CommunityData>
+            {
+                new CommunityData { Name = "r/webdev", IconUrl = "https://placehold.co/40x40/059669/FFFFFF?text=W", Members = "2.1m" },
+                new CommunityData { Name = "r/design", IconUrl = "https://placehold.co/40x40/7E22CE/FFFFFF?text=D", Members = "1.8m" }
+            }
+            };
 
         _isLoading = false;
-
-        if (error == null)
-        {
-            _errorMessage = "Password updated successfully!";
-            ToastService.ShowSuccess(_errorMessage);
-            Password = "";
-            ConfirmPassword = "";
-        }
-		else
-		{
-			_errorMessage = error;
-			ToastService.ShowError(_errorMessage);
-            Password = "";
-            ConfirmPassword = "";
-		}
-
-		StateHasChanged();
     }
 
-    public class ProfileSimpleData
+    private void SetActiveTab(string tabName)
     {
-        [JsonPropertyName("username")]
+        _activeTab = tabName;
+    }
+
+    // --- Data Models for Mockup ---
+    public class ProfileData
+    {
         public string Username { get; set; }
-
-        [JsonPropertyName("email")]
-        public string Email { get; set; }
-
-        [JsonPropertyName("about_me")]
+        public string DisplayName { get; set; }
         public string AboutMe { get; set; }
-
-        [JsonPropertyName("background_color")]
         public string BackgroundColor { get; set; }
+        public int Karma { get; set; }
+        public DateTime CakeDay { get; set; }
+        public List<PostData> Posts { get; set; }
+        public List<CommunityData> Communities { get; set; }
+    }
+
+    public class PostData
+    {
+        public string CommunityName { get; set; }
+        public string CommunityIconUrl { get; set; }
+        public string TimeAgo { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+    }
+
+    public class CommunityData
+    {
+        public string Name { get; set; }
+        public string IconUrl { get; set; }
+        public string Members { get; set; }
     }
 }

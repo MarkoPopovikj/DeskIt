@@ -1,0 +1,285 @@
+﻿@page "/edit_profile"
+
+@inject AuthService AuthService
+@inject UserService UserService
+@inject Blazored.Toast.Services.IToastService ToastService
+
+@using Frontend.Services
+@using System.Diagnostics
+@using Frontend.Components.Shared
+@using Frontend.Constants
+@using System.Text.Json.Serialization
+@using System.Text.RegularExpressions
+
+@if (_isLoading)
+{
+    <Loading />
+}
+else
+{
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <main class="py-6 xl:col-span-2">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">Edit Profile</h1>
+            <div class="bg-white rounded-lg shadow-sm">
+                <form class="p-6 space-y-8">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Profile Avatar</label>
+                        <div class="flex items-center space-x-4">
+                            <img id="profile-avatar-img"
+                            class="h-20 w-20 rounded-full"
+                            src="@($"https://placehold.co/96x96/{UserSimpleData.BackgroundColor}/FFFFFF?text={@UserSimpleData.Username?.ToString().ToUpper()?[0] ?? AuthService.CurrentUser.Username.ToString().ToUpper()[0]}")"
+                            alt="User Avatar" />
+                            <div class="relative">
+                                <button @onclick="ToggleColorMenu" @onclick:stopPropagation="true" type="button" class="bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-full hover:bg-gray-300 transition text-sm">
+                                    Change Color
+                                </button>
+
+                                @if (isColorMenuOpen)
+                                {
+                                    <div @onclick:stopPropagation="true" class="absolute top-full mt-2 w-64 bg-white rounded-lg shadow-xl z-10 p-4 border border-gray-200 origin-top-left">
+                                        <p class="text-sm font-semibold text-gray-600 mb-3 text-center">Select a Color</p>
+                                        <div class="grid grid-cols-6 gap-2 mb-4">
+                                            @foreach (var color in presetColors)
+                                            {
+                                                <button type="button" @onclick="() => SelectColor(color)" class="w-8 h-8 rounded-full border hover:scale-110 transition-transform" style="background-color: @($"#{color}")"></button>
+                                            }
+                                        </div>
+                                        <hr class="mb-3" />
+                                        <label class="block text-sm font-semibold text-gray-600 mb-2">Custom Color</label>
+                                        <div class="flex items-center space-x-3">
+                                            <input type="color" @bind="UserSimpleData.BackgroundColor" @bind:event="oninput" class="w-10 h-10 p-1 bg-white border border-gray-300 rounded-md cursor-pointer" />
+                                            <input @bind="UserSimpleData.BackgroundColor" class="w-full px-3 py-1.5 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="display-name" class="block text-sm font-bold text-gray-700">Display Name</label>
+                            <input id="display-name" @bind="UserSimpleData.Username" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-bold text-gray-700">Email Address</label>
+                            <input type="email" id="email" @bind="UserSimpleData.Email" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="about" class="block text-sm font-bold text-gray-700">About Me</label>
+                        <textarea id="about" @bind="UserSimpleData.AboutMe" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="A little bit about yourself..."></textarea>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button @onclick=HandleSaveSimpleData type="button" class="w-full md:w-auto bg-blue-600 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-700 transition">
+                            Save Changes
+                        </button>
+                    </div>
+
+                    <div class="border-t pt-8">
+                        <h3 class="text-lg font-bold text-gray-900">Change Password</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                            <div>
+                                <label for="new-password" class="block text-sm font-bold text-gray-700">New Password</label>
+                                <input type="password" id="new-password" @bind="Password" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                            </div>
+                            <div>
+                                <label for="confirm-password" class="block text-sm font-bold text-gray-700">Confirm New Password</label>
+                                <input type="password" id="confirm-password" @bind="ConfirmPassword" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button @onclick=HandleUpdatePassword type="button" class="w-full md:w-auto bg-blue-600 text-white font-bold py-2 px-6 rounded-full hover:bg-blue-700 transition">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-6 block xl:hidden">
+                <div class="bg-white border border-red-200 rounded-lg p-4">
+                    <h4 class="font-bold text-red-700">Danger Zone</h4>
+                    <p class="text-sm text-gray-600 mt-2">
+                        Deleting your account is a permanent action and cannot be undone.
+                    </p>
+                    <button class="mt-4 w-full bg-red-600 text-white font-bold py-2 rounded-full hover:bg-red-700 transition">
+                        Delete Account
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <aside class="hidden xl:block py-6">
+            <div class="sticky top-6">
+                <div class="bg-white border border-red-200 rounded-lg p-4">
+                    <h4 class="font-bold text-red-700">Danger Zone</h4>
+                    <p class="text-sm text-gray-600 mt-2">
+                        Deleting your account is a permanent action and cannot be undone.
+                    </p>
+                    <button class="mt-4 w-full bg-red-600 text-white font-bold py-2 rounded-full hover:bg-red-700 transition">
+                        Delete Account
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </div>
+}
+
+
+
+@code {
+    public string Password = "";
+    public string ConfirmPassword = "";
+
+    private bool _isLoading = false;
+    private string _errorMessage;
+
+    public ProfileSimpleData UserSimpleData;
+
+    protected override async void OnInitialized()
+    {
+        UserSimpleData = new ProfileSimpleData
+        {
+            Username = AuthService.CurrentUser.Username, 
+            Email = AuthService.CurrentUser.Email, 
+            AboutMe = AuthService.CurrentUser.AboutMe, 
+		    BackgroundColor = AuthService.CurrentUser?.BackgroundColor ?? "F97316"
+        };
+    }
+
+    private bool isColorMenuOpen = false;
+
+    private readonly List<string> presetColors = new()
+    {
+        "ef4444", "f97316", "eab308", "84cc16", "22c55e", "14b8a6",
+        "06b6d4", "3b82f6", "6366f1", "8b5cf6", "d946ef", "ec4899"
+    };
+
+    private void ToggleColorMenu() => isColorMenuOpen = !isColorMenuOpen;
+
+    private void SelectColor(string color)
+    {
+        UserSimpleData.BackgroundColor = color;
+        isColorMenuOpen = false;
+    }
+
+    private bool checkEverythingTheSame()
+    {
+        return UserSimpleData.Username.ToUpper() == AuthService.CurrentUser.Username.ToUpper()
+            && UserSimpleData.Email.ToUpper() == AuthService.CurrentUser.Email.ToUpper()
+            && UserSimpleData.AboutMe.ToUpper() == AuthService.CurrentUser.AboutMe.ToUpper()
+            && UserSimpleData.BackgroundColor.ToUpper() == AuthService.CurrentUser.BackgroundColor.ToUpper();
+    }
+
+    private bool checkNothingBlank()
+    {
+        return !string.IsNullOrWhiteSpace(UserSimpleData.Username)
+            && !string.IsNullOrWhiteSpace(UserSimpleData.Email)
+            && !string.IsNullOrWhiteSpace(UserSimpleData.BackgroundColor);
+    }
+
+    public async Task HandleSaveSimpleData()
+    {
+        if (checkEverythingTheSame())
+        {
+            _errorMessage = "No changes detected.";
+            ToastService.ShowError(_errorMessage);
+            return;
+        }
+
+        if (!checkNothingBlank())
+        {
+            _errorMessage = "Please fill in all fields.";
+            ToastService.ShowError(_errorMessage);
+            return;
+        }
+
+        _isLoading = true;
+        _errorMessage = null;
+
+        var error = await UserService.UpdateSimpleUserDataAsync(UserSimpleData);
+        _isLoading = false;
+
+        if(error == null)
+        {
+            _errorMessage = "Profile updated successfully!";
+            ToastService.ShowSuccess(_errorMessage);
+        }
+        else
+        {
+            _errorMessage = error;
+            ToastService.ShowError(_errorMessage);
+        }
+
+        StateHasChanged();
+    }
+
+    public async Task HandleUpdatePassword()
+    {
+        var passwordRegex = new Regex("^(?=.*[0-9])(?=.*[^a-zA-Z0-9]).+$");
+
+        if (string.IsNullOrWhiteSpace(Password))
+        {
+            _errorMessage = "Password cannot be empty.";
+            ToastService.ShowError(_errorMessage);
+            return;
+        }
+
+        if (Password != ConfirmPassword)
+        {
+            _errorMessage = "Passwords do not match.";
+            ToastService.ShowError(_errorMessage);
+            return;
+        }
+
+        if (!passwordRegex.IsMatch(Password))
+        {
+            _errorMessage = "Password must contain at least one number and one special character.";
+            ToastService.ShowError(_errorMessage);
+            return;
+        }
+
+        _isLoading = true;
+        _errorMessage = null;
+
+        var error = await UserService.UpdateUserPasswordAsync(Password);
+
+        _isLoading = false;
+
+        if (error == null)
+        {
+            _errorMessage = "Password updated successfully!";
+            ToastService.ShowSuccess(_errorMessage);
+            Password = "";
+            ConfirmPassword = "";
+        }
+		else
+		{
+			_errorMessage = error;
+			ToastService.ShowError(_errorMessage);
+            Password = "";
+            ConfirmPassword = "";
+		}
+
+		StateHasChanged();
+    }
+
+    public class ProfileSimpleData
+    {
+        [JsonPropertyName("username")]
+        public string Username { get; set; }
+
+        [JsonPropertyName("email")]
+        public string Email { get; set; }
+
+        [JsonPropertyName("about_me")]
+        public string AboutMe { get; set; }
+
+        [JsonPropertyName("background_color")]
+        public string BackgroundColor { get; set; }
+    }
+}
