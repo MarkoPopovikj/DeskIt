@@ -17,6 +17,7 @@ namespace Frontend.Models
         public int DownVotes { get; set; }
         public int CommentsCount { get; set; }
         public string? ImageUrl { get; set; }
+        public int UserVote { get; set; }
 
         public string FormattedUpvotes
         {
