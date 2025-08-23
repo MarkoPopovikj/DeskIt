@@ -27,6 +27,8 @@ class Community(models.Model):
 
     description = models.TextField(max_length=200)
 
+    background_color = models.CharField(max_length=6, default='F43F5E')
+
     def __str__(self):
         return f"r/{self.name}"
 

@@ -6,6 +6,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Frontend.Components.Pages;
 
 namespace Frontend.Services
 {
@@ -64,9 +65,14 @@ namespace Frontend.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error fetching topics: {ex.Message}");
+                Debug.WriteLine($"Error fetching topics: {ex.Message}");
                 return null;
             }
+        }
+
+        public void CreateCommunityAsync()
+        {
+            
         }
     }
 }
