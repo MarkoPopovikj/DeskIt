@@ -1,0 +1,67 @@
+﻿@page "/create-post"
+
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+    <main class="py-6 xl:col-span-2">
+        <div class="flex items-center mb-6">
+            <button class="p-2 rounded-full hover:bg-gray-200 mr-2">
+                <svg class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+            </button>
+            <h1 class="text-3xl font-bold text-gray-800">Create a Post</h1>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm">
+            <form class="p-6 space-y-6">
+                <div>
+                    <label for="community-select" class="block text-sm font-bold text-gray-700">Post to</label>
+                    <select id="community-select" class="mt-1 block w-full max-w-xs pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md shadow-sm">
+                        <option selected disabled>Choose a community</option>
+                        <option>r/webdev</option>
+                        <option>r/design</option>
+                        <option>r/gaming</option>
+                        <option>r/science</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="post-title" class="block text-sm font-bold text-gray-700">Title</label>
+                    <input type="text" id="post-title" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="An interesting title" />
+                </div>
+
+                <div>
+                    <label for="post-content" class="block text-sm font-bold text-gray-700">Content</label>
+                    <textarea id="post-content" rows="8" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Your text post (optional)"></textarea>
+                </div>
+
+                <div class="flex justify-end pt-4 border-t">
+                    <a href="community" class="bg-white py-2 px-4 border border-gray-300 rounded-full shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
+                        Cancel
+                    </a>
+                    <button type="submit" class="ml-3 inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-bold rounded-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                        Post
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <aside class="hidden xl:block py-6">
+        <div class="sticky top-6">
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-md font-bold text-gray-900 mb-4">
+                    Posting to r/webdev
+                </h3>
+                <ol class="list-decimal list-inside space-y-2 text-sm text-gray-600">
+                    <li>Stay on topic</li>
+                    <li>Be respectful of other members</li>
+                    <li>No self-promotion</li>
+                </ol>
+            </div>
+        </div>
+    </aside>
+</div>
+
+@code {
+    // No functionality is needed for this mockup.
+}

@@ -257,19 +257,21 @@ else
             Password = "";
             ConfirmPassword = "";
         }
-		else
-		{
-			_errorMessage = error;
-			ToastService.ShowError(_errorMessage);
+        else
+        {
+            _errorMessage = error;
+            ToastService.ShowError(_errorMessage);
             Password = "";
             ConfirmPassword = "";
-		}
+        }
 
-		StateHasChanged();
+        StateHasChanged();
     }
 
     public class ProfileSimpleData
     {
+        private string _backgroundColor;
+
         [JsonPropertyName("username")]
         public string Username { get; set; }
 
@@ -280,6 +282,14 @@ else
         public string AboutMe { get; set; }
 
         [JsonPropertyName("background_color")]
-        public string BackgroundColor { get; set; }
+        public string BackgroundColor
+        {
+            get => _backgroundColor;
+
+            set
+            {
+                _backgroundColor = value?.TrimStart('#');
+            }
+        }
     }
 }

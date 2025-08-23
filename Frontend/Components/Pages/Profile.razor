@@ -1,37 +1,43 @@
 ﻿@page "/profile"
 
+@using Frontend.Services
+@using Frontend.Models
+@using Frontend.Components.Shared
+
+@inject AuthService AuthService
+
 
 <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
     <main class="py-6 xl:col-span-2">
         <div class="bg-white rounded-lg shadow-sm">
-            <div class="h-32 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-lg"></div>
+            <div class="h-32 bg-gradient-to-r bg-[#@CurrentUser.BackgroundColor] to-indigo-600 rounded-t-lg"></div>
 
             <div class="p-6">
                 <div class="flex flex-col sm:flex-row sm:items-center">
                     <div class="-mt-16">
                         <img class="h-24 w-24 rounded-full border-4 border-white"
-                             src="@($"https://placehold.co/96x96/{UserProfile.BackgroundColor}/FFFFFF?text={UserProfile.Username[0]}")"
-                             alt="User Avatar" />
+                        src="@($"https://placehold.co/96x96/{CurrentUser.BackgroundColor}/FFFFFF?text={CurrentUser.Username[0]}")"
+                        alt="User Avatar" />
                     </div>
 
                     <div>
                         <div class="lg:-mt-3 sm:mt-0 sm:ml-4 flex-grow">
-                            <h1 class="text-2xl font-bold text-gray-900">@UserProfile.DisplayName</h1>
-                            <p class="text-sm text-gray-500 -mt-1">u/@UserProfile.Username</p>
+                            <h1 class="text-2xl font-bold text-gray-900">@CurrentUser.Username</h1>
+                            <p class="text-sm text-gray-500 -mt-1">u/@CurrentUser.Username</p>
 
                             <div class="mt-3 lg:mt-2 flex items-center space-x-6 text-sm text-gray-600 xl:hidden">
                                 <div class="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.787l.09.044a2 2 0 002.208-.445l4.577-5.996a2 2 0 00.44-2.208l-.09-.044a2 2 0 00-2.208.445L9 12.333V4.5a1.5 1.5 0 00-3 0v5.833z" />
                                     </svg>
-                                    <span class="font-semibold">@UserProfile.Karma.ToString("N0")</span>
+                                    <span class="font-semibold">1234</span>
                                     <span class="ml-1">Karma</span>
                                 </div>
                                 <div class="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-teal-500" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M5 5a3 3 0 015.252-2.121l.738.738a.5.5 0 00.708 0l.738-.738A3 3 0 0115 5v2.293l.53.53a1 1 0 010 1.414l-2 2a1 1 0 01-1.414 0l-1.293-1.293V15a1 1 0 01-1-1v-2.293l-1.293 1.293a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414l.53-.53V5zm2 5.707l1.293-1.293a1 1 0 011.414 0L12 12.707V15a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2.293z" clip-rule="evenodd" />
                                     </svg>
-                                    <span class="font-semibold">@UserProfile.CakeDay.ToString("MMM d, yyyy")</span>
+                                    <span class="font-semibold">@CurrentUser.CreatedAt.ToString("MMM d, yyyy")</span>
                                 </div>
                             </div>
                         </div>
@@ -39,14 +45,14 @@
 
                     <div class="mt-4 sm:hidden">
                         <a href="edit_profile"
-                           class="w-full flex justify-center bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-full hover:bg-gray-300 transition text-sm">
+                        class="w-full flex justify-center bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-full hover:bg-gray-300 transition text-sm">
                             Edit Profile
                         </a>
                     </div>
 
                     <div class="hidden sm:block sm:ml-auto">
                         <a href="edit_profile"
-                           class="w-auto flex justify-center bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-full hover:bg-gray-300 transition text-sm">
+                        class="w-auto flex justify-center bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-full hover:bg-gray-300 transition text-sm">
                             Edit Profile
                         </a>
                     </div>
@@ -55,7 +61,16 @@
 
                 <div class="mt-6 border-t border-gray-200 pt-6">
                     <h3 class="text-sm font-bold text-gray-700">About Me</h3>
-                    <p class="text-gray-600 mt-2">@UserProfile.AboutMe</p>
+                    @if (string.IsNullOrEmpty(CurrentUser.AboutMe))
+                    {
+                        <div class="w-full h-full flex justify-center bg-white rounded-lg p-4 text-center">
+                            <p class="text-gray-500">This user hasn't made any description yet.</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-gray-600 mt-2">@CurrentUser.AboutMe</p>
+                    }
                 </div>
             </div>
 
@@ -75,29 +90,9 @@
             @if (_activeTab == "posts")
             {
                 <div class="space-y-4">
-                    @if (UserProfile.Posts.Any())
-                    {
-                        @foreach (var post in UserProfile.Posts)
-                        {
-                            <div class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow">
-                                <div class="flex items-center mb-2">
-                                    <img class="h-6 w-6 rounded-full" src="@post.CommunityIconUrl" alt="community icon" />
-                                    <p class="ml-2 text-sm">
-                                        <span class="font-bold text-gray-800">@post.CommunityName</span>
-                                        <span class="text-gray-500"> · Posted by u/@UserProfile.Username @post.TimeAgo</span>
-                                    </p>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-900 mb-1">@post.Title</h3>
-                                <p class="text-gray-700">@post.Content</p>
-                            </div>
-                        }
-                    }
-                    else
-                    {
-                        <div class="bg-white rounded-lg shadow-sm p-6 text-center">
-                            <p class="text-gray-500">This user hasn't made any posts yet.</p>
-                        </div>
-                    }
+                    <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+                        <p class="text-gray-500">This user hasn't made any posts yet.</p>
+                    </div>
                 </div>
             }
 
@@ -106,16 +101,16 @@
                 <div class="bg-white rounded-lg shadow-sm p-6">
                     <h3 class="font-bold text-lg mb-4">Joined Communities</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        @foreach (var community in UserProfile.Communities)
-                        {
-                            <div class="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50">
-                                <img class="h-10 w-10 rounded-full" src="@community.IconUrl" alt="community icon" />
-                                <div>
-                                    <p class="font-bold text-gray-800">@community.Name</p>
-                                    <p class="text-sm text-gray-500">@community.Members members</p>
-                                </div>
-                            </div>
-                        }
+                        @* @foreach (var community in UserProfile.Communities) *@
+                        @* { *@
+                        @*     <div class="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50"> *@
+                        @*         <img class="h-10 w-10 rounded-full" src="@community.IconUrl" alt="community icon" /> *@
+                        @*         <div> *@
+                        @*             <p class="font-bold text-gray-800">@community.Name</p> *@
+                        @*             <p class="text-sm text-gray-500">@community.Members members</p> *@
+                        @*         </div> *@
+                        @*     </div> *@
+                        @* } *@
                     </div>
                 </div>
             }
@@ -127,21 +122,21 @@
             <div class="bg-white rounded-lg shadow-sm p-4">
                 <div class="flex items-center space-x-3 mb-4">
                     <img class="h-12 w-12 rounded-full"
-                         src="@($"https://placehold.co/96x96/{UserProfile.BackgroundColor}/FFFFFF?text={UserProfile.Username[0]}")"
-                         alt="User Avatar" />
+                    src="@($"https://placehold.co/96x96/{CurrentUser.BackgroundColor}/FFFFFF?text={CurrentUser.Username[0]}")"
+                    alt="User Avatar" />
                     <div>
-                        <h4 class="font-bold text-gray-800">u/@UserProfile.Username</h4>
-                        <p class="text-xs text-gray-500">@UserProfile.DisplayName</p>
+                        <h4 class="font-bold text-gray-800">u/@CurrentUser.Username</h4>
+                        <p class="text-xs text-gray-500">@CurrentUser.Username</p>
                     </div>
                 </div>
                 <div class="border-t border-gray-200 pt-4">
                     <div class="flex justify-between text-sm mb-2">
                         <span class="font-semibold text-gray-700">Karma</span>
-                        <span class="text-gray-600">@UserProfile.Karma.ToString("N0")</span>
+                        <span class="text-gray-600">1234</span>
                     </div>
                     <div class="flex justify-between text-sm">
                         <span class="font-semibold text-gray-700">Cake day</span>
-                        <span class="text-gray-600">@UserProfile.CakeDay.ToString("MMM d, yyyy")</span>
+                        <span class="text-gray-600">@CurrentUser.CreatedAt.ToString("MMM d, yyyy")</span>
                     </div>
                 </div>
             </div>
@@ -150,75 +145,18 @@
 </div>
 
 @code {
+    private UserModel CurrentUser => AuthService.CurrentUser;
     private bool _isLoading = true;
     private string _activeTab = "posts";
-    private ProfileData UserProfile;
 
     protected override void OnInitialized()
     {
-        // Load mockup data
-        UserProfile = new ProfileData
-            {
-                Username = "current_user",
-                DisplayName = "current_user",
-                AboutMe = "A passionate developer and designer exploring the world of web technologies. This is a placeholder bio from the profile page.",
-                BackgroundColor = "6366F1",
-                Karma = 1234,
-                CakeDay = new DateTime(2025, 8, 21),
-                Posts = new List<PostData>
-            {
-                new PostData
-                {
-                    CommunityName = "r/webdev",
-                    CommunityIconUrl = "https://placehold.co/32x32/059669/FFFFFF?text=W",
-                    TimeAgo = "2 hours ago",
-                    Title = "Just launched my new portfolio site with Tailwind CSS!",
-                    Content = "After weeks of work, I'm excited to share my new personal website..."
-                },
-                new PostData
-                {
-                    CommunityName = "r/design",
-                    CommunityIconUrl = "https://placehold.co/32x32/7E22CE/FFFFFF?text=D",
-                    TimeAgo = "1 day ago",
-                    Title = "What are your favorite tools for creating mockups in 2025?",
-                    Content = "Hey everyone, my team is looking to switch up our design workflow..."
-                }
-            },
-                Communities = new List<CommunityData>
-            {
-                new CommunityData { Name = "r/webdev", IconUrl = "https://placehold.co/40x40/059669/FFFFFF?text=W", Members = "2.1m" },
-                new CommunityData { Name = "r/design", IconUrl = "https://placehold.co/40x40/7E22CE/FFFFFF?text=D", Members = "1.8m" }
-            }
-            };
-
         _isLoading = false;
     }
 
     private void SetActiveTab(string tabName)
     {
         _activeTab = tabName;
-    }
-
-    // --- Data Models for Mockup ---
-    public class ProfileData
-    {
-        public string Username { get; set; }
-        public string DisplayName { get; set; }
-        public string AboutMe { get; set; }
-        public string BackgroundColor { get; set; }
-        public int Karma { get; set; }
-        public DateTime CakeDay { get; set; }
-        public List<PostData> Posts { get; set; }
-        public List<CommunityData> Communities { get; set; }
-    }
-
-    public class PostData
-    {
-        public string CommunityName { get; set; }
-        public string CommunityIconUrl { get; set; }
-        public string TimeAgo { get; set; }
-        public string Title { get; set; }
-        public string Content { get; set; }
     }
 
     public class CommunityData

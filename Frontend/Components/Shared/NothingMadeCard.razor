@@ -1,0 +1,10 @@
+﻿<div class="space-y-4">
+	<div class="bg-white rounded-lg shadow-sm p-6 text-center">
+		<p class="text-gray-500">This user hasn't made @Query yet.</p>
+	</div>
+</div>
+
+@code {
+	[Parameter, EditorRequired]
+	public string? Query { get; set; }
+}

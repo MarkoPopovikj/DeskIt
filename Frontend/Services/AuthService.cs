@@ -42,6 +42,9 @@ namespace Frontend.Services
 
         [JsonPropertyName("about_me")]
         public string? AboutMe { get; set; }
+
+        [JsonPropertyName("created_at")]
+        public DateTime CreatedAt { get; set; }
     }
 
     public class AuthService
@@ -53,7 +56,7 @@ namespace Frontend.Services
 
         public event Action? OnAuthStateChanged;
 
-        public AuthService(IHttpClientFactory httpClientFactory, NavigationManager navigationManager)
+        public AuthService(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -86,7 +89,8 @@ namespace Frontend.Services
                         Username = responseContent?.Username,
                         Email = responseContent?.Email,
                         BackgroundColor = responseContent?.BackgroundColor,
-                        AboutMe = responseContent?.AboutMe
+                        AboutMe = responseContent?.AboutMe,
+                        CreatedAt = responseContent?.CreatedAt ?? DateTime.MinValue
                     };
 
                     OnAuthStateChanged?.Invoke();

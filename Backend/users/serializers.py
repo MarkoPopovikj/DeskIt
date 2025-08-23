@@ -6,7 +6,7 @@ from users.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'background_color', 'about_me')
+        fields = ('id', 'username', 'email', 'background_color', 'about_me', 'created_at')
 
 class UserSimpleDataSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,4 +21,3 @@ class UserSimpleDataSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
-

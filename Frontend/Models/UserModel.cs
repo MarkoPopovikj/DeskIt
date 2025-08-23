@@ -13,5 +13,6 @@ namespace Frontend.Models
         public string? Username { get; set; }
         public string? BackgroundColor { get; set; }
         public string? AboutMe { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }
