@@ -193,7 +193,7 @@
         StateHasChanged();
 
         // Simulate loading delay
-        await Task.Delay(500);
+        // await Task.Delay(500);
 
         // Sample data - replace with your actual data service
         posts = new List<PostViewModel>
@@ -221,7 +221,7 @@
                 DownVotes = 800,
                 CommentsCount = 985,
                 ImageUrl = "https://picsum.photos/600/300?random=1",
-                UserVote = 1
+                UserVote = 0
             },
             new PostViewModel
             {
@@ -245,7 +245,7 @@
                 UpVotes = 8400,
                 DownVotes = 1200,
                 CommentsCount = 650,
-                UserVote = -1
+                UserVote = 0
             },
             new PostViewModel
             {

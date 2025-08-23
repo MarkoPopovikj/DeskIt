@@ -43,7 +43,7 @@
                             <!-- Post Meta -->
                             <div class="flex items-center gap-1 text-xs text-gray-500 mb-2 flex-wrap">
                                 <a href="/community/@post.CommunityName" class="font-bold text-gray-800 hover:text-blue-600 transition-colors">
-                                    r/@post.CommunityName
+                                    d/@post.CommunityName
                                 </a>
                                 <span class="text-gray-300 mx-1">•</span>
                                 <span>
@@ -135,10 +135,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <button class="@GetJoinButtonClass(community.IsJoined)"
-                                        @onclick="() => ToggleJoin(community)">
-                                    @(community.IsJoined ? "Joined" : "Join")
-                                </button>
+                               
                             </li>
                         }
                     </ul>
@@ -153,22 +150,6 @@
                             View All Communities
                         </a>
                     </div>
-                </div>
-
-
-
-                <!-- Create Community CTA -->
-                <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-5 shadow-sm mt-6 text-white">
-                    <h3 class="text-base font-bold mb-2">
-                        Create a Community
-                    </h3>
-                    <p class="text-sm text-blue-100 mb-4">
-                        Build your own space and connect with like-minded people
-                    </p>
-                    <button class="w-full px-4 py-2 bg-white text-blue-600 rounded-lg font-medium text-sm hover:bg-gray-50 transition-colors"
-                            @onclick="CreateCommunity">
-                        Get Started
-                    </button>
                 </div>
             </div>
         </aside>
@@ -194,7 +175,7 @@
         StateHasChanged();
 
         // Simulate loading delay
-        await Task.Delay(500);
+        // await Task.Delay(500);
 
         // Sample data - replace with your actual data service
         posts = new List<PostViewModel>
@@ -222,7 +203,7 @@
                 DownVotes = 800,
                 CommentsCount = 985,
                 ImageUrl = "https://picsum.photos/600/300?random=1",
-                UserVote = 1
+                UserVote = 0
             },
             new PostViewModel
             {
@@ -246,7 +227,7 @@
                 UpVotes = 8400,
                 DownVotes = 1200,
                 CommentsCount = 650,
-                UserVote = -1
+                UserVote = 0
             },
             new PostViewModel
             {
@@ -316,11 +297,7 @@
         await Task.CompletedTask;
     }
 
-    private async Task CreateCommunity()
-    {
-        // Navigate to create community page or show modal
-        await Task.CompletedTask;
-    }
+
 
     private async Task HandleVote(PostViewModel post, int vote)
     {
