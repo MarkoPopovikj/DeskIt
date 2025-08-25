@@ -84,7 +84,6 @@ namespace Frontend.Services
                     return "Something went wrong";
                 }
 
-                    return null;
             }
             catch (Exception ex)
             {

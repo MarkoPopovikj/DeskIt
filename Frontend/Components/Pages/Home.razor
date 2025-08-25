@@ -52,13 +52,13 @@
 </div>
 
 @code{
-    private List<Post> Posts = new();
+    private List<PostModel> Posts = new();
 
     protected override void OnInitialized()
     {
-        Posts = new List<Post>
+        Posts = new List<PostModel>
         {
-            new Post
+            new PostModel
             {
                 CommunityName = "webdev",
                 AuthorName = "coder123",
@@ -68,7 +68,7 @@
                 UpVotes = 1200,
                 CommentsCount = 137
             },
-            new Post
+            new PostModel
             {
                 CommunityName = "design",
                 AuthorName = "pixel_pusher",
@@ -79,7 +79,7 @@
                 CommentsCount = 302,
                 ImageUrl = "UI+Kit+Preview"
             },
-            new Post
+            new PostModel
             {
                 CommunityName = "gaming",
                 AuthorName = "level_up_guru",

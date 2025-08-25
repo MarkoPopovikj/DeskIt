@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Frontend.Models
 {
-    public class Post
+    public class PostModel
     {
         public required string CommunityName {  get; set; }
         public required string AuthorName { get; set; }

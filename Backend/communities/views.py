@@ -31,7 +31,7 @@ class CreateCommunityView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        serializer = CreateCommunitySerializer(data=request.data)
+        serializer = CreateCommunitySerializer(data=request.data, context={'request': request})
 
         if serializer.is_valid():
             serializer.save()

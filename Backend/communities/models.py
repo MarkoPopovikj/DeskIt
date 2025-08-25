@@ -22,12 +22,14 @@ class Community(models.Model):
         choices=TOPIC_CHOICES,
         default='GAMING'
     )
-    name = models.CharField(max_length=15)
+    name = models.CharField(max_length=30)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     description = models.TextField(max_length=200)
 
     background_color = models.CharField(max_length=6, default='F43F5E')
+
+    member_count = models.IntegerField(default=1)
 
     def __str__(self):
         return f"r/{self.name}"

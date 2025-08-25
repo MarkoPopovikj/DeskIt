@@ -8,12 +8,12 @@ class CommunitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Community
-        fields = ('id', 'author_id', 'topic', 'name', 'description', 'background_color')
+        fields = ('id', 'author_id', 'topic', 'name', 'description', 'background_color', 'member_count')
 
 class CreateCommunitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Community
-        fields = ('name', 'description', 'topic', 'author', 'background_color')
+        fields = ('name', 'description', 'topic', 'background_color')
 
     def validate_name(self, value):
         if Community.objects.filter(name=value).exists():
@@ -26,6 +26,7 @@ class CreateCommunitySerializer(serializers.ModelSerializer):
         topic = validated_data.pop('topic')
         background_color = validated_data.pop('background_color')
         author = self.context['request'].user
+        member_count = 1
 
         community = Community.objects.create(
             name=name,

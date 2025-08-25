@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Frontend.Models
 {
-    public class Community
+    public class CommunityModel
     {
         public int? Id { get; set; }
         public string? Topic { get; set; }
@@ -14,5 +14,6 @@ namespace Frontend.Models
         public int? AuthorId { get; set; }
         public string? Description { get; set; }
         public string? BackgroundColor { get; set; }
+        public int? MemberCount { get; set; }
     }
 }
