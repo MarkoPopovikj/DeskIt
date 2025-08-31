@@ -4,6 +4,7 @@
 @inject Blazored.Toast.Services.IToastService ToastService
 
 @using Frontend.Components.Shared 
+@using Frontend.Models
 @using Frontend.Services
 
 @if (_isLoading)
@@ -13,33 +14,52 @@
 else
 {
     <div class="grid grid-cols-1 xl:grid-cols-[1fr_320px] xl:gap-6 h-full">
-        <div class="space-y-6 overflow-y-auto py-6">
-            <h1 class="text-3xl font-bold text-gray-800 mb-6">Explore Communities</h1>
+        <div class="space-y-6 overflow-y-auto custom-scrollbar py-6">
 
-            <div class="bg-white rounded-lg shadow-md mb-8">
-                <div class="max-w-4xl mx-auto">
-                    <FeaturedCommunityCard />
+            <div class="flex items-center justify-between">
+                <h1 class="text-3xl font-bold text-gray-800">Explore Communities</h1>
+                <button @onclick="ForceReload"
+                class="p-2 rounded-full text-gray-500 hover:bg-gray-200 hover:text-gray-800 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    class="h-6 w-6">
+                        <path stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21 12a9 9 0 11-3-6.708M21 3v6h-6" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="border-b border-gray-200">
+                <div class="overflow-x-auto custom-scrollbar -mb-px">
+                    <nav class="flex space-x-4 whitespace-nowrap">
+                        @foreach (KeyValuePair<string, List<CommunityModel>> topic in CommunityService.CommunityDictionary)
+                        {
+                            <button @onclick="() => SelectTopic(topic)" class="topic-tab px-3 py-3 text-sm font-medium @(IsTopicActive(topic) ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700")">
+                                @topic.Key
+                            </button>
+                        }
+                    </nav>
                 </div>
             </div>
 
-            <div class="space-y-8">
-                @foreach (TopicResponse topic in CommunityService.TopicList)
-                {
-                    <CommunityTopicCardHolder Topic="@topic.Label" />
-                }
-            </div>
+            <CommunityCardHolder Communities="_selectedTopic.Value" />
+
         </div>
 
         <aside class="hidden xl:block">
             <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
                 <svg class="h-16 w-16 mx-auto text-blue-500"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke-width="1.5"
-                     stroke="currentColor">
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor">
                     <path stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    stroke-linejoin="round"
+                    d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <h3 class="text-lg font-bold text-gray-900 mt-4">
                     Create Your Own Community
@@ -48,8 +68,8 @@ else
                     Bring people together with a shared interest and start your own corner
                     of DeskIt.
                 </p>
-                <a href="/community/create"
-                   class="block w-full bg-blue-600 text-white font-bold py-2.5 rounded-full hover:bg-blue-700 transition text-center">
+                <a href="create-community"
+                class="block w-full bg-blue-600 text-white font-bold py-2.5 rounded-full hover:bg-blue-700 transition text-center">
                     Create Community
                 </a>
             </div>
@@ -59,23 +79,82 @@ else
 
 
 @code{
-	private bool _isLoading { get; set; } = false;
-	private string? _errorMessage { get; set; } = null;
+    private bool _isLoading { get; set; } = false;
+    private string? _errorMessage { get; set; } = null;
+    private int _errorCounter = 0;
 
-    protected override async Task OnInitializedAsync()
+    private KeyValuePair<string, List<CommunityModel>> _selectedTopic;
+
+    private void SelectTopic(KeyValuePair<string, List<CommunityModel>> newTopic)
     {
-		_isLoading = true;
+        _selectedTopic = newTopic;
+    }
 
-        if (CommunityService.TopicList != null && CommunityService.TopicList.Count > 0)
+    private bool IsTopicActive(KeyValuePair<string, List<CommunityModel>> topic)
+    {
+        return _selectedTopic.Key == topic.Key;
+    }
+
+    private async Task CheckTopicExists()
+    {
+        if (CommunityService.TopicDictionary != null && CommunityService.TopicDictionary.Count > 0)
         {
-            _isLoading = false;
             return;
         }
 
         _errorMessage = null;
         bool result = await CommunityService.GetTopicsAsync();
 
-        if (result)
+        if (!result)
+        {
+            _errorCounter++;
+        }
+    }
+
+    private async Task CheckCommunitiesExists()
+    {
+        if(CommunityService.CommunityDictionary != null && CommunityService.CommunityDictionary.Count > 0)
+        {
+            return;
+        }
+
+        _errorMessage = null;
+        bool result = await CommunityService.GetCommunitiesAsync();
+
+        if (!result)
+        {
+            _errorCounter++;
+        }
+    }
+
+    private async Task CheckMembershipsExists()
+    {
+        if(CommunityService.JoinedCommunities != null)
+        {
+            return;
+        }
+
+        _errorMessage = null;
+        bool result = await CommunityService.GetJoinedCommunitiesAsync();
+
+        if (!result)
+        {
+            _errorCounter++;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isLoading = true;
+
+        await CheckTopicExists();
+        await CheckCommunitiesExists();
+        await CheckMembershipsExists();
+
+        _selectedTopic = CommunityService.CommunityDictionary.FirstOrDefault();
+
+        // If an error has occured don't show
+        if(_errorCounter == 0)
         {
             _isLoading = false;
         }
@@ -86,5 +165,46 @@ else
         }
 
         StateHasChanged();
-	}
+    }
+
+    private async Task ForceReload()
+    {
+        _isLoading = true;
+
+        _errorMessage = null;
+        bool result1 = await CommunityService.GetTopicsAsync();
+
+        if (!result1)
+        {
+            _errorCounter++;
+        }
+
+        bool result2 = await CommunityService.GetCommunitiesAsync();
+
+        if (!result2)
+        {
+            _errorCounter++;
+        }
+
+        bool result3 = await CommunityService.GetJoinedCommunitiesAsync();
+
+        if (!result3)
+        {
+            _errorCounter++;
+        }
+
+        _selectedTopic = CommunityService.CommunityDictionary.FirstOrDefault();
+
+        if (_errorCounter == 0)
+        {
+            _isLoading = false;
+        }
+        else
+        {
+            _errorMessage = "Something went wrong";
+            ToastService.ShowError(_errorMessage);
+        }
+
+        StateHasChanged();
+    }
 }

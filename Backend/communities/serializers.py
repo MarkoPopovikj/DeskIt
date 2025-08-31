@@ -37,3 +37,19 @@ class CreateCommunitySerializer(serializers.ModelSerializer):
         )
 
         return community
+
+class UpdateCommunitySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Community
+        fields = ('name', 'description', 'topic', 'background_color')
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.pop('name')
+        instance.description = validated_data.pop('description')
+        instance.topic = validated_data.pop('topic')
+        instance.background_color = validated_data.pop('background_color')
+        instance.save()
+
+        return instance
+

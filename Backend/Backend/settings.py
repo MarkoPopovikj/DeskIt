@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'Backend',
     'auth_form',
     'communities',
-    'topics',
+    'posts',
     'users',
     'rest_framework',
     'rest_framework_simplejwt',

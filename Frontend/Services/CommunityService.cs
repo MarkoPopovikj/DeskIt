@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Frontend.Components.Pages;
 using Frontend.Models;
 using static Frontend.Components.Pages.CreateCommunity;
+using static Frontend.Components.Pages.EditCommunity;
 
 namespace Frontend.Services
 {
@@ -39,6 +40,9 @@ namespace Frontend.Services
         [JsonPropertyName("name")]
         public string? Name { get; set; }
 
+        [JsonPropertyName("background_color")]
+        public string? BackgroundColor { get; set; }
+
         [JsonPropertyName("author_id")]
         public int? AuthorId { get; set; }
 
@@ -53,13 +57,31 @@ namespace Frontend.Services
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public List<TopicResponse>? TopicList { get; private set; }
-        public List<CommunityModel>? CommunityList { get; private set; }
+        public Dictionary<string,string> TopicDictionary { get; private set; }
+        public Dictionary<string, List<CommunityModel>>? CommunityDictionary { get; private set; }
+        public List<int> JoinedCommunities { get; set; }
 
 
         public CommunityService(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
+
+            TopicDictionary = new Dictionary<string, string>();
+            CommunityDictionary = new Dictionary<string, List<CommunityModel>>();
+            JoinedCommunities = new List<int>();
+        }
+
+        public CommunityModel GetCommunity(string Name)
+        {
+            foreach(CommunityModel community in CommunityDictionary.Values.SelectMany(list => list))
+            {
+                if (community.Name == Name)
+                {
+                    return community;
+                }
+            }
+
+            return null;
         }
 
         public async Task<bool> GetTopicsAsync()
@@ -72,7 +94,11 @@ namespace Frontend.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadFromJsonAsync<List<TopicResponse>>();
-                    TopicList = responseContent;
+                    
+                    foreach(TopicResponse topic in responseContent)
+                    {
+                        TopicDictionary[topic.Value] = topic.Label;
+                    }
 
                     return true;
                 }
@@ -110,7 +136,35 @@ namespace Frontend.Services
             }
         }
 
-        public async Task GetCommunitiesAsync()
+        public async Task<string?> UpdateCommunityAsync(EditCommunityModel editCommunityModel, int communityId)
+        {
+            if(communityId == -1)
+            {
+                return "Invalid";
+            }
+
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var jsonPayload = JsonSerializer.Serialize(editCommunityModel);
+                var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+                var response = await httpClient.PutAsync($"community/{communityId}/update/", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+
+                return "Something went wrong.";
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error updating community: {ex.Message}");
+                return null;
+            }
+        }
+
+        public async Task<bool> GetCommunitiesAsync()
         {
             try
             {
@@ -121,20 +175,113 @@ namespace Frontend.Services
                 {
                     var responseContent = await response.Content.ReadFromJsonAsync<List<CommunityResponse>>();
 
-                    CommunityList = responseContent?.Select(c => new CommunityModel
+                    foreach(KeyValuePair<string,string> topicPair in TopicDictionary)
                     {
-                        Id = c.Id,
-                        Topic = c.Topic,
-                        Name = c.Name,
-                        AuthorId = c.AuthorId,
-                        Description = c.Description,
-                        MemberCount = c.MemberCount
-                    }).ToList();
+                        CommunityDictionary[topicPair.Value] = new List<CommunityModel>();
+                    }
+
+                    foreach(CommunityResponse c in responseContent)
+                    {
+                        CommunityModel newCommunity = new CommunityModel
+                        {
+                            Id = c.Id,
+                            Topic = c.Topic,
+                            Name = c.Name,
+                            AuthorId = c.AuthorId,
+                            Description = c.Description,
+                            BackgroundColor = c.BackgroundColor,
+                            MemberCount = c.MemberCount
+                        };
+
+                        string rightTopic = TopicDictionary[newCommunity.Topic];
+                        CommunityDictionary[rightTopic].Add(newCommunity);
+                    }
+
+                    return true;
                 }
+
+                return false;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Error fetching communities: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> GetJoinedCommunitiesAsync()
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.GetAsync("community/get_memberships/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadFromJsonAsync<List<int>>();
+                    JoinedCommunities = responseContent;
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error fetching joined communities: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> JoinCommunityAsync(int communityId)
+        {
+            if(communityId == -1)
+            {
+                return false;
+            }
+
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.PostAsync($"community/{communityId}/join/", null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    JoinedCommunities.Add(communityId);
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error joining community: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> LeaveCommunityAsync(int communityId)
+        {
+            if(communityId == -1)
+            {
+                return false;
+            }   
+
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.PostAsync($"community/{communityId}/leave/", null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    JoinedCommunities.Remove(communityId);
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error joining community: {ex.Message}");
+                return false;
             }
         }
 

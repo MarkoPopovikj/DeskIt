@@ -34,6 +34,14 @@ class Community(models.Model):
     def __str__(self):
         return f"r/{self.name}"
 
+class CommunityMemberships(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    community = models.ForeignKey(Community, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"d/{self.community}"
+
 
 
 

@@ -1,0 +1,21 @@
+﻿@using Frontend.Models
+@using Frontend.Components.Shared
+
+<div class="space-y-4">
+    @if (Communities == null || Communities.Count == 0)
+    {
+        <NothingMadeCard Query="No communities found." />
+    }
+    else
+    {
+        @foreach (CommunityModel community in Communities)
+        {
+            <CommunityCard Community="@community" />
+        }
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public List<CommunityModel>? Communities { get; set; }
+}
