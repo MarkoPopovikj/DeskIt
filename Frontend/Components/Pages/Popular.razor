@@ -1,0 +1,109 @@
+﻿@page "/popular"
+
+@using Frontend.Services
+@using Frontend.Models
+@using Frontend.Components.Shared
+
+@inject PostService PostService
+@inject NavigationManager NavigationManager
+@inject Blazored.Toast.Services.IToastService ToastService
+
+
+@if (_isLoading)
+{
+    <Loading />
+}
+else
+{
+    <div class="max-w-7xl mx-auto px-2 pb-20">
+        <div class="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-4">
+            <div class="min-w-0">
+                <div class="mb-6 text-center py-5">
+                    <h1 class="text-3xl font-extrabold text-gray-900 mb-2 bg-gradient-to-r from-red-800 to-orange-400 bg-clip-text text-transparent">
+                        🔥 Trending Today
+                    </h1>
+                    <p class="text-base text-gray-600">
+                        Discover what's hot across all communities
+                    </p>
+                </div>
+
+                @if(PostList != null && PostList.Count > 0)
+                {
+                    <PostsCardHolder Posts="@PostList" />
+                }
+                else
+                {
+                    <NothingMadeCard Query="Oops... Seems there is nothing here" />
+                }
+                
+
+            </div>
+        </div>
+
+        <aside class="hidden xl:block py-6">
+            <div class="sticky top-6">
+                <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-5 shadow-sm text-white">
+                    <h3 class="text-base font-bold mb-2">
+                        Create a Post
+                    </h3>
+                    <p class="text-sm text-blue-100 mb-4">
+                        Create your story of the day and connect with like-minded people
+                    </p>
+                    <button class="w-full px-4 py-2 bg-white text-blue-600 rounded-lg font-medium text-sm hover:bg-gray-50 transition-colors"
+                            @onclick="GoToCreatePost">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </div>
+}
+
+
+
+@code {
+	private List<PostModel> PostList => PostService.PostList;
+
+    private bool _isLoading { get; set; }
+    private string _errorMessage { get; set; } = null;
+    private int _errorCounter = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+		await ForceReload();
+    }
+
+    private async Task ForceReload()
+    {
+        _isLoading = true;
+
+        await GetPosts();
+
+        if (_errorCounter == 0)
+        {
+            _isLoading = false;
+        }
+        else
+        {
+            _errorMessage = "Something went wrong";
+            ToastService.ShowError(_errorMessage);
+        }
+
+        StateHasChanged();
+    }
+
+    private async Task GetPosts()
+    {
+        bool result = await PostService.GetPostsAsync();
+
+        if (!result)
+        {
+            _errorCounter++;
+        }
+    }
+
+    public async Task GoToCreatePost()
+    {
+		NavigationManager.NavigateTo("/create_post");
+    }
+}

@@ -4,17 +4,41 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from communities.models import Community, TOPIC_CHOICES, CommunityMemberships
-from communities.serializers import CommunitySerializer, CreateCommunitySerializer, UpdateCommunitySerializer
+from communities.serializers import CommunitySerializer, CreateCommunitySerializer, UpdateCommunitySerializer, \
+    CommunitySimpleSerializer
 from users.models import User
 
 
 # Create your views here.
-class GetCommunities(APIView):
+class GetSimpleCommunitiesView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
         communities = Community.objects.all()
-        serializer = CommunitySerializer(communities, many=True)
+        serializer = CommunitySimpleSerializer(communities, many=True)
+
+        return Response(serializer.data)
+
+class GetUserSimpleCommunitiesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, user_id):
+        try:
+            user = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        communities = Community.objects.filter(communitymemberships__user=user)
+        serializer = CommunitySimpleSerializer(communities, many=True)
+
+        return Response(serializer.data)
+
+class GetDetailedCommunitiView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, community_id):
+        community = Community.objects.get(id=community_id)
+        serializer = CommunitySerializer(community)
 
         return Response(serializer.data)
 
@@ -130,3 +154,23 @@ class UpdateCommunityView(APIView):
             return Response(serializer.data)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class DeleteCommunityView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, community_id):
+        try:
+            community = Community.objects.get(id=community_id)
+        except Community.DoesNotExist:
+            return Response({"error": "Community not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        if request.user != community.author:
+            return Response(
+                {"error": "You do not have permission to delete this community."},
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+        community.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+

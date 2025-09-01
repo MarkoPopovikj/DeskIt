@@ -36,7 +36,7 @@ else
             <div class="border-b border-gray-200">
                 <div class="overflow-x-auto custom-scrollbar -mb-px">
                     <nav class="flex space-x-4 whitespace-nowrap">
-                        @foreach (KeyValuePair<string, List<CommunityModel>> topic in CommunityService.CommunityDictionary)
+                        @foreach (KeyValuePair<string, List<CommunitySimpleModel>> topic in CommunityDictionary)
                         {
                             <button @onclick="() => SelectTopic(topic)" class="topic-tab px-3 py-3 text-sm font-medium @(IsTopicActive(topic) ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500 hover:text-gray-700")">
                                 @topic.Key
@@ -68,7 +68,7 @@ else
                     Bring people together with a shared interest and start your own corner
                     of DeskIt.
                 </p>
-                <a href="create-community"
+                <a href="create_community"
                 class="block w-full bg-blue-600 text-white font-bold py-2.5 rounded-full hover:bg-blue-700 transition text-center">
                     Create Community
                 </a>
@@ -79,30 +79,48 @@ else
 
 
 @code{
+    public Dictionary<string, List<CommunitySimpleModel>> CommunityDictionary => CommunityService.CommunityDictionary;
+
     private bool _isLoading { get; set; } = false;
     private string? _errorMessage { get; set; } = null;
     private int _errorCounter = 0;
 
-    private KeyValuePair<string, List<CommunityModel>> _selectedTopic;
+    private KeyValuePair<string, List<CommunitySimpleModel>> _selectedTopic;
 
-    private void SelectTopic(KeyValuePair<string, List<CommunityModel>> newTopic)
+    protected override async Task OnInitializedAsync()
     {
-        _selectedTopic = newTopic;
+        await ForceReload();
+
+        StateHasChanged();
     }
 
-    private bool IsTopicActive(KeyValuePair<string, List<CommunityModel>> topic)
+    private async Task ForceReload()
     {
-        return _selectedTopic.Key == topic.Key;
+        _isLoading = true;
+
+        _errorMessage = null;
+
+        await CheckTopicExists();
+        await CheckCommunitiesExists();
+        await CheckMembershipExists();
+
+        if (_errorCounter == 0)
+        {
+            _isLoading = false;
+
+            _selectedTopic = CommunityService.CommunityDictionary.FirstOrDefault();
+        }
+        else
+        {
+            _errorMessage = "Something went wrong";
+            ToastService.ShowError(_errorMessage);
+        }
+
+        StateHasChanged();
     }
 
     private async Task CheckTopicExists()
     {
-        if (CommunityService.TopicDictionary != null && CommunityService.TopicDictionary.Count > 0)
-        {
-            return;
-        }
-
-        _errorMessage = null;
         bool result = await CommunityService.GetTopicsAsync();
 
         if (!result)
@@ -113,13 +131,7 @@ else
 
     private async Task CheckCommunitiesExists()
     {
-        if(CommunityService.CommunityDictionary != null && CommunityService.CommunityDictionary.Count > 0)
-        {
-            return;
-        }
-
-        _errorMessage = null;
-        bool result = await CommunityService.GetCommunitiesAsync();
+        bool result = await CommunityService.GetSimpleCommunitiesAsync();
 
         if (!result)
         {
@@ -127,14 +139,8 @@ else
         }
     }
 
-    private async Task CheckMembershipsExists()
+    private async Task CheckMembershipExists()
     {
-        if(CommunityService.JoinedCommunities != null)
-        {
-            return;
-        }
-
-        _errorMessage = null;
         bool result = await CommunityService.GetJoinedCommunitiesAsync();
 
         if (!result)
@@ -143,68 +149,13 @@ else
         }
     }
 
-    protected override async Task OnInitializedAsync()
+    private void SelectTopic(KeyValuePair<string, List<CommunitySimpleModel>> newTopic)
     {
-        _isLoading = true;
-
-        await CheckTopicExists();
-        await CheckCommunitiesExists();
-        await CheckMembershipsExists();
-
-        _selectedTopic = CommunityService.CommunityDictionary.FirstOrDefault();
-
-        // If an error has occured don't show
-        if(_errorCounter == 0)
-        {
-            _isLoading = false;
-        }
-        else
-        {
-            _errorMessage = "Something went wrong";
-            ToastService.ShowError(_errorMessage);
-        }
-
-        StateHasChanged();
+        _selectedTopic = newTopic;
     }
 
-    private async Task ForceReload()
+    private bool IsTopicActive(KeyValuePair<string, List<CommunitySimpleModel>> topic)
     {
-        _isLoading = true;
-
-        _errorMessage = null;
-        bool result1 = await CommunityService.GetTopicsAsync();
-
-        if (!result1)
-        {
-            _errorCounter++;
-        }
-
-        bool result2 = await CommunityService.GetCommunitiesAsync();
-
-        if (!result2)
-        {
-            _errorCounter++;
-        }
-
-        bool result3 = await CommunityService.GetJoinedCommunitiesAsync();
-
-        if (!result3)
-        {
-            _errorCounter++;
-        }
-
-        _selectedTopic = CommunityService.CommunityDictionary.FirstOrDefault();
-
-        if (_errorCounter == 0)
-        {
-            _isLoading = false;
-        }
-        else
-        {
-            _errorMessage = "Something went wrong";
-            ToastService.ShowError(_errorMessage);
-        }
-
-        StateHasChanged();
+        return _selectedTopic.Key == topic.Key;
     }
 }

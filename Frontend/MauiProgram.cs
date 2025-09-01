@@ -38,6 +38,7 @@ namespace Frontend
             builder.Services.AddSingleton<AuthService>();
             builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<CommunityService>();
+            builder.Services.AddScoped<PostService>();
 
             return builder.Build();
         }

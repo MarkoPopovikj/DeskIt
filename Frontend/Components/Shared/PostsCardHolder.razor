@@ -1,0 +1,14 @@
+﻿@using Frontend.Models
+@using Frontend.Components.Shared
+
+<div class="flex flex-col space-y-4">
+	@foreach(PostModel post in Posts)
+	{
+		<PostCard Post="post" />
+	}
+</div>
+
+@code {
+	[Parameter, EditorRequired]
+	public List<PostModel> Posts { get; set; }
+}

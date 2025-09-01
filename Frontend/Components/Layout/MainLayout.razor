@@ -14,9 +14,6 @@
 @using Frontend.Models
 @using Blazored.Toast.Configuration
 
-
-<RedirectToLogin />
-
 <div class="bg-gray-100 text-gray-800 h-screen overflow-hidden flex flex-col">
     <!-- Header -->
     <header class="bg-white border-b border-gray-200 w-full z-20 flex-shrink-0">
@@ -109,9 +106,16 @@
     private bool isProfileDropdownOpen = false;
     private bool isSidebarOpen = false;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         AuthService.OnAuthStateChanged += StateHasChanged;
+
+        var token = await SecureStorage.GetAsync(TokenConstants.AccessToken);
+
+        if (string.IsNullOrEmpty(token))
+        {
+            NavigationManager.NavigateTo("/login");
+        }
     }
 
     private string SidebarCssClass => new CssBuilder("fixed top-0 left-0 z-40 h-full w-72 p-4 transform transition-transform duration-300 ease-in-out bg-white lg:bg-white ![important] lg:relative lg:translate-x-0 lg:p-0 lg:py-6 flex flex-col")

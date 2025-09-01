@@ -7,8 +7,6 @@
     {
         var token = await SecureStorage.GetAsync(TokenConstants.AccessToken);
 
-		Debug.WriteLine($"Token: {token}");
-
         if (string.IsNullOrEmpty(token))
         {
             NavigationManager.NavigateTo("/login");

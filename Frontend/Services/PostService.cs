@@ -1,0 +1,228 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Net.Http.Json;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+using Frontend.Models;
+using static Frontend.Components.Pages.CreatePost;
+
+namespace Frontend.Services
+{
+    public class PostResponse
+    {
+        [JsonPropertyName("id")]
+        public int? Id { get; set; }
+
+        [JsonPropertyName("community_name")]
+        public string? CommunityName { get; set; }
+
+        [JsonPropertyName("author_name")]
+        public string? AuthorName { get; set; }
+
+        [JsonPropertyName("title")]
+        public string? Title { get; set; }
+
+        [JsonPropertyName("content")]
+        public string? Content { get; set; }
+
+        [JsonPropertyName("created_at")]
+        public DateTime? CreatedAt { get; set; }
+
+        [JsonPropertyName("upvotes")]
+        public int? Upvotes { get; set; }
+
+        [JsonPropertyName("downvotes")]
+        public int? Downvotes { get; set; }
+
+        [JsonPropertyName("comments_count")]
+        public int? CommentsCount { get; set; }
+
+        [JsonPropertyName("image_url")]
+        public string? ImageUrl { get; set; }
+    }
+    public class PostService
+    {
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public List<PostModel> PostList { get; set; }
+
+        // Za 1 user
+        public List<PostModel> UserPostList { get; private set; }
+
+        // Za 1 community
+        public List<PostModel> CommunityPostList { get; private set; }
+
+        public PostService(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+
+            PostList = new List<PostModel>();
+            UserPostList = new List<PostModel>();
+            CommunityPostList = new List<PostModel>();
+        }
+
+        public async Task<bool> GetPostsAsync()
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.GetAsync("post/get_all/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadFromJsonAsync<List<PostResponse>>();
+
+                    PostList.Clear();
+
+                    foreach (PostResponse postResponse in responseContent)
+                    {
+                        var newPost = new PostModel
+                        {
+                            Id = postResponse.Id ?? 0,
+                            CommunityName = postResponse.CommunityName ?? "Unknown",
+                            AuthorName = postResponse.AuthorName ?? "Unknown",
+                            Title = postResponse.Title ?? "No Title",
+                            Content = postResponse.Content ?? "",
+                            CreatedAt = postResponse.CreatedAt ?? DateTime.UtcNow,
+                            UpVotes = postResponse.Upvotes ?? 0,
+                            DownVotes = postResponse.Downvotes ?? 0,
+                            CommentsCount = postResponse.CommentsCount ?? 0,
+                            ImageUrl = postResponse.ImageUrl
+                        };
+
+                        Debug.WriteLine(newPost.Title);
+
+                        PostList.Add(newPost);
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error fetching topics: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> GetUserPostsAsync(int userId)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.GetAsync($"post/{userId}/get_user/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadFromJsonAsync<List<PostResponse>>();
+
+                    UserPostList.Clear();
+
+                    foreach (PostResponse postResponse in responseContent)
+                    {
+                        var newPost = new PostModel
+                        {
+                            Id = postResponse.Id ?? 0,
+                            CommunityName = postResponse.CommunityName ?? "Unknown",
+                            AuthorName = postResponse.AuthorName ?? "Unknown",
+                            Title = postResponse.Title ?? "No Title",
+                            Content = postResponse.Content ?? "",
+                            CreatedAt = postResponse.CreatedAt ?? DateTime.UtcNow,
+                            UpVotes = postResponse.Upvotes ?? 0,
+                            DownVotes = postResponse.Downvotes ?? 0,
+                            CommentsCount = postResponse.CommentsCount ?? 0,
+                            ImageUrl = postResponse.ImageUrl
+                        };
+
+                        Debug.WriteLine(newPost.Title);
+
+                        UserPostList.Add(newPost);
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error fetching topics: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> GetCommunityPostsAsync(int communityId)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.GetAsync($"post/{communityId}/get_community/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadFromJsonAsync<List<PostResponse>>();
+
+                    CommunityPostList.Clear();
+
+                    foreach (PostResponse postResponse in responseContent)
+                    {
+                        var newPost = new PostModel
+                        {
+                            Id = postResponse.Id ?? 0,
+                            CommunityName = postResponse.CommunityName ?? "Unknown",
+                            AuthorName = postResponse.AuthorName ?? "Unknown",
+                            Title = postResponse.Title ?? "No Title",
+                            Content = postResponse.Content ?? "",
+                            CreatedAt = postResponse.CreatedAt ?? DateTime.UtcNow,
+                            UpVotes = postResponse.Upvotes ?? 0,
+                            DownVotes = postResponse.Downvotes ?? 0,
+                            CommentsCount = postResponse.CommentsCount ?? 0,
+                            ImageUrl = postResponse.ImageUrl
+                        };
+
+                        CommunityPostList.Add(newPost);
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error fetching topics: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<string?> CreatePostAsync(CreatePostModel createPost)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var jsonPayload = JsonSerializer.Serialize(createPost);
+                var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+                var response = await httpClient.PostAsync("post/create/", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+
+                return "Something went wrong";
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error creating community: {ex.Message}");
+                return "Something went wrong";
+            }
+        }
+    }
+}

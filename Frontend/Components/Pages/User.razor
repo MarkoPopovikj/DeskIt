@@ -1,16 +1,16 @@
-﻿@page "/profile"
+﻿@page "/user/{Username}"
 
 @using Frontend.Services
-@using Frontend.Models
 @using Frontend.Components.Shared
+@using Frontend.Models
 
-@inject AuthService AuthService
-@inject CommunityService CommunityService
+@inject UserService UserService
 @inject PostService PostService
+@inject CommunityService CommunityService
 @inject Blazored.Toast.Services.IToastService ToastService
 @inject IJSRuntime JSRuntime
 
-@if(_isLoading)
+@if (_isLoading)
 {
     <Loading />
 }
@@ -40,20 +40,20 @@ else
             </div>
 
             <div class="bg-white rounded-lg shadow-sm">
-                <div class="h-32 bg-gradient-to-r bg-[#@CurrentUser.BackgroundColor] to-indigo-600 rounded-t-lg"></div>
+                <div class="h-32 bg-gradient-to-r bg-[#@SelectedUser.BackgroundColor] to-indigo-600 rounded-t-lg"></div>
 
                 <div class="p-6">
                     <div class="flex flex-col sm:flex-row sm:items-center">
                         <div class="-mt-16">
                             <img class="h-24 w-24 rounded-full border-4 border-white"
-                            src="@($"https://placehold.co/96x96/{CurrentUser.BackgroundColor}/FFFFFF?text={CurrentUser.Username.ToString().ToUpper()[0]}")"
+                                 src="@($"https://placehold.co/96x96/{SelectedUser.BackgroundColor}/FFFFFF?text={SelectedUser.Username.ToString().ToUpper()[0]}")"
                             alt="User Avatar" />
                         </div>
 
                         <div>
                             <div class="lg:-mt-3 sm:mt-0 sm:ml-4 flex-grow">
-                                <h1 class="text-2xl font-bold text-gray-900">@CurrentUser.Username</h1>
-                                <p class="text-sm text-gray-500 -mt-1">u/@CurrentUser.Username</p>
+                                <h1 class="text-2xl font-bold text-gray-900">@SelectedUser.Username</h1>
+                                <p class="text-sm text-gray-500 -mt-1">u/@SelectedUser.Username</p>
 
                                 <div class="mt-3 lg:mt-2 flex items-center space-x-6 text-sm text-gray-600 xl:hidden">
                                     <div class="flex items-center">
@@ -67,39 +67,25 @@ else
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-teal-500" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M5 5a3 3 0 015.252-2.121l.738.738a.5.5 0 00.708 0l.738-.738A3 3 0 0115 5v2.293l.53.53a1 1 0 010 1.414l-2 2a1 1 0 01-1.414 0l-1.293-1.293V15a1 1 0 01-1-1v-2.293l-1.293 1.293a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414l.53-.53V5zm2 5.707l1.293-1.293a1 1 0 011.414 0L12 12.707V15a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2.293z" clip-rule="evenodd" />
                                         </svg>
-                                        <span class="font-semibold">@CurrentUser.CreatedAt.ToString("MMM d, yyyy")</span>
+                                        <span class="font-semibold">@SelectedUser.CreatedAt.ToString("MMM d, yyyy")</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="mt-4 sm:hidden">
-                            <a href="edit_profile"
-                            class="w-full flex justify-center bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-full hover:bg-gray-300 transition text-sm">
-                                Edit Profile
-                            </a>
-                        </div>
-
-                        <div class="hidden sm:block sm:ml-auto">
-                            <a href="edit_profile"
-                            class="w-auto flex justify-center bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-full hover:bg-gray-300 transition text-sm">
-                                Edit Profile
-                            </a>
                         </div>
 
                     </div>
 
                     <div class="mt-6 border-t border-gray-200 pt-6">
                         <h3 class="text-sm font-bold text-gray-700">About Me</h3>
-                        @if (string.IsNullOrEmpty(CurrentUser.AboutMe))
+                        @if (string.IsNullOrEmpty(SelectedUser.AboutMe))
                         {
                             <div class="w-full h-full flex justify-center bg-white rounded-lg p-4 text-center">
-                                <p class="text-gray-500">You haven't added any description yet.</p>
+                                <p class="text-gray-500">This user hasn't made any description yet.</p>
                             </div>
                         }
                         else
                         {
-                            <p class="text-gray-600 mt-2">@CurrentUser.AboutMe</p>
+                            <p class="text-gray-600 mt-2">@SelectedUser.AboutMe</p>
                         }
                     </div>
                 </div>
@@ -125,19 +111,19 @@ else
                     }
                     else
                     {
-                        <NothingMadeCard Query="You haven't made any posts" />
+                        <NothingMadeCard Query="This user has not posted anything yet" />
                     }
                 }
 
                 @if (_activeTab == "communities")
                 {
-                    @if(UserCommunities != null && UserCommunities.Count > 0)
+                    @if (UserCommunities != null && UserCommunities.Count > 0)
                     {
                         <CommunityCardHolder Communities="UserCommunities" />
                     }
                     else
                     {
-                        <NothingMadeCard Query="You haven't created or joined any communities" />
+                        <NothingMadeCard Query="This user has not joined any communities yet" />
                     }
                 }
             </div>
@@ -148,11 +134,11 @@ else
                 <div class="bg-white rounded-lg shadow-sm p-4">
                     <div class="flex items-center space-x-3 mb-4">
                         <img class="h-12 w-12 rounded-full"
-                        src="@($"https://placehold.co/96x96/{CurrentUser.BackgroundColor}/FFFFFF?text={CurrentUser.Username.ToString().ToUpper()[0]}")"
+                             src="@($"https://placehold.co/96x96/{SelectedUser.BackgroundColor}/FFFFFF?text={SelectedUser.Username.ToString().ToUpper()[0]}")"
                         alt="User Avatar" />
                         <div>
-                            <h4 class="font-bold text-gray-800">u/@CurrentUser.Username</h4>
-                            <p class="text-xs text-gray-500">@CurrentUser.Username</p>
+                            <h4 class="font-bold text-gray-800">u/@SelectedUser.Username</h4>
+                            <p class="text-xs text-gray-500">@SelectedUser.Username</p>
                         </div>
                     </div>
                     <div class="border-t border-gray-200 pt-4">
@@ -162,7 +148,7 @@ else
                         </div>
                         <div class="flex justify-between text-sm">
                             <span class="font-semibold text-gray-700">Cake day</span>
-                            <span class="text-gray-600">@CurrentUser.CreatedAt.ToString("MMM d, yyyy")</span>
+                            <span class="text-gray-600">@SelectedUser.CreatedAt.ToString("MMM d, yyyy")</span>
                         </div>
                     </div>
                 </div>
@@ -173,11 +159,15 @@ else
 
 
 @code {
-    private UserModel CurrentUser => AuthService.CurrentUser;
-	private List<PostModel> UserPosts => PostService.UserPostList;
-	private List<CommunitySimpleModel> UserCommunities => CommunityService.UserCommunityList;
+    [Parameter]
+    public string Username { get; set; }
 
-    private bool _isLoading { get; set; }
+    private UserModel SelectedUser => UserService.SelectedUser;
+    private List<PostModel> UserPosts => PostService.UserPostList;
+    private List<CommunitySimpleModel> UserCommunities => CommunityService.UserCommunityList;
+
+
+    private bool _isLoading = true;
     private string _errorMessage { get; set; } = null;
     private int _errorCounter = 0;
 
@@ -193,10 +183,11 @@ else
         _isLoading = true;
         _errorMessage = null;
 
-        await GetCommunities();
-        await GetPosts();
+        await GetUser();
+        await GetUserPosts();
+        await GetUserCommunities();
 
-        if(_errorCounter == 0)
+        if (_errorCounter == 0)
         {
             _isLoading = false;
         }
@@ -206,12 +197,12 @@ else
             ToastService.ShowError(_errorMessage);
         }
 
-        StateHasChanged();
+		StateHasChanged();
     }
 
-    private async Task GetCommunities()
+    private async Task GetUser()
     {
-        bool result = await CommunityService.GetUserSimpleCommunitiesAsync(CurrentUser.UserId);
+        bool result = await UserService.GetUserAsync(Username);
 
         if (!result)
         {
@@ -219,14 +210,24 @@ else
         }
     }
 
-    private async Task GetPosts()
+    private async Task GetUserPosts()
     {
-        bool result = await PostService.GetUserPostsAsync(CurrentUser.UserId);
+        bool result = await PostService.GetUserPostsAsync(SelectedUser.UserId);
 
-		if (!result)
-		{
-			_errorCounter++;
-		}
+        if (!result)
+        {
+            _errorCounter++;
+        }
+    }
+
+    private async Task GetUserCommunities()
+    {
+        bool result = await CommunityService.GetUserSimpleCommunitiesAsync(SelectedUser.UserId);
+
+        if (!result)
+        {
+            _errorCounter++;
+        }
     }
 
     private void SetActiveTab(string tabName)

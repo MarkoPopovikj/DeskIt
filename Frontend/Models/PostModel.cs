@@ -8,6 +8,7 @@ namespace Frontend.Models
 {
     public class PostModel
     {
+        public int Id { get; set; }
         public required string CommunityName {  get; set; }
         public required string AuthorName { get; set; }
         public required string Title { get; set; }

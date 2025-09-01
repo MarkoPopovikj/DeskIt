@@ -21,3 +21,8 @@ class UserSimpleDataSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+class OtherUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'background_color', 'about_me', 'created_at')

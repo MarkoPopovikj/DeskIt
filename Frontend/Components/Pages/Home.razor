@@ -2,93 +2,44 @@
 @using Frontend.Components.Shared
 @using Frontend.Models
 
-<div class="h-full grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-6 overflow-hidden">
+<div class="max-w-7xl mx-auto px-2 pb-20">
+    <div class="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-4">
+        <div>
+            <div class="mb-6 text-center py-5">
+                <h1 class="text-3xl font-extrabold text-gray-900 mb-2 bg-gradient-to-r from-blue-800 to-blue-400 bg-clip-text text-transparent">
+                    🔥 Home
+                </h1>
+                <p class="text-base text-gray-600">
+                    Discover what's new in your communities
+                </p>
+            </div>
 
-    @* The <main> column is now the scrollable container for posts *@
-    <main class="py-6 overflow-y-auto custom-scrollbar">
-        <div class="space-y-4">            
-            @foreach (var post in Posts)
-            {
-                <PostCard Post="post" />
-            }
+            <NothingMadeCard Query="Oops... Seems there is nothing here" />
         </div>
-    </main>
 
-    @* Right sidebar content with the new "Create Post" section *@
-    <aside class="hidden xl:block py-6">
-        <div class="bg-white border border-gray-200 rounded-lg p-4">
-            <h3 class="text-sm font-bold text-gray-900 mb-4 pb-2 border-b">
-                Trending on DeskIt
-            </h3>
-            <ul class="space-y-4">
-                <li class="flex items-center space-x-3">
-                    <img class="h-8 w-8 rounded-full"
-                         src="https://placehold.co/32x32/EA580C/FFFFFF?text=G"
-                         alt="r/gaming icon" />
-                    <div class="flex-1">
-                        <a href="topic.html"
-                           class="font-semibold text-sm hover:underline">What's a game that you think is a 10/10 masterpiece?</a>
-                        <p class="text-xs text-gray-500">22.7k upvotes · r/gaming</p>
-                    </div>
-                </li>
-                <li class="flex items-center space-x-3">
-                    <img class="h-8 w-8 rounded-full"
-                         src="https://placehold.co/32x32/1D4ED8/FFFFFF?text=T"
-                         alt="r/technology icon" />
-                    <div class="flex-1">
-                        <a href="topic.html"
-                           class="font-semibold text-sm hover:underline">This AI can generate video from a single text prompt</a>
-                        <p class="text-xs text-gray-500">
-                            15.1k upvotes · r/technology
-                        </p>
-                    </div>
-                </li>
-            </ul>
-            <a href="popular.html"
-               class="mt-4 block w-full bg-gray-100 text-center text-blue-600 font-bold py-2 rounded-full hover:bg-gray-200 transition">See More</a>
-        </div>
-    </aside>
+        <aside class="hidden xl:block py-6">
+            <div class="sticky top-6">
+                <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+                    <h3 class="text-lg font-bold mb-2">Create Your Own Space</h3>
+                    <p class="text-sm text-blue-100 mb-4">
+                        Have an idea for a community? Build your own and connect with
+                        like-minded people.
+                    </p>
+                    <a href="create_community.html"
+                       class="block w-full px-4 py-2 bg-white text-blue-600 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-colors text-center">
+                        Create Community
+                    </a>
+                </div>
+            </div>
+        </aside>
 
+    </div> 
 </div>
 
 @code{
-    private List<PostModel> Posts = new();
+    private bool _isLoading { get; set; }
+    private string _errorMessage { get; set; } = null;
+    private int _errorCounter = 0;
 
-    protected override void OnInitialized()
-    {
-        Posts = new List<PostModel>
-        {
-            new PostModel
-            {
-                CommunityName = "webdev",
-                AuthorName = "coder123",
-                Title = "What are your favorite 'Aha!' moments in learning a new framework?",
-                Content = "Mine was finally understanding the component lifecycle in React. It felt like unlocking a superpower. Before that, I was just throwing useState and useEffect at the wall to see what stuck. What are some of yours? It's amazing how one concept can change your entire perspective on development.",
-                CreatedAt = DateTime.Now.AddHours(-5),
-                UpVotes = 1200,
-                CommentsCount = 137
-            },
-            new PostModel
-            {
-                CommunityName = "design",
-                AuthorName = "pixel_pusher",
-                Title = "A beautiful UI kit I designed for free.",
-                Content = "Just wanted to share this new UI kit I've been working on. Hope you all find it useful for your projects!",
-                CreatedAt = DateTime.Now.AddHours(-9),
-                UpVotes = 4800,
-                CommentsCount = 302,
-                ImageUrl = "UI+Kit+Preview"
-            },
-            new PostModel
-            {
-                CommunityName = "gaming",
-                AuthorName = "level_up_guru",
-                Title = "Just reached the final boss in the new Elden Ring DLC!",
-                Content = "After 80 hours of intense gameplay, I've finally made it to the last boss. This DLC is absolutely massive and incredibly challenging. The world design is stunning and the new enemy types are terrifying. Wish me luck, I'm going in!",
-                CreatedAt = DateTime.Now.AddMinutes(-25),
-                UpVotes = 875,
-                CommentsCount = 212
-            }
-        };
-    }
+
 }

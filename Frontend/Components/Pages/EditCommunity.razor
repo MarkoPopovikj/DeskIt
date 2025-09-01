@@ -1,4 +1,4 @@
-﻿@page "/edit_community/{CommunityName}"
+﻿@page "/edit_community/{CommunityId:int}"
 
 @using Frontend.Models
 @using Frontend.Services
@@ -24,7 +24,7 @@ else
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
                 </button>
-                <h1 class="text-3xl font-bold text-gray-800">Create a Community</h1>
+                <h1 class="text-3xl font-bold text-gray-800">Edit Community</h1>
             </div>
 
             <EditForm Model="@_editCommunity" OnValidSubmit="HandleEditCommunity">
@@ -130,15 +130,16 @@ else
 
 @code {
     [Parameter]
-    public string? CommunityName { get; set; }
+    public int CommunityId { get; set; }
 
-    private CommunityModel? EditingCommunity { get; set; }
+    private CommunityDetailedModel EditingCommunity => CommunityService.CurrentCommunity;
     private EditCommunityModel _editCommunity { get; set; }
 
     private string? _selectedTopicValue;
 
     private bool _isLoading { get; set; }
     private string _errorMessage { get; set; } = null;
+    private int _errorCounter = 0;
 
     private bool isColorMenuOpen = false;
     private readonly List<string> presetColors = new()
@@ -147,20 +148,64 @@ else
         "06b6d4", "3b82f6", "6366f1", "8b5cf6", "d946ef", "ec4899"
     };
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        if (!string.IsNullOrEmpty(CommunityName))
-        {
-            EditingCommunity = CommunityService.GetCommunity(CommunityName);
+        await ForceReload();
+    }
 
-            _editCommunity = new EditCommunityModel
-				{
-					Name = EditingCommunity.Name,
-					Description = EditingCommunity.Description,
-					Topic = EditingCommunity.Topic,
-					BackgroundColor = EditingCommunity.BackgroundColor
-				};
+    private async Task ForceReload()
+    {
+        _isLoading = true;
+
+        await CheckCommunityExist();
+        await CheckTopicsExist();
+
+        if (_errorCounter == 0)
+        {
+            _isLoading = false;
         }
+        else
+        {
+            _errorMessage = "Community not found";
+            ToastService.ShowError(_errorMessage);
+        }
+
+        StateHasChanged();
+    }
+
+    private async Task CheckCommunityExist()
+    {
+        bool result = await CommunityService.GetCommunityAsync(CommunityId);
+
+        if (!result)
+        {
+            _errorCounter++;
+        }
+        else
+        {
+            _editCommunity = new EditCommunityModel
+                {
+                    Name = EditingCommunity.Name,
+                    Description = EditingCommunity.Description,
+                    Topic = EditingCommunity.Topic,
+                    BackgroundColor = EditingCommunity.BackgroundColor
+                };
+        }
+    }
+
+    private async Task CheckTopicsExist()
+    {
+        if (CommunityService.TopicDictionary != null && CommunityService.TopicDictionary.Count > 0)
+        {
+            return;
+        }
+
+		bool result = await CommunityService.GetTopicsAsync();
+
+		if (!result)
+		{
+			_errorCounter++;
+		}
     }
 
     private void ToggleColorMenu() => isColorMenuOpen = !isColorMenuOpen;

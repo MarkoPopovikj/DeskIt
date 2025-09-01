@@ -29,7 +29,25 @@ namespace Frontend.Services
         public string? Message { get; set; }
     }
 
-    public class CommunityResponse
+    public class CommunitySimpleResponse
+    {
+        [JsonPropertyName("id")]
+        public int? Id { get; set; }
+
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+
+        [JsonPropertyName("topic")]
+        public string? Topic { get; set; }
+
+        [JsonPropertyName("background_color")]
+        public string? BackgroundColor { get; set; }
+
+        [JsonPropertyName("member_count")]
+        public int? MemberCount { get; set; }
+    }
+
+    public class CommunityDetailedResponse
     {
         [JsonPropertyName("id")]
         public int? Id { get; set; }
@@ -58,7 +76,9 @@ namespace Frontend.Services
         private readonly IHttpClientFactory _httpClientFactory;
 
         public Dictionary<string,string> TopicDictionary { get; private set; }
-        public Dictionary<string, List<CommunityModel>>? CommunityDictionary { get; private set; }
+        public Dictionary<string, List<CommunitySimpleModel>>? CommunityDictionary { get; private set; }
+        public List<CommunitySimpleModel> UserCommunityList { get; private set; }
+        public CommunityDetailedModel CurrentCommunity { get; private set; }
         public List<int> JoinedCommunities { get; set; }
 
 
@@ -67,21 +87,10 @@ namespace Frontend.Services
             _httpClientFactory = httpClientFactory;
 
             TopicDictionary = new Dictionary<string, string>();
-            CommunityDictionary = new Dictionary<string, List<CommunityModel>>();
+            CommunityDictionary = new Dictionary<string, List<CommunitySimpleModel>>();
+            UserCommunityList = new List<CommunitySimpleModel>();
+            CurrentCommunity = new CommunityDetailedModel();
             JoinedCommunities = new List<int>();
-        }
-
-        public CommunityModel GetCommunity(string Name)
-        {
-            foreach(CommunityModel community in CommunityDictionary.Values.SelectMany(list => list))
-            {
-                if (community.Name == Name)
-                {
-                    return community;
-                }
-            }
-
-            return null;
         }
 
         public async Task<bool> GetTopicsAsync()
@@ -94,8 +103,8 @@ namespace Frontend.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadFromJsonAsync<List<TopicResponse>>();
-                    
-                    foreach(TopicResponse topic in responseContent)
+
+                    foreach (TopicResponse topic in responseContent)
                     {
                         TopicDictionary[topic.Value] = topic.Label;
                     }
@@ -108,6 +117,120 @@ namespace Frontend.Services
             catch (Exception ex)
             {
                 Debug.WriteLine($"Error fetching topics: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> GetCommunityAsync(int communityId)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.GetAsync($"community/{communityId}/get_detailed/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadFromJsonAsync<CommunityDetailedResponse>();
+
+                    CurrentCommunity = new CommunityDetailedModel
+                    {
+                        Id = responseContent.Id,
+                        Topic = responseContent.Topic,
+                        Name = responseContent.Name,
+                        AuthorId = responseContent.AuthorId,
+                        Description = responseContent.Description,
+                        BackgroundColor = responseContent.BackgroundColor,
+                        MemberCount = responseContent.MemberCount
+                    };
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error fetching communities: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> GetSimpleCommunitiesAsync()
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.GetAsync("community/get_simple/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadFromJsonAsync<List<CommunitySimpleResponse>>();
+
+                    foreach (KeyValuePair<string, string> topicPair in TopicDictionary)
+                    {
+                        CommunityDictionary[topicPair.Value] = new List<CommunitySimpleModel>();
+                    }
+
+                    foreach (CommunitySimpleResponse c in responseContent)
+                    {
+                        CommunitySimpleModel newCommunity = new CommunitySimpleModel
+                        {
+                            Id = c.Id,
+                            Name = c.Name,
+                            BackgroundColor = c.BackgroundColor,
+                            Topic = c.Topic,
+                            MemberCount = c.MemberCount
+                        };
+
+                        string rightTopic = TopicDictionary[newCommunity.Topic];
+                        CommunityDictionary[rightTopic].Add(newCommunity);
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error fetching communities: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> GetUserSimpleCommunitiesAsync(int userId)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.GetAsync($"community/{userId}/get_user_simple/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadFromJsonAsync<List<CommunitySimpleResponse>>();
+
+                    UserCommunityList.Clear();
+
+                    foreach (CommunitySimpleResponse c in responseContent)
+                    {
+                        UserCommunityList.Add(new CommunitySimpleModel
+                        {
+                            Id = c.Id,
+                            Topic = c.Topic,
+                            Name = c.Name,
+                            BackgroundColor = c.BackgroundColor,
+                            MemberCount = c.MemberCount
+                        });
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error fetching communities: {ex.Message}");
                 return false;
             }
         }
@@ -161,51 +284,6 @@ namespace Frontend.Services
             {
                 Debug.WriteLine($"Error updating community: {ex.Message}");
                 return null;
-            }
-        }
-
-        public async Task<bool> GetCommunitiesAsync()
-        {
-            try
-            {
-                var httpClient = _httpClientFactory.CreateClient("WebAPI");
-                var response = await httpClient.GetAsync("community/get/");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseContent = await response.Content.ReadFromJsonAsync<List<CommunityResponse>>();
-
-                    foreach(KeyValuePair<string,string> topicPair in TopicDictionary)
-                    {
-                        CommunityDictionary[topicPair.Value] = new List<CommunityModel>();
-                    }
-
-                    foreach(CommunityResponse c in responseContent)
-                    {
-                        CommunityModel newCommunity = new CommunityModel
-                        {
-                            Id = c.Id,
-                            Topic = c.Topic,
-                            Name = c.Name,
-                            AuthorId = c.AuthorId,
-                            Description = c.Description,
-                            BackgroundColor = c.BackgroundColor,
-                            MemberCount = c.MemberCount
-                        };
-
-                        string rightTopic = TopicDictionary[newCommunity.Topic];
-                        CommunityDictionary[rightTopic].Add(newCommunity);
-                    }
-
-                    return true;
-                }
-
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Error fetching communities: {ex.Message}");
-                return false;
             }
         }
 

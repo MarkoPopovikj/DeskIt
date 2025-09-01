@@ -1,4 +1,4 @@
-﻿@page "/create-community"
+﻿@page "/create_community"
 
 @inject CommunityService CommunityService
 @inject Blazored.Toast.Services.IToastService ToastService
@@ -101,7 +101,7 @@ else
                         </div>
 
                         <div class="flex justify-end pt-4 border-t">
-                            <a href="explore" class="bg-white py-2 px-4 border border-gray-300 rounded-full shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">Cancel</a>
+                            <div @onclick="GoBack" class="bg-white py-2 px-4 border border-gray-300 rounded-full shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">Cancel</div>
                             <button type="submit" class="ml-3 inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-bold rounded-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
                                 Create Community
                             </button>
@@ -131,7 +131,8 @@ else
 
 @code {
     private bool _isLoading = false;
-    private string _errorMessage;
+    private string _errorMessage { get; set; } = null;
+    private int _errorCounter = 0;
 
     private string? _selectedTopicValue;
     private CreateCommunityModel _newCommunity = new();
@@ -145,6 +146,11 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        await ForceReload();
+    }
+
+    private async Task ForceReload()
+    {
         _isLoading = true;
         if (CommunityService.TopicDictionary != null && CommunityService.TopicDictionary.Count > 0)
         {
@@ -153,9 +159,10 @@ else
         }
 
         _errorMessage = null;
-        bool result = await CommunityService.GetTopicsAsync();
 
-        if (result)
+        await CheckTopicsExist();
+
+        if(_errorCounter == 0)
         {
             _isLoading = false;
         }
@@ -166,6 +173,16 @@ else
         }
 
         StateHasChanged();
+    }
+
+    private async Task CheckTopicsExist()
+    {
+        bool result = await CommunityService.GetTopicsAsync();
+
+        if (!result)
+        {
+            _errorCounter++;
+        }
     }
 
     private void ToggleColorMenu() => isColorMenuOpen = !isColorMenuOpen;

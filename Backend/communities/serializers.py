@@ -1,6 +1,7 @@
+from django.db import transaction
 from rest_framework import serializers
 
-from communities.models import Community
+from communities.models import Community, CommunityMemberships
 
 
 class CommunitySerializer(serializers.ModelSerializer):
@@ -9,6 +10,11 @@ class CommunitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Community
         fields = ('id', 'author_id', 'topic', 'name', 'description', 'background_color', 'member_count')
+
+class CommunitySimpleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Community
+        fields = ('id', 'name', 'background_color', 'topic', 'member_count')
 
 class CreateCommunitySerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,6 +26,7 @@ class CreateCommunitySerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("A restaurant with that name already exists!")
         return value
 
+    @transaction.atomic
     def create(self, validated_data):
         name = validated_data.pop('name')
         description = validated_data.pop('description')
@@ -34,6 +41,11 @@ class CreateCommunitySerializer(serializers.ModelSerializer):
             topic=topic,
             author=author,
             background_color=background_color
+        )
+
+        community_membership = CommunityMemberships.objects.create(
+            community=community,
+            user=author
         )
 
         return community

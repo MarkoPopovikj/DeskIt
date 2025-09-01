@@ -8,7 +8,7 @@
     }
     else
     {
-        @foreach (CommunityModel community in Communities)
+        @foreach (CommunitySimpleModel community in Communities)
         {
             <CommunityCard Community="@community" />
         }
@@ -17,5 +17,5 @@
 
 @code {
     [Parameter, EditorRequired]
-    public List<CommunityModel>? Communities { get; set; }
+    public List<CommunitySimpleModel>? Communities { get; set; }
 }
