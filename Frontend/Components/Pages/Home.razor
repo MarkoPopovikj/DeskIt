@@ -1,4 +1,5 @@
 ﻿@page "/"
+
 @using Frontend.Components.Shared
 @using Frontend.Models
 
@@ -26,7 +27,7 @@
                         like-minded people.
                     </p>
                     <a href="create_community.html"
-                       class="block w-full px-4 py-2 bg-white text-blue-600 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-colors text-center">
+                    class="block w-full px-4 py-2 bg-white text-blue-600 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-colors text-center">
                         Create Community
                     </a>
                 </div>
@@ -41,5 +42,8 @@
     private string _errorMessage { get; set; } = null;
     private int _errorCounter = 0;
 
-
+    protected override async Task OnInitializedAsync()
+    {
+        
+    }
 }

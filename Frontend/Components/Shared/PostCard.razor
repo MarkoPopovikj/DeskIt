@@ -22,7 +22,7 @@
                 <span class="mx-1">•</span>
                 <span>Posted by <a @onclick="GoToUser" class="cursor-pointer hover:underline">u/@Post.AuthorName</a> @Post.TimeAgo</span>
             </div>
-            <a href="/topic/some-topic-id" class="block">
+            <a href="post/@Post.Id" class="block">
                 <h2 class="text-lg font-bold text-gray-900 mb-2 hover:text-blue-600">@Post.Title</h2>
             </a>
 

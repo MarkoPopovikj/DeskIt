@@ -9,11 +9,11 @@ namespace Frontend.Models
     public class PostModel
     {
         public int Id { get; set; }
-        public required string CommunityName {  get; set; }
-        public required string AuthorName { get; set; }
-        public required string Title { get; set; }
-        public required string Content { get; set; }
-        public required DateTime CreatedAt { get; set; }
+        public string CommunityName {  get; set; }
+        public string AuthorName { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+        public DateTime CreatedAt { get; set; }
         public int UpVotes { get; set; }
         public int DownVotes { get; set; }
         public int CommentsCount { get; set; }
@@ -30,6 +30,8 @@ namespace Frontend.Models
                 return UpVotes.ToString();
             }
         }
+
+        public int VoteScore => UpVotes - DownVotes;
 
         public string TimeAgo
         {

@@ -176,7 +176,7 @@ else
     private CommunityDetailedModel CurrentCommunity => CommunityService.CurrentCommunity;
     private List<PostModel> CommunityPosts => PostService.CommunityPostList;
 
-    private bool _isLoading { get; set; }
+    private bool _isLoading { get; set; } = true;
     private string _errorMessage { get; set; } = null;
     private int _errorCounter = 0;
 

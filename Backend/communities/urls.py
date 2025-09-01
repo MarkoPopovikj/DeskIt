@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from communities.views import GetSimpleCommunitiesView, CreateCommunityView, GetTopicOptions, JoinCommunityView, \
     LeaveCommunityView, GetMembershipsView, UpdateCommunityView, DeleteCommunityView, GetUserSimpleCommunitiesView, \
-    GetDetailedCommunitiView
+    GetDetailedCommunitiView, GetPostSimpleCommunitiesView
 
 urlpatterns = [
     #Get
@@ -10,6 +10,7 @@ urlpatterns = [
     path('get_simple/', GetSimpleCommunitiesView.as_view(), name='get_communities'),
     path('<int:user_id>/get_user_simple/', GetUserSimpleCommunitiesView.as_view(), name='get_other_communities'),
     path('<int:community_id>/get_detailed/', GetDetailedCommunitiView.as_view(), name='get_detailed'),
+    path('<str:community_name>/get_post/', GetPostSimpleCommunitiesView.as_view(), name='get_post_community'),
 
     #Crud
     path('create/', CreateCommunityView.as_view(), name='create'),

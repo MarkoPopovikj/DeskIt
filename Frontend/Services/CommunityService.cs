@@ -79,6 +79,7 @@ namespace Frontend.Services
         public Dictionary<string, List<CommunitySimpleModel>>? CommunityDictionary { get; private set; }
         public List<CommunitySimpleModel> UserCommunityList { get; private set; }
         public CommunityDetailedModel CurrentCommunity { get; private set; }
+        public CommunitySimpleModel CurrentPostCommunity { get; private set; }
         public List<int> JoinedCommunities { get; set; }
 
 
@@ -139,6 +140,38 @@ namespace Frontend.Services
                         Name = responseContent.Name,
                         AuthorId = responseContent.AuthorId,
                         Description = responseContent.Description,
+                        BackgroundColor = responseContent.BackgroundColor,
+                        MemberCount = responseContent.MemberCount
+                    };
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error fetching communities: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> GetPostCommunityAsync(string communityName)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.GetAsync($"community/{communityName}/get_post/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadFromJsonAsync<CommunitySimpleResponse>();
+
+                    CurrentPostCommunity = new CommunitySimpleModel
+                    {
+                        Id = responseContent.Id,
+                        Topic = responseContent.Topic,
+                        Name = responseContent.Name,
                         BackgroundColor = responseContent.BackgroundColor,
                         MemberCount = responseContent.MemberCount
                     };

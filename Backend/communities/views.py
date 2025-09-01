@@ -33,6 +33,20 @@ class GetUserSimpleCommunitiesView(APIView):
 
         return Response(serializer.data)
 
+class GetPostSimpleCommunitiesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, community_name):
+        try:
+            community = Community.objects.get(name=community_name)
+        except Community.DoesNotExist:
+            return Response({"error": "Community not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = CommunitySimpleSerializer(community)
+
+        return Response(serializer.data)
+
+
 class GetDetailedCommunitiView(APIView):
     permission_classes = [IsAuthenticated]
 

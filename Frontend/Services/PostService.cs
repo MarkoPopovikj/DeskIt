@@ -48,6 +48,8 @@ namespace Frontend.Services
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
+        public PostModel CurrentPost { get; set; }
+
         public List<PostModel> PostList { get; set; }
 
         // Za 1 user
@@ -63,6 +65,44 @@ namespace Frontend.Services
             PostList = new List<PostModel>();
             UserPostList = new List<PostModel>();
             CommunityPostList = new List<PostModel>();
+            CurrentPost = new PostModel();
+        }
+
+        public async Task<bool> GetPostAsync(int postId)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.GetAsync($"post/{postId}/get/");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadFromJsonAsync<PostResponse>();
+                    if (responseContent != null)
+                    {
+                        CurrentPost = new PostModel
+                        {
+                            Id = responseContent.Id ?? 0,
+                            CommunityName = responseContent.CommunityName ?? "Unknown",
+                            AuthorName = responseContent.AuthorName ?? "Unknown",
+                            Title = responseContent.Title ?? "No Title",
+                            Content = responseContent.Content ?? "",
+                            CreatedAt = responseContent.CreatedAt ?? DateTime.UtcNow,
+                            UpVotes = responseContent.Upvotes ?? 0,
+                            DownVotes = responseContent.Downvotes ?? 0,
+                            CommentsCount = responseContent.CommentsCount ?? 0,
+                            ImageUrl = responseContent.ImageUrl
+                        };
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error fetching post: {ex.Message}");
+                return false;
+            }
         }
 
         public async Task<bool> GetPostsAsync()

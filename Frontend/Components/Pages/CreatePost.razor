@@ -42,7 +42,7 @@ else
                                 <option selected disabled>Choose a community</option>
                                 @foreach (CommunitySimpleModel community in UserCommunities)
                                 {
-                                    <option value="@community.Id">@community.Name</option>
+                                    <option value="@community.Id">d/@community.Name</option>
                                 }
                             </InputSelect>
                             <ValidationMessage For="@(() => _newPost.CommunityId)" class="text-red-600 text-sm mt-1" />
