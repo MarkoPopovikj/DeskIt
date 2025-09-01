@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 from posts.views import GetAllPostsView, CreatePostView, GetUserPostsView, GetCommunityPostsView, DeletePostView, \
-    GetPostView
+    GetPostView, UpvoteDownvotePostView
 
 urlpatterns = [
     #Get
@@ -16,6 +16,5 @@ urlpatterns = [
     # path('<int:post_id>/update/'),
 
     #Upvote - downvote
-    # path('<int:post_id>/upvote/'),
-    # path('<int:post_id>/downvote/')
+    path('<int:post_id>/<int:upvote>/<int:downvote>/upvote_downvote_post/', UpvoteDownvotePostView.as_view(), name='upvote_post'),
 ]

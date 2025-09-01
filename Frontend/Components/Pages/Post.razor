@@ -19,50 +19,35 @@ else
     <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
         <main class="py-6 xl:col-span-2">
             <div class="flex items-center justify-between mb-2">
-                <button class="p-2 rounded-full hover:bg-gray-200 mr-2">
-                    <svg class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
-                </button>
 
-                <button class="p-2 rounded-full text-gray-500 hover:bg-gray-200 hover:text-gray-800 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="2"
-                         class="h-6 w-6">
-                        <path stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M21 12a9 9 0 11-3-6.708M21 3v6h-6" />
-                    </svg>
-                </button>
             </div>
 
             <div class="bg-white border border-gray-200 rounded-lg">
                 <article class="flex">
                     <div class="flex flex-col items-center p-4 bg-gray-50 rounded-l-lg">
-                        <button class="vote-btn upvoted p-1 rounded-md text-gray-500 hover:text-orange-500">
+                        <button @onclick="UpvotePostClick" class="vote-btn p-1 rounded-md text-gray-500 hover:text-orange-500 @(_currentUserVote == VoteStatus.Upvoted ? "upvoted" : "")">
                             <svg class="h-6 w-6"
-                                 fill="none"
-                                 viewBox="0 0 24 24"
-                                 stroke="currentColor">
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
                                 <path stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      stroke-width="2"
-                                      d="M5 15l7-7 7 7" />
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 15l7-7 7 7" />
                             </svg>
                         </button>
+
                         <span class="text-base font-bold my-1 text-gray-800">@CurrentPost.VoteScore</span>
-                        <button class="vote-btn p-1 rounded-md text-gray-500 hover:text-blue-500">
+
+                        <button @onclick="DownvotePostClick" class="vote-btn p-1 rounded-md text-gray-500 hover:text-blue-500 @(_currentUserVote == VoteStatus.Downvoted ? "downvoted" : "")">
                             <svg class="h-6 w-6"
-                                 fill="none"
-                                 viewBox="0 0 24 24"
-                                 stroke="currentColor">
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
                                 <path stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      stroke-width="2"
-                                      d="M19 9l-7 7-7-7" />
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
                     </div>
@@ -83,13 +68,13 @@ else
                         <div class="mt-6 flex items-center space-x-4 text-sm font-semibold text-gray-600">
                             <button class="flex items-center space-x-1 hover:bg-gray-100 p-2 rounded-md">
                                 <svg class="h-5 w-5"
-                                     fill="none"
-                                     viewBox="0 0 24 24"
-                                     stroke="currentColor">
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor">
                                     <path stroke-linecap="round"
-                                          stroke-linejoin="round"
-                                          stroke-width="2"
-                                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                 </svg><span>@CurrentPost.CommentsCount</span>
                             </button>
                         </div>
@@ -101,8 +86,8 @@ else
                         <a href="profile.html" class="text-blue-600 font-semibold">u/@CurrentUser.Username</a>
                     </p>
                     <textarea class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                              rows="4"
-                              placeholder="What are your thoughts?"></textarea>
+                    rows="4"
+                    placeholder="What are your thoughts?"></textarea>
                     <div class="flex justify-end mt-2">
                         <button class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition">
                             Comment
@@ -112,8 +97,8 @@ else
                 <div class="p-4 space-y-6">
                     <div class="flex space-x-3">
                         <img class="h-8 w-8 rounded-full mt-1"
-                             src="https://placehold.co/32x32/16A34A/FFFFFF?text=A"
-                             alt="avatar" />
+                        src="https://placehold.co/32x32/16A34A/FFFFFF?text=A"
+                        alt="avatar" />
                         <div class="flex-1">
                             <p class="text-sm">
                                 <a href="user_profile.html" class="font-bold hover:underline">u/angular_dev</a>
@@ -126,16 +111,16 @@ else
                             <div class="flex items-center space-x-3 mt-2 text-xs text-gray-500 font-semibold">
                                 <button class="vote-btn p-1">
                                     <svg class="h-4 w-4"
-                                         fill="none"
-                                         viewBox="0 0 24 24"
-                                         stroke="currentColor">
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor">
                                         <path d="M5 15l7-7 7 7" />
                                     </svg>
                                 </button><span class="font-bold text-gray-700">88</span><button class="vote-btn p-1">
                                     <svg class="h-4 w-4"
-                                         fill="none"
-                                         viewBox="0 0 24 24"
-                                         stroke="currentColor">
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor">
                                         <path d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </button><button class="hover:underline">Reply</button>
@@ -143,12 +128,12 @@ else
                             <div class="mt-4 space-y-4 comment-thread">
                                 <div class="flex space-x-3">
                                     <img class="h-8 w-8 rounded-full mt-1"
-                                         src="https://placehold.co/32x32/D97706/FFFFFF?text=V"
-                                         alt="avatar" />
+                                    src="https://placehold.co/32x32/D97706/FFFFFF?text=V"
+                                    alt="avatar" />
                                     <div class="flex-1">
                                         <p class="text-sm">
                                             <a href="user_profile.html"
-                                               class="font-bold hover:underline">u/vue_fan</a>
+                                            class="font-bold hover:underline">u/vue_fan</a>
                                             <span class="text-gray-500">• 2 hours ago</span>
                                         </p>
                                         <p class="text-gray-800 mt-1">
@@ -159,16 +144,16 @@ else
                                         <div class="flex items-center space-x-3 mt-2 text-xs text-gray-500 font-semibold">
                                             <button class="vote-btn p-1">
                                                 <svg class="h-4 w-4"
-                                                     fill="none"
-                                                     viewBox="0 0 24 24"
-                                                     stroke="currentColor">
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor">
                                                     <path d="M5 15l7-7 7 7" />
                                                 </svg>
                                             </button><span class="font-bold text-gray-700">42</span><button class="vote-btn p-1">
                                                 <svg class="h-4 w-4"
-                                                     fill="none"
-                                                     viewBox="0 0 24 24"
-                                                     stroke="currentColor">
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor">
                                                     <path d="M19 9l-7 7-7-7" />
                                                 </svg>
                                             </button><button class="hover:underline">Reply</button>
@@ -188,8 +173,8 @@ else
                 <div class="p-4">
                     <div class="flex items-center space-x-3 -mt-10">
                         <img class="h-16 w-16 rounded-full border-4 border-white bg-white"
-                             src="@($"https://placehold.co/64x64/{CurrentCommunity.BackgroundColor}/FFFFFF?text={CurrentCommunity.Name.ToString().ToUpper()[0]}")"
-                             alt="r/webdev icon" />
+                        src="@($"https://placehold.co/64x64/{CurrentCommunity.BackgroundColor}/FFFFFF?text={CurrentCommunity.Name.ToString().ToUpper()[0]}")"
+                        alt="r/webdev icon" />
                         <h2 class="text-lg font-bold text-gray-900 mt-8">d/@CurrentCommunity.Name</h2>
                     </div>
                     <div class="flex items-center space-x-1 text-sm text-gray-500 mt-3">
@@ -223,6 +208,10 @@ else
     private bool _isLoading { get; set; }
     private string _errorMessage { get; set; } = null;
     private int _errorCounter = 0;
+
+    private enum VoteStatus { None, Upvoted, Downvoted }
+
+    private VoteStatus _currentUserVote = VoteStatus.None;
 
     protected override async Task OnInitializedAsync()
     {
@@ -263,9 +252,66 @@ else
     {
         bool result = await CommunityService.GetPostCommunityAsync(CurrentPost.CommunityName);
 
+        if (!result)
+        {
+            _errorCounter++;
+        }
+    }
+
+    private async Task CheckUpvoteDownvote()
+    {
+        bool result = await PostService.UpdatePostUpvotesDownvotesAsync(PostId, CurrentPost.UpVotes, CurrentPost.DownVotes);
+
 		if (!result)
 		{
-			_errorCounter++;
+			_errorMessage = "Something went wrong";
+			ToastService.ShowError(_errorMessage);
 		}
+    }
+
+    private async Task UpvotePostClick()
+    {
+        if (_currentUserVote == VoteStatus.Upvoted)
+        {
+            CurrentPost.UpVotes--;
+            _currentUserVote = VoteStatus.None;
+        }
+
+        else if (_currentUserVote == VoteStatus.Downvoted)
+        {
+            CurrentPost.DownVotes--;
+            CurrentPost.UpVotes++;
+            _currentUserVote = VoteStatus.Upvoted;
+        }
+
+        else
+        {
+            CurrentPost.UpVotes++;
+            _currentUserVote = VoteStatus.Upvoted;
+        }
+        
+		await CheckUpvoteDownvote();
+    }
+
+    private async Task DownvotePostClick()
+    {
+        if (_currentUserVote == VoteStatus.Downvoted)
+        {
+            CurrentPost.DownVotes--;
+            _currentUserVote = VoteStatus.None;
+        }
+        else if (_currentUserVote == VoteStatus.Upvoted)
+        {
+            CurrentPost.UpVotes--;
+            CurrentPost.DownVotes++;
+            _currentUserVote = VoteStatus.Downvoted;
+        }
+        else
+        {
+            CurrentPost.DownVotes++;
+            _currentUserVote = VoteStatus.Downvoted;
+        }
+        
+		await CheckUpvoteDownvote();
     }
 }

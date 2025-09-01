@@ -264,5 +264,25 @@ namespace Frontend.Services
                 return "Something went wrong";
             }
         }
+
+        public async Task<bool> UpdatePostUpvotesDownvotesAsync(int postid, int upvotes, int downvotes)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.PutAsync($"post/{postid}/{upvotes}/{downvotes}/upvote_downvote_post/", null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                return false;
+            }catch(Exception ex)
+            {
+                Debug.WriteLine($"Error updating post: {ex.Message}");
+                return false;
+            }
+        }
     }
 }

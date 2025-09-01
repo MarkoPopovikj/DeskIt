@@ -45,6 +45,9 @@ namespace Frontend.Services
 
         [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; set; }
+
+        [JsonPropertyName("karma")]
+        public int Karma { get; set; }
     }
 
     public class AuthService
@@ -90,7 +93,8 @@ namespace Frontend.Services
                         Email = responseContent?.Email,
                         BackgroundColor = responseContent?.BackgroundColor,
                         AboutMe = responseContent?.AboutMe,
-                        CreatedAt = responseContent?.CreatedAt ?? DateTime.MinValue
+                        CreatedAt = responseContent?.CreatedAt ?? DateTime.MinValue,
+                        Karma = responseContent?.Karma ?? 0
                     };
 
                     OnAuthStateChanged?.Invoke();

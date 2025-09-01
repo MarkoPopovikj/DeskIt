@@ -83,4 +83,20 @@ class GetCommunityPostsView(APIView):
 
         return Response(serializer.data)
 
+class UpvoteDownvotePostView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, post_id, upvote, downvote):
+        post = Post.objects.get(id=post_id)
+        user = User.objects.get(id=post.author.id)
+
+        post.upvotes = upvote
+        post.downvotes = downvote
+
+        user.karma += 1
+
+        user.save()
+        post.save()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
 

@@ -11,6 +11,7 @@ class User(AbstractUser):
     about_me = models.TextField(blank=True)
 
     background_color = models.CharField(max_length=6, default='F43F5E')
+    karma = models.IntegerField(default=0)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']

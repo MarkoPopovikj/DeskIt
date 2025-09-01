@@ -21,6 +21,4 @@ urlpatterns = [
     path('get_memberships/', GetMembershipsView.as_view(), name='get_memberships'),
     path('<int:community_id>/join/', JoinCommunityView.as_view(), name='join'),
     path('<int:community_id>/leave/', LeaveCommunityView.as_view(), name='leave'),
-
-
 ]

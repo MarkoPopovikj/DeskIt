@@ -6,7 +6,7 @@ from users.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'background_color', 'about_me', 'created_at')
+        fields = ('id', 'username', 'email', 'background_color', 'about_me', 'created_at', 'karma')
 
 class UserSimpleDataSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,4 +25,4 @@ class UserSimpleDataSerializer(serializers.ModelSerializer):
 class OtherUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'background_color', 'about_me', 'created_at')
+        fields = ('id', 'username', 'background_color', 'about_me', 'created_at', 'karma')

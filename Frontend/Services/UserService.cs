@@ -38,6 +38,9 @@ namespace Frontend.Services
 
         [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; set; }
+
+        [JsonPropertyName("karma")]
+        public int Karma { get; set; }
     }
 
     public class UserService
@@ -71,7 +74,8 @@ namespace Frontend.Services
                         BackgroundColor = responseContent?.BackgroundColor ?? "#FFFFFF",
                         Email = "",
                         AboutMe = responseContent?.AboutMe ?? "",
-                        CreatedAt = responseContent?.CreatedAt ?? DateTime.UtcNow
+                        CreatedAt = responseContent?.CreatedAt ?? DateTime.UtcNow,
+                        Karma = responseContent?.Karma ?? 0
                     };
 
                     return true;
