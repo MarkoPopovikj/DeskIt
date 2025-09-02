@@ -11,7 +11,7 @@ from posts.serializers import PostSerializer, CreatePostSerializer
 from users.models import User
 
 
-# Create your views here.
+# GET
 class GetAllPostsView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -20,37 +20,6 @@ class GetAllPostsView(APIView):
         serializer = PostSerializer(posts, many=True)
 
         return Response(serializer.data)
-
-class CreatePostView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def post(self, request):
-        serializer = CreatePostSerializer(data=request.data, context={'request': request})
-
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class DeletePostView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def delete(self, request, post_id):
-        try:
-            post = Post.objects.get(id=post_id)
-        except Community.DoesNotExist:
-            return Response({"error": "Community not found."}, status=status.HTTP_404_NOT_FOUND)
-
-        if request.user != post.author:
-            return Response(
-                {"error": "You do not have permission to delete this community."},
-                status=status.HTTP_403_FORBIDDEN
-            )
-
-        post.delete()
-
-        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class GetPostView(APIView):
     permission_classes = [IsAuthenticated]
@@ -83,6 +52,39 @@ class GetCommunityPostsView(APIView):
 
         return Response(serializer.data)
 
+#CRUD
+class CreatePostView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = CreatePostSerializer(data=request.data, context={'request': request})
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class DeletePostView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, post_id):
+        try:
+            post = Post.objects.get(id=post_id)
+        except Community.DoesNotExist:
+            return Response({"error": "Community not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        if request.user != post.author:
+            return Response(
+                {"error": "You do not have permission to delete this community."},
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+        post.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+#VOTE
 class GetVotePostsView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -162,4 +164,3 @@ class VotePostView(APIView):
             post.save()
 
             return Response({"success": True}, status=status.HTTP_200_OK)
-

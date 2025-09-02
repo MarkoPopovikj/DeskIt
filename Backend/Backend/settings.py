@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'auth_form',
     'communities',
     'posts',
+    'comments',
     'users',
     'rest_framework',
     'rest_framework_simplejwt',

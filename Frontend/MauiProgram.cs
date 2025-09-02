@@ -39,6 +39,7 @@ namespace Frontend
             builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<CommunityService>();
             builder.Services.AddScoped<PostService>();
+            builder.Services.AddScoped<CommentService>();
 
             return builder.Build();
         }

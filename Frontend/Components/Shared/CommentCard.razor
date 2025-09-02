@@ -1,41 +1,55 @@
 ﻿@using Frontend.Components.Shared
+@using Frontend.Models
+@using Frontend.Services
 
-<div class="flex space-x-3">
-    <img class="h-8 w-8 rounded-full mt-1"
-         src="https://placehold.co/32x32/16A34A/FFFFFF?text=A"
-         alt="avatar" />
-    <div class="flex-1">
-        <p class="text-sm">
-            <a href="user_profile.html" class="font-bold hover:underline">u/angular_dev</a>
-            <span class="text-gray-500">• 3 hours ago</span>
-        </p>
-        <p class="text-gray-800 mt-1">
-            For me, it was understanding dependency injection in Angular.
-            Suddenly the whole architecture made sense.
-        </p>
-        <div class="flex items-center space-x-3 mt-2 text-xs text-gray-500 font-semibold">
-            <button class="toggle-replies-btn font-bold pr-1 hover:underline"
-                    title="Collapse thread">
-                [–]
-            </button>
-            <button class="vote-btn p-1">
-                <svg class="h-4 w-4"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke="currentColor">
-                    <path d="M5 15l7-7 7 7" />
-                </svg>
-            </button><span class="font-bold text-gray-700">88</span><button class="vote-btn p-1">
-                <svg class="h-4 w-4"
-                     fill="none"
-                     viewBox="0 0 24 24"
-                     stroke="currentColor">
-                    <path d="M19 9l-7 7-7-7" />
-                </svg>
-            </button><button class="hover:underline">Reply</button>
+@inject UserService UserService
+
+<div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+    <div class="flex space-x-3">
+        <img class="h-8 w-8 rounded-full mt-1" src="@($"https://placehold.co/32x32/{AuthorUser.BackgroundColor}/FFFFFF?text={AuthorUser.Username.ToString().ToUpper()[0]}")" alt="avatar">
+        <div class="flex-1">
+            <p class="text-sm">
+                <a href="#" class="font-bold text-gray-900 hover:underline">u/@Comment.AuthorName</a>
+                <span class="text-gray-500">• @Comment.TimeAgo</span>
+            </p>
+            <p class="text-gray-800 mt-1">
+                @Comment.Content
+            </p>
+            <div class="flex items-center space-x-3 mt-2 text-xs text-gray-500 font-semibold">
+                <button class="flex items-center space-x-1 p-1 rounded-md hover:bg-gray-100">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2.5" d="M5 15l7-7 7 7" /></svg>
+                </button>
+                <span class="font-bold text-gray-700">@Comment.FormattedUpvotes</span>
+                <button class="flex items-center space-x-1 p-1 rounded-md hover:bg-gray-100">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2.5" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+            </div>
         </div>
-
-		<CommentReplyCardHolder />
     </div>
 </div>
+
+@code{
+    [Parameter, EditorRequired]
+    public CommentModel Comment { get; set; }
+
+    private UserModel AuthorUser => UserService.SelectedUser;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CheckUserExists();
+
+		StateHasChanged();
+    }
+
+    private async Task CheckUserExists()
+    {
+        bool result = await UserService.GetUserAsync(Comment.AuthorId);
+
+        if (!result)
+        {
+            AuthorUser = new UserModel();
+            return;
+        }
+    }
+}
 

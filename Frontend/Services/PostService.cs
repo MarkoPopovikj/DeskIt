@@ -82,6 +82,7 @@ namespace Frontend.Services
             {
                 var httpClient = _httpClientFactory.CreateClient("WebAPI");
                 var response = await httpClient.GetAsync($"post/{postId}/get/");
+
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadFromJsonAsync<PostResponse>();
