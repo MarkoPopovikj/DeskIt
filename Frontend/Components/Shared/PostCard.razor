@@ -1,24 +1,27 @@
 ﻿@using Frontend.Models
 @using Frontend.Services
+@using System.Diagnostics
 
 @inject AuthService AuthService
+@inject PostService PostService
+@inject CommunityService CommunityService
 @inject NavigationManager NavigationManager
 
 @if (Post != null)
 {
     <article class="flex bg-white border border-gray-200 rounded-lg shadow-sm hover:border-gray-300 transition-all duration-200">
         <div class="flex flex-col items-center p-2 bg-gray-50 rounded-l-lg">
-            <button class="vote-btn p-1 rounded-md hover:bg-gray-200 text-gray-500 hover:text-orange-500">
+            <button @onclick=UpvotePostClick class="vote-btn p-1 rounded-md hover:bg-gray-200 text-gray-500 hover:text-orange-500 @(_currentVote == VoteStatus.Upvoted ? "upvoted" : "")">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" /></svg>
             </button>
             <span class="text-sm font-bold my-1 text-gray-700">@Post.FormattedUpvotes</span>
-            <button class="vote-btn p-1 rounded-md hover:bg-gray-200 text-gray-500 hover:text-blue-500">
+            <button @onclick=DownvotePostClick class="vote-btn p-1 rounded-md hover:bg-gray-200 text-gray-500 hover:text-blue-500 @(_currentVote == VoteStatus.Downvoted ? "downvoted" : "")">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
             </button>
         </div>
         <div class="p-4 flex-1">
             <div class="text-xs text-gray-500 mb-2">
-                <a href="/community/@Post.CommunityName" class="font-bold text-gray-800 hover:underline">d/@Post.CommunityName</a>
+                <a @onclick="GoToCommunity" class="cursor-pointer font-bold text-gray-800 hover:underline">d/@Post.CommunityName</a>
                 <span class="mx-1">•</span>
                 <span>Posted by <a @onclick="GoToUser" class="cursor-pointer hover:underline">u/@Post.AuthorName</a> @Post.TimeAgo</span>
             </div>
@@ -58,9 +61,40 @@
     </article>
 }
 
+<style>
+    .vote-btn.upvoted svg {
+    fill: #fd4500;
+    stroke: #fd4500;
+    }
+
+    .vote-btn.downvoted svg {
+    fill: #3b82f6;
+    stroke: #3b82f6;
+    }
+</style>
+
 @code {
     [Parameter, EditorRequired]
     public PostModel? Post { get; set; }
+
+    [Parameter, EditorRequired]
+    public int StartingVote { get; set; }
+
+    private enum VoteStatus { None, Upvoted, Downvoted }
+    private VoteStatus _currentVote;
+    private int action { get; set; } = -2;
+
+    protected override void OnInitialized()
+    {
+        _currentVote = StartingVote switch
+        {
+            1 => VoteStatus.Upvoted,
+            -1 => VoteStatus.Downvoted,
+            _ => VoteStatus.None
+        };
+
+        StateHasChanged();
+    }
 
     private async Task GoToUser()
     {
@@ -72,5 +106,78 @@
         {
             NavigationManager.NavigateTo($"user/{Post.AuthorName}");
         }
+    }
+
+    private async Task GoToCommunity()
+    {
+        bool result = await CommunityService.GetPostCommunityAsync(Post.CommunityName);
+
+        if (!result)
+        {
+            return;
+        }
+
+        NavigationManager.NavigateTo($"community/{CommunityService.CurrentPostCommunity.Id}");
+    }
+
+    private async Task CheckUpvoteDownvote()
+    {
+        StateHasChanged();
+
+        bool result = await PostService.UpdatePostUpvotesDownvotesAsync(Post.Id, action);
+
+        if (!result)
+        {
+            return;
+        }
+    }
+
+    private async Task UpvotePostClick()
+    {
+        if (_currentVote == VoteStatus.Upvoted)
+        {
+            Post.UpVotes--;
+            _currentVote = VoteStatus.None;
+        }
+
+        else if (_currentVote == VoteStatus.Downvoted)
+        {
+            Post.DownVotes--;
+            Post.UpVotes++;
+            _currentVote = VoteStatus.Upvoted;
+        }
+        else
+        {
+            Post.UpVotes++;
+            _currentVote = VoteStatus.Upvoted;
+        }
+
+        action = 1;
+
+        await CheckUpvoteDownvote();
+    }
+
+    private async Task DownvotePostClick()
+    {
+        if (_currentVote == VoteStatus.Downvoted)
+        {
+            Post.DownVotes--;
+            _currentVote = VoteStatus.None;
+        }
+        else if (_currentVote == VoteStatus.Upvoted)
+        {
+            Post.UpVotes--;
+            Post.DownVotes++;
+            _currentVote = VoteStatus.Downvoted;
+        }
+        else
+        {
+            Post.DownVotes++;
+            _currentVote = VoteStatus.Downvoted;
+        }
+
+        action = -1;
+
+        await CheckUpvoteDownvote();
     }
 }

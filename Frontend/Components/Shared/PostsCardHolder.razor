@@ -4,11 +4,29 @@
 <div class="flex flex-col space-y-4">
 	@foreach(PostModel post in Posts)
 	{
-		<PostCard Post="post" />
+		<PostCard Post="post" StartingVote="@GetVoteForPost(post.Id)" />
 	}
 </div>
 
 @code {
 	[Parameter, EditorRequired]
 	public List<PostModel> Posts { get; set; }
+
+	[Parameter, EditorRequired]
+	public Dictionary<int, int> UserVotes { get; set; }
+
+	private int GetVoteForPost(int postId)
+	{
+		foreach(KeyValuePair<int,int> votePair in UserVotes)
+		{
+			if(votePair.Key == postId)
+			{
+				Console.WriteLine(votePair.Key);
+				Console.WriteLine(votePair.Value);
+				return votePair.Value;
+			}
+		}
+
+		return 0;
+	}
 }

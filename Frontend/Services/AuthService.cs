@@ -74,6 +74,44 @@ namespace Frontend.Services
             }
         }
 
+        public async Task<bool> TryRefreshTokenAsync()
+        {
+            var refreshToken = await SecureStorage.GetAsync(TokenConstants.RefreshToken);
+            if (string.IsNullOrEmpty(refreshToken))
+            {
+                return false;
+            }
+
+            try
+            {
+                var request = new { refresh = refreshToken };
+                var content = new StringContent(JsonSerializer.Serialize(request), Encoding.UTF8, "application/json");
+
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.PostAsync("auth/refresh/", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    var tokenResponse = JsonSerializer.Deserialize<AuthResponse>(responseContent);
+
+                    await SecureStorage.SetAsync(TokenConstants.AccessToken, tokenResponse.Access);
+                    await InitializeAsync();
+
+                    return true;
+                }
+                else
+                {
+                    await LogoutAsync();
+                    return false;
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine($"Token refresh error: {ex.Message}");
+                return false;
+            }
+        }
+
         public async Task LoadUser(string token)
         {
             try

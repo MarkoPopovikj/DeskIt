@@ -23,11 +23,12 @@ namespace Frontend.Models
         {
             get
             {
-                if (UpVotes >= 1000)
+                int number = UpVotes - DownVotes;
+                if (number >= 1000)
                 {
-                    return $"{((double)UpVotes / 1000):0.0}k";
+                    return $"{((double)number / 1000):0.0}k";
                 }
-                return UpVotes.ToString();
+                return number.ToString();
             }
         }
 

@@ -121,7 +121,7 @@ else
                 {
                     @if (UserPosts != null && UserPosts.Count > 0)
                     {
-                        <PostsCardHolder Posts="UserPosts" />
+                        <PostsCardHolder Posts="UserPosts" UserVotes="UserVotes" />
                     }
                     else
                     {
@@ -175,6 +175,7 @@ else
 @code {
     private UserModel CurrentUser => AuthService.CurrentUser;
 	private List<PostModel> UserPosts => PostService.UserPostList;
+    private Dictionary<int, int> UserVotes => PostService.UserPostVotes;
 	private List<CommunitySimpleModel> UserCommunities => CommunityService.UserCommunityList;
 
     private bool _isLoading { get; set; }

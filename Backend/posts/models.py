@@ -19,6 +19,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=100)
     content = models.TextField(blank=True)
+
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
     comments_count = models.IntegerField(default=0)
@@ -29,3 +30,15 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class PostVote(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    voter = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    vote_type = models.IntegerField(default=0) # 0 = nisto, 1 = upvote, -1 = downvote
+
+    class Meta:
+        unique_together = ('post', 'voter')
+
+    def __str__(self):
+        return self.post.title

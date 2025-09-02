@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 
 import posts
 from communities.models import Community
-from posts.models import Post
+from posts.models import Post, PostVote
 from posts.serializers import PostSerializer, CreatePostSerializer
 from users.models import User
 
@@ -16,7 +16,7 @@ class GetAllPostsView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        posts = Post.objects.all()
+        posts = Post.objects.all().order_by('-created_at')
         serializer = PostSerializer(posts, many=True)
 
         return Response(serializer.data)
@@ -83,20 +83,83 @@ class GetCommunityPostsView(APIView):
 
         return Response(serializer.data)
 
-class UpvoteDownvotePostView(APIView):
+class GetVotePostsView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def put(self, request, post_id, upvote, downvote):
-        post = Post.objects.get(id=post_id)
-        user = User.objects.get(id=post.author.id)
+    def get(self, request):
+        user = request.user
+        post_votes = PostVote.objects.filter(voter = user).values('post_id', 'vote_type')
 
-        post.upvotes = upvote
-        post.downvotes = downvote
+        return Response(post_votes)
 
-        user.karma += 1
+class VotePostView(APIView):
+    permission_classes = [IsAuthenticated]
 
-        user.save()
-        post.save()
+    def post(self, request, post_id, action):
+        post = get_object_or_404(Post, id=post_id)
+        author = User.objects.get(id=post.author.id)
+        user = request.user
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        post_vote = PostVote.objects.filter(post=post, voter=user)
+
+        action = int(action)
+
+        if not post_vote.exists():
+            post_vote = PostVote.objects.create(
+                post=post,
+                voter=user,
+                vote_type=action
+            )
+
+            if action == 1:
+                post.upvotes += 1
+            else:
+                post.downvotes += 1
+
+            author.karma += 1
+
+            author.save()
+            post_vote.save()
+            post.save()
+
+            return Response({"success": True}, status=status.HTTP_200_OK)
+        else:
+            post_vote = PostVote.objects.get(post=post, voter=user)
+
+            if post_vote.vote_type == 1: # bilo upvoted
+                if action == 1: # sega pak = go vadi upvote
+                    post.upvotes -= 1
+
+                    post_vote.vote_type = 0
+                elif action == -1:  # klika downvote = upvote -= 1, downvote += 1
+                    post.downvotes += 1
+                    post.upvotes -= 1
+
+                    post_vote.vote_type = action
+
+            elif post_vote.vote_type == -1: # bilo downvoted
+                if action == -1: #pak downvote = go trga
+                    post.downvotes -= 1
+
+                    post_vote.vote_type = 0
+                elif action == 1: #upvote = downvote -= 1, upvote += 1
+                    post.downvotes -= 1
+                    post.upvotes += 1
+
+                    post_vote.vote_type = action
+
+            else: # 0
+                if action == 1:
+                    post.upvotes += 1
+                    post_vote.vote_type = 1
+
+                else:
+                    post.downvotes += 1
+                    post_vote.vote_type = -1
+
+            user.save()
+            post_vote.save()
+            post.save()
+
+            return Response({"success": True}, status=status.HTTP_200_OK)
 

@@ -43,18 +43,18 @@
                     </button>
                     @if (isProfileDropdownOpen)
                     {
-                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl z-30 py-1">
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl z-30 py-1">
                             <a href="profile" @onclick="ToggleProfileDropdown" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                                <span class="font-semibold block">u/@(AuthService.CurrentUser?.Username ?? "currentUser")</span>
-                                    <span class="text-xs text-gray-500">Profile</span>
-                                </a>
-                                <div class="border-t border-gray-100 my-1"></div>
+                                <span class="font-semibold block">u/@(AuthService.CurrentUser?.Username ?? "currentUser")</span>
+                                <span class="text-xs text-gray-500">Profile</span>
+                            </a>
+                            <div class="border-t border-gray-100 my-1"></div>
 
-                                <!-- Logout Button -->
-                                <button @onclick="HandleLogout" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                    Logout
-                                </button>
-                            </div>
+                            <!-- Logout Button -->
+                            <button @onclick="HandleLogout" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Logout
+                            </button>
+                        </div>
                     }
                 </div>
             </div>
@@ -71,38 +71,47 @@
 
         <!-- Scrollable content area -->
         <main class="flex-1 overflow-y-auto custom-scrollbar p-6">
-            @Body
+            @if (_isInitialized)
+            {
+                @Body
+            }
+            else
+            {
+                <Loading />
+            }
+
         </main>
     </div>
 </div>
 
 <BlazoredToasts Position="ToastPosition.BottomCenter"
-                Timeout="5"
-                IconType="IconType.FontAwesome"
-                SuccessClass="success-toast-override"
-                SuccessIcon="fa fa-thumbs-up"
-                ErrorIcon="fa fa-bug" />
+Timeout="5"
+IconType="IconType.FontAwesome"
+SuccessClass="success-toast-override"
+SuccessIcon="fa fa-thumbs-up"
+ErrorIcon="fa fa-bug" />
 
 <style>
     .custom-scrollbar::-webkit-scrollbar {
-        width: 8px;
+    width: 8px;
     }
 
     .custom-scrollbar::-webkit-scrollbar-track {
-        background: #f1f1f1;
+    background: #f1f1f1;
     }
 
     .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #d1d5db;
-        border-radius: 10px;
+    background: #d1d5db;
+    border-radius: 10px;
     }
 
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #9ca3af;
-        }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+    }
 </style>
 
 @code {
+    private bool _isInitialized = false;
     private bool isProfileDropdownOpen = false;
     private bool isSidebarOpen = false;
 
@@ -110,12 +119,21 @@
     {
         AuthService.OnAuthStateChanged += StateHasChanged;
 
-        var token = await SecureStorage.GetAsync(TokenConstants.AccessToken);
+		await CheckSession();
+    }
 
-        if (string.IsNullOrEmpty(token))
+    private async Task CheckSession()
+    {
+        bool result = await AuthService.TryRefreshTokenAsync();
+
+        if (!result)
         {
             NavigationManager.NavigateTo("/login");
+            return;
         }
+
+		_isInitialized = true;
+		StateHasChanged();
     }
 
     private string SidebarCssClass => new CssBuilder("fixed top-0 left-0 z-40 h-full w-72 p-4 transform transition-transform duration-300 ease-in-out bg-white lg:bg-white ![important] lg:relative lg:translate-x-0 lg:p-0 lg:py-6 flex flex-col")

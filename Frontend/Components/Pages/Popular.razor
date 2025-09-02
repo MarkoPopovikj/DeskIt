@@ -29,7 +29,10 @@ else
 
                 @if (PostList != null && PostList.Count > 0)
                 {
-                    <PostsCardHolder Posts="@PostList" />
+                    @if(UserVotes != null)
+                    {
+                        <PostsCardHolder Posts="@PostList" UserVotes="@UserVotes" />
+                    }
                 }
                 else
                 {
@@ -47,7 +50,7 @@ else
                             Create your story of the day and connect with like-minded people
                         </p>
                         <button class="w-full px-4 py-2 bg-white text-blue-600 rounded-lg font-medium text-sm hover:bg-gray-50 transition-colors"
-                                @onclick="GoToCreatePost">
+                        @onclick="GoToCreatePost">
                             Get Started
                         </button>
                     </div>
@@ -61,7 +64,8 @@ else
 
 
 @code {
-	private List<PostModel> PostList => PostService.PostList;
+    private List<PostModel> PostList => PostService.PostList;
+    private Dictionary<int, int> UserVotes => PostService.UserPostVotes;
 
     private bool _isLoading { get; set; }
     private string _errorMessage { get; set; } = null;

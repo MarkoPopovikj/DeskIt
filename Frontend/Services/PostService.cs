@@ -12,6 +12,15 @@ using static Frontend.Components.Pages.CreatePost;
 
 namespace Frontend.Services
 {
+    public class PostVotesResponse
+    {
+        [JsonPropertyName("post_id")]
+        public int PostId { get; set; }
+
+        [JsonPropertyName("vote_type")]
+        public int VoteValue { get; set; }
+    }
+
     public class PostResponse
     {
         [JsonPropertyName("id")]
@@ -48,13 +57,11 @@ namespace Frontend.Services
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
+        public Dictionary<int,int> UserPostVotes { get; private set; }
         public PostModel CurrentPost { get; set; }
-
         public List<PostModel> PostList { get; set; }
-
         // Za 1 user
         public List<PostModel> UserPostList { get; private set; }
-
         // Za 1 community
         public List<PostModel> CommunityPostList { get; private set; }
 
@@ -66,6 +73,7 @@ namespace Frontend.Services
             UserPostList = new List<PostModel>();
             CommunityPostList = new List<PostModel>();
             CurrentPost = new PostModel();
+            UserPostVotes = new Dictionary<int, int>();
         }
 
         public async Task<bool> GetPostAsync(int postId)
@@ -134,10 +142,10 @@ namespace Frontend.Services
                             ImageUrl = postResponse.ImageUrl
                         };
 
-                        Debug.WriteLine(newPost.Title);
-
                         PostList.Add(newPost);
                     }
+
+                    await GetUsesPostVotesAsync();
 
                     return true;
                 }
@@ -185,6 +193,8 @@ namespace Frontend.Services
                         UserPostList.Add(newPost);
                     }
 
+                    await GetUsesPostVotesAsync();
+
                     return true;
                 }
 
@@ -229,6 +239,8 @@ namespace Frontend.Services
                         CommunityPostList.Add(newPost);
                     }
 
+                    await GetUsesPostVotesAsync();
+
                     return true;
                 }
 
@@ -265,12 +277,14 @@ namespace Frontend.Services
             }
         }
 
-        public async Task<bool> UpdatePostUpvotesDownvotesAsync(int postid, int upvotes, int downvotes)
+        public async Task<bool> UpdatePostUpvotesDownvotesAsync(int postId, int action)
         {
+            UserPostVotes[postId] = action;
+
             try
             {
                 var httpClient = _httpClientFactory.CreateClient("WebAPI");
-                var response = await httpClient.PutAsync($"post/{postid}/{upvotes}/{downvotes}/upvote_downvote_post/", null);
+                var response = await httpClient.PostAsync($"post/{postId}/{action.ToString()}/vote/", null);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -281,6 +295,34 @@ namespace Frontend.Services
             }catch(Exception ex)
             {
                 Debug.WriteLine($"Error updating post: {ex.Message}");
+                return false;
+            }
+        }
+
+        private async Task<bool> GetUsesPostVotesAsync()
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.GetAsync("post/get_user_votes/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadFromJsonAsync<List<PostVotesResponse>>();
+
+                    if (responseContent != null)
+                    {
+                        UserPostVotes = responseContent.ToDictionary(vote => vote.PostId, vote => vote.VoteValue);
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error fetching topics: {ex.Message}");
                 return false;
             }
         }

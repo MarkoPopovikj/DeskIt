@@ -2,6 +2,10 @@
 
 @using Frontend.Components.Shared
 @using Frontend.Models
+@using Frontend.Services
+
+@inject PostService PostService
+@inject Blazored.Toast.Services.IToastService ToastService
 
 <div class="max-w-7xl mx-auto px-2 pb-20">
     <div class="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-4">
@@ -44,6 +48,36 @@
 
     protected override async Task OnInitializedAsync()
     {
-        
+        await ForceReload();
+    }
+
+    private async Task ForceReload()
+    {
+        _isLoading = true;
+        _errorMessage = null;
+
+        await CheckPostsExist();
+
+        if(_errorCounter == 0)
+        {
+            _isLoading = false;
+        }
+        else
+        {
+            _errorMessage = "Something went wrong";
+            ToastService.ShowError(_errorMessage);
+        }
+
+        StateHasChanged();
+    }
+
+    private async Task CheckPostsExist()
+    {
+        bool result = await PostService.GetPostsAsync();
+
+        if (!result)
+        {
+            _errorCounter++;
+        }
     }
 }
