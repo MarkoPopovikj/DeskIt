@@ -199,6 +199,8 @@ namespace Frontend.Services
                 {
                     var responseContent = await response.Content.ReadFromJsonAsync<List<CommunitySimpleResponse>>();
 
+                    CommunityDictionary.Clear();
+
                     foreach (KeyValuePair<string, string> topicPair in TopicDictionary)
                     {
                         CommunityDictionary[topicPair.Value] = new List<CommunitySimpleModel>();
@@ -317,6 +319,29 @@ namespace Frontend.Services
             {
                 Debug.WriteLine($"Error updating community: {ex.Message}");
                 return null;
+            }
+        }
+
+        public async Task<bool> DeleteCommunityAsync(int communityId)
+        {
+            if (communityId == -1)
+            {
+                return false;
+            }
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.DeleteAsync($"community/{communityId}/delete/");
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error deleting community: {ex.Message}");
+                return false;
             }
         }
 

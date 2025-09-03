@@ -17,13 +17,16 @@
 
 	private int GetVoteForPost(int postId)
 	{
-		foreach(KeyValuePair<int,int> votePair in UserVotes)
+		if(UserVotes != null)
 		{
-			if(votePair.Key == postId)
+			foreach (KeyValuePair<int, int> votePair in UserVotes)
 			{
-				Console.WriteLine(votePair.Key);
-				Console.WriteLine(votePair.Value);
-				return votePair.Value;
+				if (votePair.Key == postId)
+				{
+					Console.WriteLine(votePair.Key);
+					Console.WriteLine(votePair.Value);
+					return votePair.Value;
+				}
 			}
 		}
 

@@ -5,44 +5,70 @@
 @using Frontend.Services
 
 @inject PostService PostService
+@inject CommunityService CommunityService
+@inject AuthService AuthService
 @inject Blazored.Toast.Services.IToastService ToastService
 
-<div class="max-w-7xl mx-auto px-2 pb-20">
-    <div class="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-4">
-        <div>
-            <div class="mb-6 text-center py-5">
-                <h1 class="text-3xl font-extrabold text-gray-900 mb-2 bg-gradient-to-r from-blue-800 to-blue-400 bg-clip-text text-transparent">
-                    🔥 Home
-                </h1>
-                <p class="text-base text-gray-600">
-                    Discover what's new in your communities
-                </p>
-            </div>
-
-            <NothingMadeCard Query="Oops... Seems there is nothing here" />
-        </div>
-
-        <aside class="hidden xl:block py-6">
-            <div class="sticky top-6">
-                <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
-                    <h3 class="text-lg font-bold mb-2">Create Your Own Space</h3>
-                    <p class="text-sm text-blue-100 mb-4">
-                        Have an idea for a community? Build your own and connect with
-                        like-minded people.
+@if (_isLoading)
+{
+    <Loading />
+}
+else
+{
+    <div class="max-w-7xl mx-auto px-2 pb-20">
+        <div class="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-4">
+            <div>
+                <div class="mb-6 text-center py-5">
+                    <h1 class="text-3xl font-extrabold text-gray-900 mb-2 bg-gradient-to-r from-blue-800 to-blue-400 bg-clip-text text-transparent">
+                        🔥 Home
+                    </h1>
+                    <p class="text-base text-gray-600">
+                        Discover what's new in your communities
                     </p>
-                    <a href="create_community"
-                    class="block w-full px-4 py-2 bg-white text-blue-600 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-colors text-center">
-                        Create Community
-                    </a>
                 </div>
-            </div>
-        </aside>
 
-    </div> 
-</div>
+                @if (FilteredPosts != null && FilteredPosts.Count > 0)
+                {
+                    <PostsCardHolder Posts="FilteredPosts" UserVotes="UserVotes" />
+                }
+                else
+                {
+
+                    <NothingMadeCard Query="Oops... Seems like you are not part of any communities" />
+                }
+
+            </div>
+
+            <aside class="hidden xl:block py-6">
+                <div class="sticky top-6">
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+                        <h3 class="text-lg font-bold mb-2">Create Your Own Space</h3>
+                        <p class="text-sm text-blue-100 mb-4">
+                            Have an idea for a community? Build your own and connect with
+                            like-minded people.
+                        </p>
+                        <a href="create_community"
+                           class="block w-full px-4 py-2 bg-white text-blue-600 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-colors text-center">
+                            Create Community
+                        </a>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+}
+
 
 @code{
-    private bool _isLoading { get; set; }
+    private UserModel CurrentUser => AuthService.CurrentUser;
+    private List<PostModel> AllPosts => PostService.PostList;
+    private List<CommunitySimpleModel> UserSimpleCommunities => CommunityService.UserCommunityList;
+    private Dictionary<int, int> UserVotes => PostService.UserPostVotes;
+
+    public List<PostModel> FilteredPosts { get; set; } = new List<PostModel>();
+
+    private bool _isLoading { get; set; } = true;
     private string _errorMessage { get; set; } = null;
     private int _errorCounter = 0;
 
@@ -57,6 +83,9 @@
         _errorMessage = null;
 
         await CheckPostsExist();
+        await GetUserCommunities();
+
+        FilterPosts();
 
         if(_errorCounter == 0)
         {
@@ -79,5 +108,32 @@
         {
             _errorCounter++;
         }
+    }
+
+    private async Task GetUserCommunities()
+    {
+        bool result = await CommunityService.GetUserSimpleCommunitiesAsync(CurrentUser.UserId);
+
+        if (!result)
+        {
+            _errorCounter++;
+        }
+    }
+
+    private void FilterPosts()
+    {
+        if (AllPosts is null || UserSimpleCommunities is null)
+        {
+            FilteredPosts = new List<PostModel>();
+            return;
+        }
+
+        var joinedCommunityNames = UserSimpleCommunities
+                                   .Select(c => c.Name)
+                                   .ToHashSet();
+
+        FilteredPosts = AllPosts
+                        .Where(post => joinedCommunityNames.Contains(post.CommunityName))
+                        .ToList();
     }
 }

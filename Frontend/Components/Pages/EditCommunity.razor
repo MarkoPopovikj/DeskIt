@@ -9,6 +9,7 @@
 @inject CommunityService CommunityService
 @inject Blazored.Toast.Services.IToastService ToastService
 @inject IJSRuntime JSRuntime
+@inject NavigationManager NagivationManager
 
 @if (_isLoading)
 {
@@ -99,8 +100,10 @@ else
                         </div>
 
                         <div class="flex justify-end pt-4 border-t">
-                            <a href="explore" class="bg-white py-2 px-4 border border-gray-300 rounded-full shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">Cancel</a>
-                            <button type="submit" class="ml-3 inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-bold rounded-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                            <button @onclick="DeleteCommunity" type="button" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-full text-white bg-red-600 hover:bg-red-700 focus:outline-none mr-auto">
+                                Delete Community
+                            </button>
+                            <button type="submit" class="ml-3 inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
                                 Confirm
                             </button>
                         </div>
@@ -200,12 +203,12 @@ else
             return;
         }
 
-		bool result = await CommunityService.GetTopicsAsync();
+        bool result = await CommunityService.GetTopicsAsync();
 
-		if (!result)
-		{
-			_errorCounter++;
-		}
+        if (!result)
+        {
+            _errorCounter++;
+        }
     }
 
     private void ToggleColorMenu() => isColorMenuOpen = !isColorMenuOpen;
@@ -231,12 +234,12 @@ else
 
     public async Task HandleEditCommunity()
     {
-		if (CheckAllSame())
-		{
+        if (CheckAllSame())
+        {
             _errorMessage = "Nothing has changed";
             ToastService.ShowError(_errorMessage);
-			return;
-		}
+            return;
+        }
 
         _isLoading = true;
         _errorMessage = null;
@@ -263,6 +266,19 @@ else
     private async Task GoBack()
     {
         await JSRuntime.InvokeVoidAsync("history.back");
+    }
+
+    private async Task DeleteCommunity()
+    {
+        bool result = await CommunityService.DeleteCommunityAsync(EditingCommunity.Id ?? -1);
+
+        if (!result)
+        {
+            _errorMessage = "Something went wrong";
+			ToastService.ShowError(_errorMessage);
+        }
+
+		NagivationManager.NavigateTo("/");
     }
 
     public class EditCommunityModel
