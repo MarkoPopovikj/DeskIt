@@ -34,3 +34,14 @@ class CreateCommentSerializer(serializers.ModelSerializer):
         )
 
         return comment
+
+class UpdateCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['content']
+
+    def update(self, instance, validated_data):
+        instance.content = validated_data.pop('content')
+        instance.save()
+
+        return instance

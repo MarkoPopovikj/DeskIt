@@ -1,55 +1,231 @@
 ﻿@using Frontend.Components.Shared
 @using Frontend.Models
 @using Frontend.Services
+@using System.ComponentModel.DataAnnotations
+@using System.Text.Json.Serialization
 
 @inject UserService UserService
+@inject AuthService AuthService
+@inject CommentService CommentService
 
-<div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-    <div class="flex space-x-3">
-        <img class="h-8 w-8 rounded-full mt-1" src="@($"https://placehold.co/32x32/{AuthorUser.BackgroundColor}/FFFFFF?text={AuthorUser.Username.ToString().ToUpper()[0]}")" alt="avatar">
-        <div class="flex-1">
-            <p class="text-sm">
-                <a href="#" class="font-bold text-gray-900 hover:underline">u/@Comment.AuthorName</a>
-                <span class="text-gray-500">• @Comment.TimeAgo</span>
-            </p>
+<div class="flex space-x-3">
+    <img class="h-8 w-8 rounded-full mt-1" src="@($"https://placehold.co/32x32/{User.BackgroundColor}/FFFFFF?text={User.Username.ToString().ToUpper()[0]}")" alt="avatar">
+
+    <div class="flex-1">
+        <p class="text-sm">
+            @if (User.UserId == CurrentUser.UserId)
+            {
+                <a href="profile" class="font-bold text-gray-900 hover:underline">u/@Comment.AuthorName (You)</a>
+            }
+            else
+            {
+                <a href="user/@Comment.AuthorName" class="font-bold text-gray-900 hover:underline">u/@Comment.AuthorName</a>
+            }
+
+            <span class="text-gray-500"> • @Comment.TimeAgo</span>
+        </p>
+
+        @if (_isEditing)
+        {
+            <div class="mt-2">
+                <textarea @bind=_newContent class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" rows="3">@Comment.Content</textarea>
+                <div class="flex justify-end space-x-2 mt-2">
+                    <button @onclick="() => _isEditing = false" class="px-3 py-1 text-sm font-semibold text-gray-700 bg-gray-100 rounded-full hover:bg-gray-200">Cancel</button>
+                    <button @onclick="UpdateComment" class="px-3 py-1 text-sm font-semibold text-white bg-blue-600 rounded-full hover:bg-blue-700">Save Edits</button>
+                </div>
+            </div>
+        }
+        else
+        {
             <p class="text-gray-800 mt-1">
                 @Comment.Content
             </p>
-            <div class="flex items-center space-x-3 mt-2 text-xs text-gray-500 font-semibold">
-                <button class="flex items-center space-x-1 p-1 rounded-md hover:bg-gray-100">
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2.5" d="M5 15l7-7 7 7" /></svg>
-                </button>
-                <span class="font-bold text-gray-700">@Comment.FormattedUpvotes</span>
-                <button class="flex items-center space-x-1 p-1 rounded-md hover:bg-gray-100">
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2.5" d="M19 9l-7 7-7-7" /></svg>
-                </button>
-            </div>
+        }
+
+
+        <div class="flex items-center space-x-3 mt-2 text-xs text-gray-500 font-semibold">
+            <button @onclick="UpvoteCommentClick" class="vote-btn p-1 rounded-md text-gray-500 hover:text-orange-500 @(_currentVote == VoteStatus.Upvoted ? "upvoted" : "")">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2.5" d="M5 15l7-7 7 7" /></svg>
+            </button>
+            <span class="font-bold text-gray-700">@Comment.FormattedUpvotes</span>
+            <button @onclick="DownvoteCommentClick" class="vote-btn p-1 rounded-md text-gray-500 hover:text-blue-500 @(_currentVote == VoteStatus.Downvoted ? "downvoted" : "")">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-width="2.5" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+
+            @if (User.UserId == CurrentUser.UserId)
+            {
+                <div class="relative ml-auto">
+                    <button @onclick="() => _isMenuOpen = !_isMenuOpen" class="p-2 rounded-full hover:bg-gray-200">
+                        <svg class="h-4 w-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" /></svg>
+                    </button>
+
+                    @if (_isMenuOpen)
+                    {
+                        <div class="absolute right-0 mt-1 w-36 bg-white rounded-md shadow-lg border border-gray-200 z-10">
+                            <button @onclick="() => { _isEditing = true; _isMenuOpen = false; }" class="w-full flex items-center space-x-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left">
+                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L15.232 5.232z"></path></svg>
+                                <span>Edit Comment</span>
+                            </button>
+                            <button @onclick="DeleteComment" class="w-full flex items-center space-x-2 px-3 py-2 text-sm text-red-600 hover:bg-red-50 text-left">
+                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                <span>Delete Comment</span>
+                            </button>
+                        </div>
+                    }
+                </div>
+            }
         </div>
     </div>
 </div>
 
-@code{
+<style>
+    .vote-btn.upvoted svg {
+        fill: #fd4500;
+        stroke: #fd4500;
+    }
+
+    .vote-btn.downvoted svg {
+        fill: #3b82f6;
+        stroke: #3b82f6;
+    }
+</style>
+
+@code {
     [Parameter, EditorRequired]
     public CommentModel Comment { get; set; }
 
-    private UserModel AuthorUser => UserService.SelectedUser;
+    [Parameter, EditorRequired]
+    public UserModel User { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    [Parameter]
+    public EventCallback<int> OnCommentDeleted { get; set; }
+
+    [Parameter, EditorRequired]
+    public int StartingVote { get; set; }
+
+    private enum VoteStatus { None, Upvoted, Downvoted }
+    private VoteStatus _currentVote;
+    private int action { get; set; } = -2;
+
+    private UserModel CurrentUser => AuthService.CurrentUser;
+
+    private bool _isEditing = false;
+    private bool _isMenuOpen = false;
+    private string _newContent = "";
+    private int _commentId = -1;
+
+    protected override void OnParametersSet()
     {
-        await CheckUserExists();
-
-		StateHasChanged();
+        _newContent = Comment?.Content ?? "";
+        _commentId = Comment?.Id ?? -1;
     }
 
-    private async Task CheckUserExists()
+    protected override void OnInitialized()
     {
-        bool result = await UserService.GetUserAsync(Comment.AuthorId);
+        _currentVote = StartingVote switch
+        {
+            1 => VoteStatus.Upvoted,
+            -1 => VoteStatus.Downvoted,
+            _ => VoteStatus.None
+        };
+
+        StateHasChanged();
+    }
+
+    private async Task UpdateComment()
+    {
+        UpdateCommentModel newComment = new UpdateCommentModel
+			{
+				Content = _newContent
+			};
+
+        Comment.Content = _newContent;
+
+        bool result = await CommentService.UpdateCommentAsync(_commentId, newComment);
+        _isEditing = false;
 
         if (!result)
         {
-            AuthorUser = new UserModel();
             return;
         }
     }
-}
 
+    private async Task DeleteComment()
+    {
+        bool result = await CommentService.DeleteCommentAsync(_commentId);
+
+        if (!result)
+        {
+            return;
+        }
+
+        await OnCommentDeleted.InvokeAsync();
+    }
+
+    private async Task CheckUpvoteDownvote()
+    {
+        StateHasChanged();
+
+        bool result = await CommentService.UpdateCommentUpvotesDownvotesAsync(_commentId, action);
+
+        if (!result)
+        {
+            return;
+        }
+    }
+
+    private async Task UpvoteCommentClick()
+    {
+        if (_currentVote == VoteStatus.Upvoted)
+        {
+            Comment.UpVotes--;
+            _currentVote = VoteStatus.None;
+        }
+
+        else if (_currentVote == VoteStatus.Downvoted)
+        {
+            Comment.DownVotes--;
+            Comment.UpVotes++;
+            _currentVote = VoteStatus.Upvoted;
+        }
+        else
+        {
+            Comment.UpVotes++;
+            _currentVote = VoteStatus.Upvoted;
+        }
+
+        action = 1;
+
+        await CheckUpvoteDownvote();
+    }
+
+    private async Task DownvoteCommentClick()
+    {
+        if (_currentVote == VoteStatus.Downvoted)
+        {
+            Comment.DownVotes--;
+            _currentVote = VoteStatus.None;
+        }
+        else if (_currentVote == VoteStatus.Upvoted)
+        {
+            Comment.UpVotes--;
+            Comment.DownVotes++;
+            _currentVote = VoteStatus.Downvoted;
+        }
+        else
+        {
+            Comment.DownVotes++;
+            _currentVote = VoteStatus.Downvoted;
+        }
+
+        action = -1;
+
+        await CheckUpvoteDownvote();
+    }
+
+    public class UpdateCommentModel
+    {
+        [JsonPropertyName("content")]
+        public string Content { get; set; }
+    }
+}

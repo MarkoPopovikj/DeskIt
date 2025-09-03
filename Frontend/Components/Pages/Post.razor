@@ -76,7 +76,7 @@ else
                         <div class="text-sm text-gray-500 mb-2">
                             <span>
                                 Posted by
-                                <a href="user_profile.html" class="hover:underline">u/@CurrentPost.AuthorName</a>
+                                <a href="user/@CurrentPost.AuthorName" class="hover:underline">u/@CurrentPost.AuthorName</a>
                                 @CurrentPost.TimeAgo
                             </span>
                         </div>
@@ -116,7 +116,7 @@ else
                     <div class="p-4 border-t border-gray-200">
                         <p class="text-sm mb-2">
                             Comment as
-                            <a href="profile.html" class="text-blue-600 font-semibold">u/@CurrentUser.Username</a>
+                            <a href="profile" class="text-blue-600 font-semibold">u/@CurrentUser.Username</a>
                         </p>
                         <InputTextArea @bind-Value=_newComment.Content class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                         rows="4"
@@ -132,7 +132,15 @@ else
                     </div>
                 </EditForm>
 
-                <CommentCardHolder />
+                @if (CommentDictionary != null && CommentDictionary.Count > 0)
+                {
+                    <CommentCardHolder CommentDictionary="@CommentDictionary" OnCommentDeleted="@HandleDeleteComment" UserCommentVotes="@UserCommentVotes"/>
+                }
+                else
+                {
+                    <NothingMadeCard Query="No comments yet. Be the first to comment!" />
+                }
+
 
             </div>
         </main>
@@ -187,7 +195,8 @@ else
     private PostModel CurrentPost => PostService.CurrentPost;
     private Dictionary<int, int> UserVotes => PostService.UserPostVotes;
     private CommunitySimpleModel CurrentCommunity => CommunityService.CurrentPostCommunity;
-    private List<CommentModel> CommentList => CommentService.PostCommentsList;
+    private Dictionary<CommentModel, UserModel> CommentDictionary => CommentService.PostCommentsDictionary;
+    private Dictionary<int, int> UserCommentVotes => CommentService.UserCommentVotes;
 
     private bool _isLoading { get; set; }
     private string _errorMessage { get; set; } = null;
@@ -237,8 +246,6 @@ else
             _errorMessage = "Something went wrong";
             ToastService.ShowError(_errorMessage);
         }
-
-        StateHasChanged();
     }
 
     private async Task CheckPostExists()
@@ -276,7 +283,7 @@ else
 
     private async Task CheckCommentsExits()
     {
-        bool result = await CommunityService.GetCommunityAsync(CurrentPost.Id);
+        bool result = await CommentService.GetPostCommentsAsync(CurrentPost.Id);
 
         if (!result)
         {
@@ -351,7 +358,14 @@ else
             ToastService.ShowError(_errorMessage);
         }
 
+        await ForceReload();
+        _newComment = new();
         StateHasChanged();
+    }
+
+    private async Task HandleDeleteComment()
+    {
+        await ForceReload();
     }
 
     public class CreateCommentModel

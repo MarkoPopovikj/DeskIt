@@ -8,7 +8,7 @@ from users.models import User
 from users.serializers import UserSerializer, UserSimpleDataSerializer, OtherUserSerializer
 
 
-# Create your views here.
+# Get
 class GetUserView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -16,6 +16,27 @@ class GetUserView(APIView):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
 
+class GetOtherUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, username):
+        user = User.objects.get(username=username)
+        serializer = OtherUserSerializer(user)
+
+        return Response(serializer.data)
+
+class GetBulkUsersView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        usernames = request.data.get('usernames', [])
+
+        users = User.objects.filter(username__in=usernames)
+        serializer = OtherUserSerializer(users, many=True)
+
+        return Response(serializer.data)
+
+#Crud
 class UpdateSimpleDataView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -47,12 +68,3 @@ class UpdateUserPasswordView(APIView):
             "message": "User updated successfully!",
             "access_token": access_token
         })
-
-class GetOtherUserView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request, username):
-        user = User.objects.get(username=username)
-        serializer = OtherUserSerializer(user)
-
-        return Response(serializer.data)

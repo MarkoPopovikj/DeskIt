@@ -76,6 +76,43 @@ class CreateCommunityView(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class UpdateCommunityView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, community_id):
+        try:
+            community = Community.objects.get(id=community_id)
+        except Community.DoesNotExist:
+            return Response({"error": "Community not found."}, status = 404)
+
+        serializer = UpdateCommunitySerializer(data=request.data, instance=community)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class DeleteCommunityView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, community_id):
+        try:
+            community = Community.objects.get(id=community_id)
+        except Community.DoesNotExist:
+            return Response({"error": "Community not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        if request.user != community.author:
+            return Response(
+                {"error": "You do not have permission to delete this community."},
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+        community.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 class GetMembershipsView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -151,40 +188,4 @@ class LeaveCommunityView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-class UpdateCommunityView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def put(self, request, community_id):
-        try:
-            community = Community.objects.get(id=community_id)
-        except Community.DoesNotExist:
-            return Response({"error": "Community not found."}, status = 404)
-
-        serializer = UpdateCommunitySerializer(data=request.data, instance=community)
-
-        if serializer.is_valid():
-            serializer.save()
-
-            return Response(serializer.data)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class DeleteCommunityView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def delete(self, request, community_id):
-        try:
-            community = Community.objects.get(id=community_id)
-        except Community.DoesNotExist:
-            return Response({"error": "Community not found."}, status=status.HTTP_404_NOT_FOUND)
-
-        if request.user != community.author:
-            return Response(
-                {"error": "You do not have permission to delete this community."},
-                status=status.HTTP_403_FORBIDDEN
-            )
-
-        community.delete()
-
-        return Response(status=status.HTTP_204_NO_CONTENT)
 

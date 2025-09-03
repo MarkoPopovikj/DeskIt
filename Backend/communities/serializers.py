@@ -51,7 +51,6 @@ class CreateCommunitySerializer(serializers.ModelSerializer):
         return community
 
 class UpdateCommunitySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Community
         fields = ('name', 'description', 'topic', 'background_color')

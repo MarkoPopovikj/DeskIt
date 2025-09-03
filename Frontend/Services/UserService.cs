@@ -90,6 +90,48 @@ namespace Frontend.Services
             }
         }
 
+        public async Task<List<UserModel>>? GetBulkUsersAsync(List<string> names)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var payload = new { usernames = names };
+                var jsonPayload = JsonSerializer.Serialize(payload);
+                var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync("user/get_bulk_users/", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadFromJsonAsync<List<UserResponse>>();
+
+                    List<UserModel> users = new List<UserModel>();
+
+                    foreach(UserResponse u in responseContent)
+                    {
+                        users.Add(new UserModel
+                        {
+                            UserId = u.Id,
+                            Username = u.Username ?? "Unknown",
+                            BackgroundColor = u.BackgroundColor ?? "#FFFFFF",
+                            Email = "",
+                            AboutMe = u.AboutMe ?? "",
+                            CreatedAt = u.CreatedAt,
+                            Karma = u.Karma
+                        });
+                    }
+
+                    return users;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Get bulk users error: {ex.Message}");
+                return null;
+            }
+        }
+
         public async Task<string?> UpdateSimpleUserDataAsync(ProfileSimpleData profileSimpleData)
         {
             try

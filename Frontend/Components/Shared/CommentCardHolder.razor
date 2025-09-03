@@ -2,13 +2,37 @@
 @using Frontend.Models
 
 <div class="p-4 space-y-6">
-	@foreach (CommentModel comment in CommentsList)
+	@foreach (KeyValuePair<CommentModel, UserModel> commentPair in CommentDictionary)
 	{
-		<CommentCard Comment="@comment" />
+		<CommentCard 
+			Comment="@commentPair.Key" 
+			User="@commentPair.Value" 
+			OnCommentDeleted="@OnCommentDeleted" 
+			StartingVote="@GetVoteForPost(commentPair.Key.Id)"
+			/>
 	}
 </div>
 
 @code {
 	[Parameter, EditorRequired]
-	public List<CommentModel> CommentsList { get; set; }
+	public Dictionary<CommentModel, UserModel> CommentDictionary { get; set; }
+
+	[Parameter]
+	public EventCallback<int> OnCommentDeleted { get; set; }
+
+	[Parameter, EditorRequired]
+	public Dictionary<int, int> UserCommentVotes { get; set; }
+
+	private int GetVoteForPost(int commentId)
+	{
+		foreach (KeyValuePair<int, int> votePair in UserCommentVotes)
+		{
+			if (votePair.Key == commentId)
+			{
+				return votePair.Value;
+			}
+		}
+
+		return 0;
+	}
 }
