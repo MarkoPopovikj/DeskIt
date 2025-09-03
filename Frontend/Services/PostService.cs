@@ -9,6 +9,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Frontend.Models;
 using static Frontend.Components.Pages.CreatePost;
+using static Frontend.Components.Pages.EditPost;
 
 namespace Frontend.Services
 {
@@ -275,6 +276,48 @@ namespace Frontend.Services
             {
                 Debug.WriteLine($"Error creating community: {ex.Message}");
                 return "Something went wrong";
+            }
+        }
+
+        public async Task<bool> UpdatePostAsync(int postId, EditPostModel updatePost)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var jsonPayload = JsonSerializer.Serialize(updatePost);
+                var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+                var response = await httpClient.PutAsync($"post/{postId}/update/", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error updating post: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> DeletePostAsync(int postId)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("WebAPI");
+                var response = await httpClient.DeleteAsync($"post/{postId}/delete/");
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error deleting post: {ex.Message}");
+                return false;
             }
         }
 

@@ -54,6 +54,11 @@ class DeleteCommentView(APIView):
 
     def delete(self, request, comment_id):
         comment = get_object_or_404(Comment, id=comment_id)
+
+        post = get_object_or_404(Post, id=comment.post_id)
+        post.comments_count -= 1
+
+        post.save()
         comment.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)

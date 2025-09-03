@@ -1,3 +1,4 @@
+from django.db.models import F
 from rest_framework import serializers
 
 from comments.models import Comment
@@ -32,6 +33,9 @@ class CreateCommentSerializer(serializers.ModelSerializer):
             upvotes=upvotes,
             downvotes=downvotes,
         )
+
+        post.comments_count = F('comments_count') + 1
+        post.save()
 
         return comment
 

@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 from posts.views import GetAllPostsView, CreatePostView, GetUserPostsView, GetCommunityPostsView, DeletePostView, \
-    GetPostView, VotePostView, GetVotePostsView
+    GetPostView, VotePostView, GetVotePostsView, UpdatePostView
 
 urlpatterns = [
     #Get
@@ -13,7 +13,7 @@ urlpatterns = [
     #Crud
     path('create/', CreatePostView.as_view(), name='create_post'),
     path('<int:post_id>/delete/', DeletePostView.as_view(), name='delete_post'),
-    # path('<int:post_id>/update/'),
+    path('<int:post_id>/update/', UpdatePostView.as_view(), name='update_post'),
 
     #Upvote - downvote
     path('get_user_votes/', GetVotePostsView.as_view(), name='get_user_votes'),

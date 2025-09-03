@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 import posts
 from communities.models import Community
 from posts.models import Post, PostVote
-from posts.serializers import PostSerializer, CreatePostSerializer
+from posts.serializers import PostSerializer, CreatePostSerializer, UpdatePostSerializer
 from users.models import User
 
 
@@ -62,6 +62,21 @@ class CreatePostView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UpdatePostView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, post_id):
+        post = Post.objects.get(id=post_id)
+
+        serializer = UpdatePostSerializer(data=request.data, instance=post)
+
+        if serializer.is_valid():
+            serializer.save()
+
+            return Response(serializer.data)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

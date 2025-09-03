@@ -45,3 +45,19 @@ class CreatePostSerializer(serializers.ModelSerializer):
         )
 
         return post
+
+class UpdatePostSerializer(serializers.ModelSerializer):
+    community = serializers.PrimaryKeyRelatedField(queryset=Community.objects.all())
+
+    class Meta:
+        model = Post
+        fields = ('community', 'title', 'content', 'image_url')
+
+    def update(self, instance, validated_data):
+        instance.title = validated_data.pop('title')
+        instance.content = validated_data.pop('content')
+        instance.image_url = validated_data.pop('image_url')
+        instance.community = validated_data.pop('community')
+        instance.save()
+
+        return instance
