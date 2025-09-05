@@ -270,6 +270,8 @@ namespace Frontend.Services
                     return null;
                 }
 
+                Debug.WriteLine(response);
+
                 return "Something went wrong";
             }
             catch (Exception ex)

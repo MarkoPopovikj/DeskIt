@@ -17,7 +17,7 @@ class Post(models.Model):
         related_name='author'
     )
 
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=170)
     content = models.TextField(blank=True)
 
     upvotes = models.IntegerField(default=0)

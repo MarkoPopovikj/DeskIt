@@ -11,7 +11,8 @@ TOPIC_CHOICES = [
     ('SPORTS', 'Sports & Fitness'),
     ('MUSIC', 'Music & Arts'),
     ('NEWS', 'News & Politics'),
-    ('TRAVEL', 'Travel & Holidays')
+    ('TRAVEL', 'Travel & Holidays'),
+    ('ANIMALS', 'Pets & Animals')
 ]
 
 class Community(models.Model):
